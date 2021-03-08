@@ -5,17 +5,17 @@ import (
 	"os"
 	"time"
 
+	"github.com/charstal/schedule-extender/pkg/rlscheduler"
 	"k8s.io/component-base/logs"
-	"k8s.io/kubectl/pkg/util/logs"
 	"k8s.io/kubernetes/cmd/kube-scheduler/app"
 )
 
 func main() {
 	rand.Seed(time.Now().UTC().UnixNano())
 
-	command := app.NewSchedulerCommand{
-		rlscheduler.Name, rlscheduler.New()
-	}
+	command := app.NewSchedulerCommand(
+		app.WithPlugin(rlscheduler.Name, rlscheduler.New),
+	)
 
 	logs.InitLogs()
 	defer logs.FlushLogs()

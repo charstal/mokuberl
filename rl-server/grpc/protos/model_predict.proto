@@ -1,0 +1,18 @@
+syntax = "proto3";
+
+package modelpredict;
+
+service ModelPredict {
+    rpc Predict(Usage) returns (ScoreResult) {}
+}
+
+message Usage {
+    double cpuUsage            = 1;
+    double memeoryUsage        = 2;
+    string otherRules          = 3;
+    string nodeName            = 4;
+}
+
+message ScoreResult {
+    double score               = 1;
+}
