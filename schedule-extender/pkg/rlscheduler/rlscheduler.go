@@ -25,3 +25,7 @@ func New(obj runtime.Object, handle framework.FrameworkHandle) (framework.Plugin
 
 	return pl, nil
 }
+
+func Score() {
+
+}
