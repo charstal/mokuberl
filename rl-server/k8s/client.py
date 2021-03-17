@@ -4,24 +4,33 @@ import math
 CPU = "CPU"
 MEMORY = "MEMORY"
 
+config.load_kube_config()
+
 class K8sClient:
     def __init__(self):
         # Configs can be set in Configuration class directly or using helper utility
-        config.load_kube_config()
-        self._instance = client.CoreV1Api()
+        self._core_client = client.CoreV1Api()
+        self._custom_api_client = client.CustomObjectsApi()
 
 
     def get_all_node_capacity(self):
         """get node capacity
         """
         capacity_map = dict()
-        ret = self._instance.list_node(watch=False)
+        ret = self._core_client.list_node(watch=False)
         for i in ret.items:
             capacity_map[i.metadata.name] = {
-                "cpu": cpu_convert(i.status.capacity['cpu']),
-                "memory": memory_convert(i.status.capacity['memory']),
+                "cpu": cpu_convert(i.status.allocatable['cpu']),
+                "memory": memory_convert(i.status.allocatable['memory']),
             }
+            print(i)
         return capacity_map
+    
+    def get_all_node_usage(self):
+        """get node usage
+        """
+        print(self._custom_api_client.list_cluster_custom_object('metrics.k8s.io', 'v1beta1', 'nodes'))
+        
 
 def cpu_convert(src):
     if src.endswith("m"):
@@ -48,7 +57,8 @@ def memory_convert(src):
 
 if __name__ == "__main__": 
     k8sclient = K8sClient()
-    print(k8sclient.get_all_node_capacity())
+    # print(k8sclient.get_all_node_capacity())
+    print(k8sclient.get_all_node_usage())
     # print(cpu_convert("12"))
     # print(memory_convert("123Mi"))
 
