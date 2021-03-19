@@ -11,8 +11,10 @@ require (
 	google.golang.org/grpc/cmd/protoc-gen-go-grpc v1.1.0 // indirect
 	google.golang.org/grpc/examples v0.0.0-20210309003715-fce74a94bdff // indirect
 	google.golang.org/protobuf v1.25.0
+	k8s.io/api v0.19.8 // indirect
 	k8s.io/apimachinery v0.19.8
 	k8s.io/component-base v0.19.8
+	k8s.io/klog/v2 v2.2.0 // indirect
 	k8s.io/kube-scheduler v0.19.8 // indirect
 	k8s.io/kubernetes v1.19.8
 )

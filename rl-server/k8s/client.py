@@ -38,6 +38,11 @@ class K8sClient:
             }
         return usage_map
 
+    def get_pod(self, pod_name, namespace):
+        """get pod info
+        """
+        ret = self._core_client.read_namespaced_pod(pod_name, namespace)
+        return ret
 
 def cpu_convert(src):
     if src.endswith("m"):
@@ -64,6 +69,5 @@ def memory_convert(src):
 if __name__ == "__main__":
     k8sclient = K8sClient()
     # print(k8sclient.get_all_node_capacity())
-    print(k8sclient.get_all_node_usage())
-    # print(cpu_convert("12"))
-    # print(memory_convert("123Mi"))
+    # print(k8sclient.get_all_node_usage())
+    # print(k8sclient.get_pod("metrics-server-56c4f8c9d6-gxqgt", "kube-system"))
