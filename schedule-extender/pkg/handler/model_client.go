@@ -4,6 +4,7 @@ import (
 	"context"
 	"log"
 	"os"
+	"sync"
 	"time"
 
 	pb "github.com/charstal/schedule-extender/pbs"
@@ -14,6 +15,11 @@ const (
 	address     = "localhost:50051"
 	defaultName = "world"
 )
+
+type ModelClient struct {
+	client grpc.ClientConn
+	mu     sync.RWMutex
+}
 
 func main() {
 	// Set up a connection to the server.
