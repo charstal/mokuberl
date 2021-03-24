@@ -1,6 +1,5 @@
-import pbs.model_predict_pb2 as model_predict_pb2
-import pbs.model_predict_pb2_grpc as model_predict_pb2_grpc
+from pbs import ModelPredictServicer, model_predict_pb2
 
-class ModelPredict(model_predict_pb2_grpc.ModelPredictServicer):
+class ModelPredict(ModelPredictServicer):
     def Predict(self, request, context):
-        return model_predict_pb2.ScoreResult(score=request.memeoryUsage+request.cpuUsage)
+        return model_predict_pb2.Choice(nodeName="test")

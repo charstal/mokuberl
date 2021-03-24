@@ -5,16 +5,15 @@ package modelpredict;
 option go_package = "./pbs;modelpredict";
 
 service ModelPredict {
-    rpc Predict(Usage) returns (ScoreResult) {}
+    rpc Predict(Usage) returns (Choice) {}
 }
 
 message Usage {
     double cpuUsage            = 1;
     double memeoryUsage        = 2;
     string otherRules          = 3;
-    string nodeName            = 4;
 }
 
-message ScoreResult {
-    double score               = 1;
+message Choice {
+    string nodeName            = 1;
 }

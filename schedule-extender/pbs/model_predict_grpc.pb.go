@@ -18,7 +18,7 @@ const _ = grpc.SupportPackageIsVersion7
 //
 // For semantics around ctx use and closing/ending streaming RPCs, please refer to https://pkg.go.dev/google.golang.org/grpc/?tab=doc#ClientConn.NewStream.
 type ModelPredictClient interface {
-	Predict(ctx context.Context, in *Usage, opts ...grpc.CallOption) (*ScoreResult, error)
+	Predict(ctx context.Context, in *Usage, opts ...grpc.CallOption) (*Choice, error)
 }
 
 type modelPredictClient struct {
@@ -29,8 +29,8 @@ func NewModelPredictClient(cc grpc.ClientConnInterface) ModelPredictClient {
 	return &modelPredictClient{cc}
 }
 
-func (c *modelPredictClient) Predict(ctx context.Context, in *Usage, opts ...grpc.CallOption) (*ScoreResult, error) {
-	out := new(ScoreResult)
+func (c *modelPredictClient) Predict(ctx context.Context, in *Usage, opts ...grpc.CallOption) (*Choice, error) {
+	out := new(Choice)
 	err := c.cc.Invoke(ctx, "/modelpredict.ModelPredict/Predict", in, out, opts...)
 	if err != nil {
 		return nil, err
@@ -42,7 +42,7 @@ func (c *modelPredictClient) Predict(ctx context.Context, in *Usage, opts ...grp
 // All implementations must embed UnimplementedModelPredictServer
 // for forward compatibility
 type ModelPredictServer interface {
-	Predict(context.Context, *Usage) (*ScoreResult, error)
+	Predict(context.Context, *Usage) (*Choice, error)
 	mustEmbedUnimplementedModelPredictServer()
 }
 
@@ -50,7 +50,7 @@ type ModelPredictServer interface {
 type UnimplementedModelPredictServer struct {
 }
 
-func (UnimplementedModelPredictServer) Predict(context.Context, *Usage) (*ScoreResult, error) {
+func (UnimplementedModelPredictServer) Predict(context.Context, *Usage) (*Choice, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method Predict not implemented")
 }
 func (UnimplementedModelPredictServer) mustEmbedUnimplementedModelPredictServer() {}

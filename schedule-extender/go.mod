@@ -3,14 +3,12 @@ module github.com/charstal/schedule-extender
 go 1.15
 
 require (
-	github.com/golang/protobuf v1.4.3
-	github.com/google/go-cmp v0.5.2 // indirect
-	github.com/prometheus/client_golang v1.9.0 // indirect
+	github.com/golang/protobuf v1.5.0
 	github.com/stretchr/testify v1.5.1 // indirect
 	google.golang.org/grpc v1.36.0
 	google.golang.org/grpc/cmd/protoc-gen-go-grpc v1.1.0 // indirect
 	google.golang.org/grpc/examples v0.0.0-20210309003715-fce74a94bdff // indirect
-	google.golang.org/protobuf v1.25.0
+	google.golang.org/protobuf v1.26.0
 	k8s.io/api v0.19.8 // indirect
 	k8s.io/apimachinery v0.19.8
 	k8s.io/component-base v0.19.8

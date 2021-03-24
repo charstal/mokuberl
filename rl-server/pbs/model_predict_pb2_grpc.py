@@ -2,7 +2,7 @@
 """Client and server classes corresponding to protobuf-defined services."""
 import grpc
 
-import pbs.model_predict_pb2 as model__predict__pb2
+from .model_predict_pb2 import *
 
 
 class ModelPredictStub(object):
@@ -15,10 +15,10 @@ class ModelPredictStub(object):
             channel: A grpc.Channel.
         """
         self.Predict = channel.unary_unary(
-            '/modelpredict.ModelPredict/Predict',
-            request_serializer=model__predict__pb2.Usage.SerializeToString,
-            response_deserializer=model__predict__pb2.ScoreResult.FromString,
-        )
+                '/modelpredict.ModelPredict/Predict',
+                request_serializer=Usage.SerializeToString,
+                response_deserializer=Choice.FromString,
+                )
 
 
 class ModelPredictServicer(object):
@@ -33,35 +33,34 @@ class ModelPredictServicer(object):
 
 def add_ModelPredictServicer_to_server(servicer, server):
     rpc_method_handlers = {
-        'Predict': grpc.unary_unary_rpc_method_handler(
-            servicer.Predict,
-            request_deserializer=model__predict__pb2.Usage.FromString,
-            response_serializer=model__predict__pb2.ScoreResult.SerializeToString,
-        ),
+            'Predict': grpc.unary_unary_rpc_method_handler(
+                    servicer.Predict,
+                    request_deserializer=Usage.FromString,
+                    response_serializer=Choice.SerializeToString,
+            ),
     }
     generic_handler = grpc.method_handlers_generic_handler(
-        'modelpredict.ModelPredict', rpc_method_handlers)
+            'modelpredict.ModelPredict', rpc_method_handlers)
     server.add_generic_rpc_handlers((generic_handler,))
 
+
  # This class is part of an EXPERIMENTAL API.
-
-
 class ModelPredict(object):
     """Missing associated documentation comment in .proto file."""
 
     @staticmethod
     def Predict(request,
-                target,
-                options=(),
-                channel_credentials=None,
-                call_credentials=None,
-                insecure=False,
-                compression=None,
-                wait_for_ready=None,
-                timeout=None,
-                metadata=None):
+            target,
+            options=(),
+            channel_credentials=None,
+            call_credentials=None,
+            insecure=False,
+            compression=None,
+            wait_for_ready=None,
+            timeout=None,
+            metadata=None):
         return grpc.experimental.unary_unary(request, target, '/modelpredict.ModelPredict/Predict',
-                                             model__predict__pb2.Usage.SerializeToString,
-                                             model__predict__pb2.ScoreResult.FromString,
-                                             options, channel_credentials,
-                                             insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
+            Usage.SerializeToString,
+            Choice.FromString,
+            options, channel_credentials,
+            insecure, call_credentials, compression, wait_for_ready, timeout, metadata)

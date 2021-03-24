@@ -3,9 +3,8 @@ import logging
 
 import grpc
 
-import pbs.model_predict_pb2 as model_predict_pb2
-import pbs.model_predict_pb2_grpc as model_predict_pb2_grpc
-from rl.model_interface import ModelPredict
+from pbs import model_predict_pb2_grpc
+from rl import ModelPredict
 
 
 

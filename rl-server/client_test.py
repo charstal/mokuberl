@@ -3,8 +3,7 @@ import logging
 
 import grpc
 
-import pbs.model_predict_pb2 as model_predict_pb2
-import pbs.model_predict_pb2_grpc as model_predict_pb2_grpc
+from  pbs import  model_predict_pb2, model_predict_pb2_grpc
 
 
 def run():

@@ -2,49 +2,105 @@ package main
 
 import (
 	"context"
+	"fmt"
 	"log"
-	"os"
 	"sync"
+	"sync/atomic"
 	"time"
+	"unsafe"
 
 	pb "github.com/charstal/schedule-extender/pbs"
+	"github.com/charstal/schedule-extender/pkg/utils"
 	"google.golang.org/grpc"
 )
 
-const (
-	address     = "localhost:50051"
-	defaultName = "world"
-)
+type CpuUnit float64
+type MemoryUnit float64
+
+type Resource struct {
+	cpu    CpuUnit
+	memory MemoryUnit
+}
 
 type ModelClient struct {
-	client grpc.ClientConn
+	client pb.ModelPredictClient
 	mu     sync.RWMutex
 }
 
-func main() {
-	// Set up a connection to the server.
-	conn, err := grpc.Dial(address, grpc.WithInsecure(), grpc.WithBlock())
-	if err != nil {
-		log.Fatalf("did not connect: %v", err)
-	}
-	defer conn.Close()
-	c := pb.NewModelPredictClient(conn)
+const (
+	address = "localhost:50051"
+)
 
-	// Contact the server and print out its response.
-	nodeName := defaultName
-	if len(os.Args) > 1 {
-		nodeName = os.Args[1]
-	}
+var (
+	globalClientConn unsafe.Pointer
+	lck              sync.Mutex
+)
+
+func (mc *ModelClient) Predict(usage Resource, rules string) string {
 	ctx, cancel := context.WithTimeout(context.Background(), time.Second)
 	defer cancel()
-	r, err := c.Predict(ctx, &pb.Usage{
-		CpuUsage:     0.3,
-		MemeoryUsage: 0.4,
-		OtherRules:   "",
-		NodeName:     nodeName,
+	r, err := mc.client.Predict(ctx, &pb.Usage{
+		CpuUsage:     float64(usage.cpu),
+		MemeoryUsage: float64(usage.memory),
+		OtherRules:   rules,
 	})
 	if err != nil {
+		utils.LogWrite(utils.LOG_FATAL, fmt.Sprintf("could not greet: %v", err))
 		log.Fatalf("could not greet: %v", err)
 	}
-	log.Printf("%s  score: %f", nodeName, r.GetScore())
+	utils.LogWrite(utils.LOG_INFO, fmt.Sprintf("The selected node %s", r.GetNodeName()))
+	log.Printf("The selected node %s", r.GetNodeName())
+	return r.GetNodeName()
+}
+
+func GetClient() (*ModelClient, error) {
+	conn, err := GetConn()
+	if err != nil {
+		return nil, err
+	}
+	mc := &ModelClient{
+		client: pb.NewModelPredictClient(conn),
+	}
+	return mc, nil
+}
+
+func GetConn() (*grpc.ClientConn, error) {
+	if atomic.LoadPointer(&globalClientConn) != nil {
+		return (*grpc.ClientConn)(globalClientConn), nil
+	}
+	lck.Lock()
+	defer lck.Unlock()
+	if atomic.LoadPointer(&globalClientConn) != nil {
+		return (*grpc.ClientConn)(globalClientConn), nil
+	}
+	cli, err := newGRPCConn()
+	if err != nil {
+		return nil, err
+	}
+	atomic.StorePointer(&globalClientConn, unsafe.Pointer(cli))
+	return cli, nil
+}
+
+func newGRPCConn() (*grpc.ClientConn, error) {
+	conn, err := grpc.Dial(
+		address,
+		grpc.WithInsecure(),
+	)
+	if err != nil {
+		return nil, err
+	}
+	return conn, nil
+}
+
+// func (mc *ModelClient) ReConnect() {
+// 	mc.client
+// }
+
+func main() {
+	client, _ := GetClient()
+	println(client.Predict(Resource{
+		cpu:    0.4,
+		memory: 0.5,
+	}, ""))
+
 }
