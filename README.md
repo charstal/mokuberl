@@ -4,7 +4,7 @@
 
 ## Overview
 
-![achitecture](imgs/achitecture.png)
+![achitecture](imgs/architecture.png)
 
 ## TODO
 

@@ -1,20 +1,17 @@
-import gym
-from gym import spaces
-from gym.utils import seeding
-
-from k8s import K8sClient
-
-node_class = ["cpu", "memory"]
+from config import NODE_CLASS, NODE_STATE, DEFAULT_NODE
 
 
-class ScheduleEnv(gym.Env):
-    def __init__(self):
-        self.k8s_client = K8sClient()
+class ScheduleEnv():
+    def __init__(self, node_list):
 
-        self.states = [1,2,3,4,5,6,7,8]             # 状态
-        self.actions = ['n','e','s','w']            # 动作
+        # 状态
+        self.states = list_product(node_list, NODE_CLASS, NODE_STATE) + ["no_available"]
+        # 动作
+        self.actions = list_product(node_list, NODE_CLASS)
 
-        self.rewards = dict()		# 回报函数的数据结构为字典
+        # 回报函数的数据结构为字典
+        self.rewards = dict()
+        # for 
         self.rewards['1_s'] = -1.0	
         self.rewards['3_s'] = 1.0
         self.rewards['5_s'] = -1.0
@@ -37,5 +34,21 @@ class ScheduleEnv(gym.Env):
     def reset(self):
         pass
 
-    
+def list_product(*lists):
+    result = [[]]
 
+    for pool in lists:
+        tmp = []
+        for x in result:
+            for y in pool:
+                tmp.append(x + [y])
+        result = tmp   
+
+    result_str = ["_".join(item) for item in result ]
+
+    return result_str
+
+if __name__ == "__main__":
+    node = ["node01", "node02", "node03"]
+    se = ScheduleEnv(node)
+    print(se.states)
