@@ -12,6 +12,6 @@ build:
 clean:
 	rm -rf ./_output
 
-.PHONY: code_gen
+.PHONY: gen
 gen:
 	bash ./shell/code_gen.sh

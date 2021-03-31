@@ -4,7 +4,7 @@ import torch
 import numpy as np
 from collections import deque
 import matplotlib.pyplot as plt
-from dqn_agent import Agent
+from .dqn_agent import Agent
 
 
 
@@ -28,7 +28,6 @@ def dqn(n_episodes=2000, max_t=1000, eps_start=1.0, eps_end=0.01, eps_decay=0.99
         for t in range(max_t):
             action = agent.act(state, eps)
             next_state, reward, done, _ = env.step(action)
-            print(next_state)
             agent.step(state, action, reward, next_state, done)
             state = next_state
             score += reward

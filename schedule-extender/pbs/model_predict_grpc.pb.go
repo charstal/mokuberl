@@ -11,8 +11,7 @@ import (
 
 // This is a compile-time assertion to ensure that this generated file
 // is compatible with the grpc package it is being compiled against.
-// Requires gRPC-Go v1.32.0 or later.
-const _ = grpc.SupportPackageIsVersion7
+const _ = grpc.SupportPackageIsVersion6
 
 // ModelPredictClient is the client API for ModelPredict service.
 //
@@ -62,8 +61,8 @@ type UnsafeModelPredictServer interface {
 	mustEmbedUnimplementedModelPredictServer()
 }
 
-func RegisterModelPredictServer(s grpc.ServiceRegistrar, srv ModelPredictServer) {
-	s.RegisterService(&ModelPredict_ServiceDesc, srv)
+func RegisterModelPredictServer(s *grpc.Server, srv ModelPredictServer) {
+	s.RegisterService(&_ModelPredict_serviceDesc, srv)
 }
 
 func _ModelPredict_Predict_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
@@ -84,10 +83,7 @@ func _ModelPredict_Predict_Handler(srv interface{}, ctx context.Context, dec fun
 	return interceptor(ctx, in, info, handler)
 }
 
-// ModelPredict_ServiceDesc is the grpc.ServiceDesc for ModelPredict service.
-// It's only intended for direct use with grpc.RegisterService,
-// and not to be introspected or modified (even as a copy)
-var ModelPredict_ServiceDesc = grpc.ServiceDesc{
+var _ModelPredict_serviceDesc = grpc.ServiceDesc{
 	ServiceName: "modelpredict.ModelPredict",
 	HandlerType: (*ModelPredictServer)(nil),
 	Methods: []grpc.MethodDesc{

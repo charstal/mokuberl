@@ -29,6 +29,7 @@ class Agent():
             action_size (int): dimension of each action
             seed (int): random seed
         """
+        # print(state_size, action_size)
         self.state_size = state_size
         self.action_size = action_size
         self.seed = random.seed(seed)

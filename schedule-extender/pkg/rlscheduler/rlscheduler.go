@@ -6,6 +6,7 @@ import (
 	"strconv"
 
 	"github.com/charstal/schedule-extender/apis/config"
+	"github.com/charstal/schedule-extender/pkg/modelclient"
 	v1 "k8s.io/api/core/v1"
 	"k8s.io/apimachinery/pkg/runtime"
 	"k8s.io/klog/v2"
@@ -21,6 +22,7 @@ var (
 	reqiestsMilliMemory   = config.DefaultRequestsMilliMemory
 	requestsMilliCores    = config.DefaultRequestsMilliCores
 	requestsMultiplier, _ = strconv.ParseFloat(config.DefaultRequestsMultiplier, 64)
+	client, _             = modelclient.GetClient()
 )
 
 type RLScheduler struct {

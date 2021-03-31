@@ -1,38 +1,90 @@
-from config import NODE_CLASS, NODE_STATE, DEFAULT_NODE
+from config import NODE_CLASS, NODE_STATE, DEFAULT_NODE_SIZE, CLASS_THRESHOLD
+import random
+from k8s import K8sClient
 
+TERMINATE_STATE = 0
+TERMINATE_ACTION = ["none"]
 
 class ScheduleEnv():
-    def __init__(self, node_list):
+    def __init__(self):
 
+        self.k8s_client = K8sClient()
+        node_list = self.k8s_client.get_nodes()
+
+        # node_list = ["node01", "node02", "node03"]
+
+        self.node_list = node_list[:min(len(node_list), DEFAULT_NODE_SIZE)]
         # 状态
-        self.states = list_product(node_list, NODE_CLASS, NODE_STATE) + ["no_available"]
+        # self.states = states_init(self.node_list)
         # 动作
-        self.actions = list_product(node_list, NODE_CLASS)
+        self.actions = list_product(self.node_list, NODE_CLASS) + TERMINATE_ACTION
 
-        # 回报函数的数据结构为字典
-        self.rewards = dict()
-        # for 
-        self.rewards['1_s'] = -1.0	
-        self.rewards['3_s'] = 1.0
-        self.rewards['5_s'] = -1.0
+        self.terminate_states = TERMINATE_STATE
 
-        self.t = dict()				# 状态转移的数据结构为字典
-        self.t['1_s'] = 6
-        self.t['1_e'] = 2
-        self.t['2_w'] = 1
-        self.t['2_e'] = 3
-        self.t['3_w'] = 2
-        self.t['3_e'] = 4
-        self.t['3_s'] = 7
-        self.t['4_w'] = 3
-        self.t['4_e'] = 5
-        self.t['5_w'] = 4
-        self.t['5_s'] = 8
 
-        self.terminate_states = [6,7,8]
+    def pre_step(self, act):
+        action = self.actions[act]
+        if action == TERMINATE_ACTION:
+            return ""
+
+        arr = action.split("_")
+        node_name = arr[0]
+
+        return node_name
+
+    def step(self, act, states):
+        action = self.actions[act]
+
+        arr = action.split("_")
+        node_name, kind = arr[0], arr[1]
+
+        is_full = False
+        reward = 1.0
+        current_node_states = self.k8s_client.get_node_percentage(node_name)
+        if current_node_states[NODE_CLASS.index(kind)] >= CLASS_THRESHOLD[NODE_CLASS.index(kind)]:
+            is_full = True
+            reward = -1.0
+        next_states = self.set_state(node_name=node_name, states=states, kind=kind, is_full=is_full)
+
+        done = True
+        for state in states:
+            if state != 0:
+                done = False
+                break
+
+        return next_states, reward, done, {}
+        
+    def set_state(self, node_name, states, kind, is_full):
+        curr_state = states[node_name]
+        if is_full:
+            curr_state = curr_state & ~(1 << (NODE_CLASS.index(kind)))
+        else:
+            curr_state = curr_state | (1 << (NODE_CLASS.index(kind)))
+        states[node_name] = curr_state
+        return states
+
+    # callback or timing?
+    def update_node_list(self):
+        node_list = self._k8s_client.get_nodes()
+        self.node_list = node_list[:min(len(node_list), DEFAULT_NODE_SIZE)]
+
+        return node_list
 
     def reset(self):
-        pass
+        states = []
+
+        for _ in range(len(self.node_list)):
+            states.append((1 << len(NODE_CLASS)) - 1)
+        return states
+
+    def get_node_size(self):
+        return len(self.node_list)
+
+    def get_action_size(self):
+        return len(self.actions)
+
+    def get_state_size(self):
+        return len(self.node_list)
 
 def list_product(*lists):
     result = [[]]
@@ -49,6 +101,6 @@ def list_product(*lists):
     return result_str
 
 if __name__ == "__main__":
-    node = ["node01", "node02", "node03"]
-    se = ScheduleEnv(node)
-    print(se.states)
+    # node = ["node01", "node02", "node03"]
+    se = ScheduleEnv()
+    print(se.reset())

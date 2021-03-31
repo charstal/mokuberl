@@ -1,1 +1,1 @@
-from .client import K8sClient
+from .client import K8sClient, Resource
