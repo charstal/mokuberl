@@ -1,6 +1,8 @@
 from config import NODE_CLASS, NODE_STATE, DEFAULT_NODE_SIZE, CLASS_THRESHOLD
 import random
 from k8s import K8sClient
+import numpy as np
+from config import POSITIVE_REWARD, NEGATIVE_REWARD
 
 TERMINATE_STATE = 0
 TERMINATE_ACTION = ["none"]
@@ -39,11 +41,13 @@ class ScheduleEnv():
         node_name, kind = arr[0], arr[1]
 
         is_full = False
-        reward = 1.0
+        reward = POSITIVE_REWARD
         current_node_states = self.k8s_client.get_node_percentage(node_name)
-        if current_node_states[NODE_CLASS.index(kind)] >= CLASS_THRESHOLD[NODE_CLASS.index(kind)]:
+
+        # print(current_node_states)
+        if current_node_states[kind] >= CLASS_THRESHOLD[kind]:
             is_full = True
-            reward = -1.0
+            reward = NEGATIVE_REWARD
         next_states = self.set_state(node_name=node_name, states=states, kind=kind, is_full=is_full)
 
         done = True
@@ -55,12 +59,12 @@ class ScheduleEnv():
         return next_states, reward, done, {}
         
     def set_state(self, node_name, states, kind, is_full):
-        curr_state = states[node_name]
+        curr_state = states[self.node_list.index(node_name)]
         if is_full:
             curr_state = curr_state & ~(1 << (NODE_CLASS.index(kind)))
         else:
             curr_state = curr_state | (1 << (NODE_CLASS.index(kind)))
-        states[node_name] = curr_state
+        states[self.node_list.index(node_name)] = curr_state
         return states
 
     # callback or timing?
@@ -75,7 +79,7 @@ class ScheduleEnv():
 
         for _ in range(len(self.node_list)):
             states.append((1 << len(NODE_CLASS)) - 1)
-        return states
+        return np.array(states)
 
     def get_node_size(self):
         return len(self.node_list)
