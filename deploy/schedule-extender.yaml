@@ -1,0 +1,62 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: mokuberl-schedule-extender-config
+  namespace: kube-system
+data:
+  mokuberl-schedule-extender-config.yaml: |
+    apiVersion: kubescheduler.config.k8s.io/v1beta1
+    kind: KubeSchedulerConfiguration
+    leaderElection:
+      leaderElect: false
+    profiles:
+    - schedulerName: RLScheduler
+      plugins:
+        score:
+          disabled:
+          - name: NodeResourcesBalancedAllocation
+          - name: NodeResourcesLeastAllocated
+          - name: TargetLoadPacking
+          - name: PodTopologySpread
+          - name: SelectorSpread
+          enabled:
+          - name: RLScheduler
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: mokuberl-schedule-extender-deploy
+  namespace: kube-system
+spec:
+  replicas: 1
+  selector: 
+    matchLabels:
+      component: mokuberl-schedule-extender
+  template:
+    metadata:
+      labels:
+        component: mokuberl-schedule-extender
+    spec:
+      serviceAccount: mokuberl-sa
+      priorityClassName: system-cluster-critical
+      volumes:
+      - name: mokuberl-schedule-extender-config
+        configMap:
+          name: mokuberl-schedule-extender-config
+      containers:
+      - name: mokuberl-schedule-extender-ctrl
+        image: registry.cn-shanghai.aliyuncs.com/charstal/mokuberl:schedule-extender-v0.0.1
+        imagePullPolicy: IfNotPresent
+        env:
+        - name: SERVER_ADDRESS
+          value: http://mokuberl-rl-server.kube-system.svc.cluster.local:5051
+        args:
+        - schedule-extender
+        - --config=/scheduler/mokuberl-schedule-extender-config.yaml
+        - --v=6
+        resources:
+          requests:
+            cpu: "50m"
+        volumeMounts:
+        - name: mokuberl-schedule-extender-config
+          mountPath: /scheduler

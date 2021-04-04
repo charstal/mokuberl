@@ -4,6 +4,7 @@ import (
 	"context"
 	"fmt"
 	"log"
+	"os"
 	"sync"
 	"sync/atomic"
 	"time"
@@ -28,12 +29,13 @@ type ModelClient struct {
 }
 
 const (
-	address = "localhost:50051"
+	defaultAddress = "localhost:50051"
 )
 
 var (
 	globalClientConn unsafe.Pointer
 	lck              sync.Mutex
+	address          = os.Getenv("SERVER_ADDRESS")
 )
 
 func (mc *ModelClient) Predict(usage Resource, rules string, podName string) string {
@@ -83,6 +85,9 @@ func GetConn() (*grpc.ClientConn, error) {
 }
 
 func newGRPCConn() (*grpc.ClientConn, error) {
+	if address == "" {
+		address = defaultAddress
+	}
 	conn, err := grpc.Dial(
 		address,
 		grpc.WithInsecure(),

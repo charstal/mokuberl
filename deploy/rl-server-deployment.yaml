@@ -1,0 +1,39 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: mokuberl-rl-server-deploy
+  namespace: kube-system
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: mokuberl-rl-server
+  template:
+    metadata:
+      labels:
+        app: mokuberl-rl-server
+    spec:
+      containers:
+      - name: mokuberl-rl-server
+        imagePullPolicy: IfNotPresent
+        image: registry.cn-shanghai.aliyuncs.com/charstal/mokuberl:rl-server-v0.0.1
+        ports:
+          - name: grpc
+            containerPort: 50051
+      serviceAccountName: mokuberl-sa
+---
+apiVersion: v1
+kind: Service
+metadata:
+  labels:
+    k8s-app: mokuberl-rl-server
+  name: mokuberl-rl-server
+  namespace: kube-system
+spec:
+  ports:
+  - name: grpc
+    port: 5051
+    protocol: TCP
+    targetPort: 50051
+  selector:
+    app: mokuberl-rl-server
