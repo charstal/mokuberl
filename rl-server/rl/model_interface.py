@@ -26,7 +26,7 @@ class ModelPredict(ModelPredictServicer):
         self.eps = eps_start
 
     def Predict(self, request, context):
-        print("starting predict:", request.otherRules)
+        print("starting predict:", request.podName)
         lock.acquire()
         states = self.states
         lock.release()
@@ -36,7 +36,6 @@ class ModelPredict(ModelPredictServicer):
         Thread(target=self.task, args=(action,)).start()
         # mem cpu pod usage + rules: kind. 
 
-        print("test")
         return model_predict_pb2.Choice(nodeName=node_name)
 
     def task(self, action):
@@ -63,5 +62,5 @@ class ModelPredict(ModelPredictServicer):
         # print("finished training")
         lock.release()
 
-        print('\tAverage Score: {:.2f}'.format(np.mean(self.scores)), end="")
+        print('\tAverage Score: {:.2f}\n'.format(np.mean(self.scores)), end="")
         

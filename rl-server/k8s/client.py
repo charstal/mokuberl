@@ -4,8 +4,6 @@ import math
 import warnings
 from config import NODE_CLASS_CPU, NODE_CLASS_MEMORY
 
-CPU = "CPU"
-MEMORY = "MEMORY"
 
 config.load_kube_config()
 
@@ -17,8 +15,8 @@ class Resource:
 
     def get_all(self):
         return {
-            CPU: self._cpu,
-            MEMORY: self._memory
+            NODE_CLASS_CPU: self._cpu,
+            NODE_CLASS_MEMORY: self._memory
         }
     
     def get_cpu(self):
@@ -71,6 +69,19 @@ class K8sClient:
             #     "memory": memory_convert(i['usage']['memory']),
             # }
         return usage_map
+
+    def get_all_node_percentage(self):
+        capacity = self.get_all_node_capacity()
+        usage = self.get_all_node_usage()
+        
+        nodes_occupy = dict()
+        for k, v in capacity.items():
+            nodes_occupy[k] = {
+                NODE_CLASS_CPU: usage[k].get_cpu() * 100 / v.get_cpu(),
+                NODE_CLASS_MEMORY: usage[k].get_memory() * 100 / v.get_memory()
+            }
+
+        return nodes_occupy
 
     def get_node_percentage(self, node_name):
         capacity = self.get_all_node_capacity()[node_name]
@@ -126,11 +137,15 @@ def memory_convert(src):
 
 if __name__ == "__main__":
     k8sclient = K8sClient()
-    test_capacity = k8sclient.get_all_node_capacity()
-    for key, value in test_capacity.items():
-        print(key, value)
-    test_usage = k8sclient.get_all_node_usage()
-    for key, value in test_usage.items():
-        print(key, value)
-    print(k8sclient.get_node_percentage("minikube"))
+    # test_capacity = k8sclient.get_all_node_capacity()
+    # for key, value in test_capacity.items():
+    #     print(key, value)
+    # test_usage = k8sclient.get_all_node_usage()
+    # for key, value in test_usage.items():
+    #     print(key, value)
+    # print(k8sclient.get_node_percentage("minikube"))
+    all_nodes_p = k8sclient.get_all_node_percentage()
+    for key, value in all_nodes_p.items():
+        print(key)
+        print(value)
     # print(k8sclient.get_pod("metrics-server-56c4f8c9d6-gxqgt", "kube-system"))

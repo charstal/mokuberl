@@ -19,7 +19,7 @@ DESCRIPTOR = _descriptor.FileDescriptor(
   syntax='proto3',
   serialized_options=None,
   create_key=_descriptor._internal_create_key,
-  serialized_pb=b'\n\x13model_predict.proto\x12\x0cmodelpredict\"C\n\x05Usage\x12\x10\n\x08\x63puUsage\x18\x01 \x01(\x01\x12\x14\n\x0cmemeoryUsage\x18\x02 \x01(\x01\x12\x12\n\notherRules\x18\x03 \x01(\t\"\x1a\n\x06\x43hoice\x12\x10\n\x08nodeName\x18\x01 \x01(\t2F\n\x0cModelPredict\x12\x36\n\x07Predict\x12\x13.modelpredict.Usage\x1a\x14.modelpredict.Choice\"\x00\x62\x06proto3'
+  serialized_pb=b'\n\x13model_predict.proto\x12\x0cmodelpredict\"T\n\x05Usage\x12\x10\n\x08\x63puUsage\x18\x01 \x01(\x01\x12\x14\n\x0cmemeoryUsage\x18\x02 \x01(\x01\x12\x12\n\notherRules\x18\x03 \x01(\t\x12\x0f\n\x07podName\x18\x04 \x01(\t\"\x1a\n\x06\x43hoice\x12\x10\n\x08nodeName\x18\x01 \x01(\t2F\n\x0cModelPredict\x12\x36\n\x07Predict\x12\x13.modelpredict.Usage\x1a\x14.modelpredict.Choice\"\x00\x62\x06proto3'
 )
 
 
@@ -54,6 +54,13 @@ _USAGE = _descriptor.Descriptor(
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
       serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
+    _descriptor.FieldDescriptor(
+      name='podName', full_name='modelpredict.Usage.podName', index=3,
+      number=4, type=9, cpp_type=9, label=1,
+      has_default_value=False, default_value=b"".decode('utf-8'),
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
   ],
   extensions=[
   ],
@@ -67,7 +74,7 @@ _USAGE = _descriptor.Descriptor(
   oneofs=[
   ],
   serialized_start=37,
-  serialized_end=104,
+  serialized_end=121,
 )
 
 
@@ -98,8 +105,8 @@ _CHOICE = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=106,
-  serialized_end=132,
+  serialized_start=123,
+  serialized_end=149,
 )
 
 DESCRIPTOR.message_types_by_name['Usage'] = _USAGE
@@ -129,8 +136,8 @@ _MODELPREDICT = _descriptor.ServiceDescriptor(
   index=0,
   serialized_options=None,
   create_key=_descriptor._internal_create_key,
-  serialized_start=134,
-  serialized_end=204,
+  serialized_start=151,
+  serialized_end=221,
   methods=[
   _descriptor.MethodDescriptor(
     name='Predict',

@@ -18,8 +18,8 @@ type CpuUnit float64
 type MemoryUnit float64
 
 type Resource struct {
-	cpu    CpuUnit
-	memory MemoryUnit
+	Cpu    CpuUnit
+	Memory MemoryUnit
 }
 
 type ModelClient struct {
@@ -36,13 +36,14 @@ var (
 	lck              sync.Mutex
 )
 
-func (mc *ModelClient) Predict(usage Resource, rules string) string {
+func (mc *ModelClient) Predict(usage Resource, rules string, podName string) string {
 	ctx, cancel := context.WithTimeout(context.Background(), time.Second)
 	defer cancel()
 	r, err := mc.client.Predict(ctx, &pb.Usage{
-		CpuUsage:     float64(usage.cpu),
-		MemeoryUsage: float64(usage.memory),
+		CpuUsage:     float64(usage.Cpu),
+		MemeoryUsage: float64(usage.Memory),
 		OtherRules:   rules,
+		PodName:      podName,
 	})
 	if err != nil {
 		utils.LogWrite(utils.LOG_FATAL, fmt.Sprintf("could not greet: %v", err))
@@ -99,8 +100,8 @@ func newGRPCConn() (*grpc.ClientConn, error) {
 func main() {
 	client, _ := GetClient()
 	println(client.Predict(Resource{
-		cpu:    0.4,
-		memory: 0.5,
-	}, ""))
+		Cpu:    0.4,
+		Memory: 0.5,
+	}, "", "hello"))
 
 }

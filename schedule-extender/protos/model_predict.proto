@@ -12,6 +12,7 @@ message Usage {
     double cpuUsage            = 1;
     double memeoryUsage        = 2;
     string otherRules          = 3;
+    string podName             = 4;
 }
 
 message Choice {

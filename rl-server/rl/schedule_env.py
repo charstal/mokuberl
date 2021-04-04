@@ -34,27 +34,40 @@ class ScheduleEnv():
 
         return node_name
 
+
+    def update_state(self, states):
+        current_states = states
+        current_node_states = self.k8s_client.get_all_node_percentage()
+
+        for node_name, resource in current_node_states.items():
+            is_full = False
+            for kind in NODE_CLASS:
+                if resource[kind] > CLASS_THRESHOLD[kind]:
+                    is_full = True
+                    current_states = self.set_state(node_name=node_name, states=states, kind=kind, is_full=is_full)
+        return current_states
+
+
     def step(self, act, states):
         action = self.actions[act]
 
-        arr = action.split("_")
-        node_name, kind = arr[0], arr[1]
-
-        is_full = False
-        reward = POSITIVE_REWARD
-        current_node_states = self.k8s_client.get_node_percentage(node_name)
-
-        # print(current_node_states)
-        if current_node_states[kind] >= CLASS_THRESHOLD[kind]:
-            is_full = True
-            reward = NEGATIVE_REWARD
-        next_states = self.set_state(node_name=node_name, states=states, kind=kind, is_full=is_full)
+        next_states = self.update_state(states)
 
         done = True
-        for state in states:
+        reward = POSITIVE_REWARD
+        for state in next_states:
             if state != 0:
                 done = False
                 break
+
+        if action == TERMINATE_ACTION[0] and done:
+            return next_states, reward, done, {}
+        
+        arr = action.split("_")
+        node_name, kind = arr[0], arr[1]
+
+        if self.get_state(node_name, next_states, kind) == 0:
+            reward = NEGATIVE_REWARD
 
         return next_states, reward, done, {}
         
@@ -66,6 +79,10 @@ class ScheduleEnv():
             curr_state = curr_state | (1 << (NODE_CLASS.index(kind)))
         states[self.node_list.index(node_name)] = curr_state
         return states
+    
+    def get_state(self, node_name, states, kind):
+        curr_state = states[self.node_list.index(node_name)]
+        return (curr_state >> (NODE_CLASS.index(kind))) & 1
 
     # callback or timing?
     def update_node_list(self):
