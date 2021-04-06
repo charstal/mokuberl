@@ -7,4 +7,19 @@
 ![achitecture](imgs/architecture.png)
 
 ## TODO
+- [ ] 测试
+- [ ] 容器化
+- [ ] 多状态
+- [ ] 支持新增/删减node
+    - invalid node, 选择可用的node
+    - node list append
+- [ ] 细化奖惩
 
+
+## Usage
+
+
+
+## 效果
+
+![](imgs/worked.png)

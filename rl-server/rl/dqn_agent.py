@@ -1,12 +1,15 @@
 import numpy as np
 import random
 from collections import namedtuple, deque
+import os
 
 from .model import QNetwork
 
 import torch
 import torch.nn.functional as F
 import torch.optim as optim
+
+from config import MODEL_PATH
 
 BUFFER_SIZE = int(1e5)  # replay buffer size
 BATCH_SIZE = 64         # minibatch size
@@ -38,6 +41,10 @@ class Agent():
         self.qnetwork_local = QNetwork(state_size, action_size, seed).to(device)
         self.qnetwork_target = QNetwork(state_size, action_size, seed).to(device)
         self.optimizer = optim.Adam(self.qnetwork_local.parameters(), lr=LR)
+
+        if os.path.exists(MODEL_PATH):
+            self.qnetwork_local.load_state_dict(torch.load(MODEL_PATH))
+            self.qnetwork_target.load_state_dict(torch.load(MODEL_PATH))
 
         # Replay memory
         self.memory = ReplayBuffer(action_size, BUFFER_SIZE, BATCH_SIZE, seed)

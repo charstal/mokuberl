@@ -7,6 +7,7 @@ from config import POSITIVE_REWARD, NEGATIVE_REWARD
 TERMINATE_STATE = 0
 TERMINATE_ACTION = ["none"]
 
+
 class ScheduleEnv():
     def __init__(self):
 
@@ -19,10 +20,10 @@ class ScheduleEnv():
         # 状态
         # self.states = states_init(self.node_list)
         # 动作
-        self.actions = list_product(self.node_list, NODE_CLASS) + TERMINATE_ACTION
+        self.actions = list_product(
+            self.node_list, NODE_CLASS) + TERMINATE_ACTION
 
         self.terminate_states = TERMINATE_STATE
-
 
     def pre_step(self, act):
         action = self.actions[act]
@@ -34,7 +35,6 @@ class ScheduleEnv():
 
         return node_name
 
-
     def update_state(self, states):
         current_states = states
         current_node_states = self.k8s_client.get_all_node_percentage()
@@ -44,9 +44,9 @@ class ScheduleEnv():
             for kind in NODE_CLASS:
                 if resource[kind] > CLASS_THRESHOLD[kind]:
                     is_full = True
-                    current_states = self.set_state(node_name=node_name, states=states, kind=kind, is_full=is_full)
+                    current_states = self.set_state(
+                        node_name=node_name, states=states, kind=kind, is_full=is_full)
         return current_states
-
 
     def step(self, act, states):
         action = self.actions[act]
@@ -62,7 +62,7 @@ class ScheduleEnv():
 
         if action == TERMINATE_ACTION[0] and done:
             return next_states, reward, done, {}
-        
+
         arr = action.split("_")
         node_name, kind = arr[0], arr[1]
 
@@ -70,7 +70,7 @@ class ScheduleEnv():
             reward = NEGATIVE_REWARD
 
         return next_states, reward, done, {}
-        
+
     def set_state(self, node_name, states, kind, is_full):
         curr_state = states[self.node_list.index(node_name)]
         if is_full:
@@ -79,7 +79,7 @@ class ScheduleEnv():
             curr_state = curr_state | (1 << (NODE_CLASS.index(kind)))
         states[self.node_list.index(node_name)] = curr_state
         return states
-    
+        
     def get_state(self, node_name, states, kind):
         curr_state = states[self.node_list.index(node_name)]
         return (curr_state >> (NODE_CLASS.index(kind))) & 1
@@ -107,6 +107,7 @@ class ScheduleEnv():
     def get_state_size(self):
         return len(self.node_list)
 
+
 def list_product(*lists):
     result = [[]]
 
@@ -115,11 +116,12 @@ def list_product(*lists):
         for x in result:
             for y in pool:
                 tmp.append(x + [y])
-        result = tmp   
+        result = tmp
 
-    result_str = ["_".join(item) for item in result ]
+    result_str = ["_".join(item) for item in result]
 
     return result_str
+
 
 if __name__ == "__main__":
     # node = ["node01", "node02", "node03"]

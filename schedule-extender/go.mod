@@ -3,8 +3,7 @@ module github.com/charstal/schedule-extender
 go 1.15
 
 require (
-	github.com/golang/protobuf v1.4.2 // indirect
-	github.com/patrickmn/go-cache v2.1.0+incompatible // indirect
+	github.com/patrickmn/go-cache v2.1.0+incompatible
 	google.golang.org/grpc v1.27.1
 	google.golang.org/protobuf v1.24.0
 	k8s.io/api v0.19.0

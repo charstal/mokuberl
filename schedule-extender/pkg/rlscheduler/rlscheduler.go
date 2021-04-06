@@ -4,11 +4,9 @@ import (
 	"context"
 	"math"
 	"strconv"
-	"time"
 
 	"github.com/charstal/schedule-extender/apis/config"
 	"github.com/charstal/schedule-extender/pkg/modelclient"
-	"github.com/patrickmn/go-cache"
 	v1 "k8s.io/api/core/v1"
 	"k8s.io/apimachinery/pkg/runtime"
 	"k8s.io/klog/v2"
@@ -21,7 +19,6 @@ const (
 )
 
 var (
-	predictCache          = cache.New(5*time.Minute, 10*time.Minute)
 	reqiestsMilliMemory   = config.DefaultRequestsMilliMemory
 	requestsMilliCores    = config.DefaultRequestsMilliCores
 	requestsMultiplier, _ = strconv.ParseFloat(config.DefaultRequestsMultiplier, 64)
@@ -44,6 +41,14 @@ func New(obj runtime.Object, handle framework.FrameworkHandle) (framework.Plugin
 	return pl, nil
 }
 
+func (pl *RLScheduler) ScoreExtensions() framework.ScoreExtensions {
+	return pl
+}
+
+func (pl *RLScheduler) NormalizeScore(context.Context, *framework.CycleState, *v1.Pod, framework.NodeScoreList) *framework.Status {
+	return nil
+}
+
 func (pl *RLScheduler) Score(ctx context.Context, cycleState *framework.CycleState, pod *v1.Pod, nodeName string) (int64, *framework.Status) {
 	var curPodCPUUsage, curPodMemoryUsage int64
 	for _, container := range pod.Spec.Containers {
@@ -59,15 +64,11 @@ func (pl *RLScheduler) Score(ctx context.Context, cycleState *framework.CycleSta
 		curPodMemoryUsage += pod.Spec.Overhead.Memory().MilliValue()
 	}
 	var score int64 = 100
-	retNodeName, found := predictCache.Get(pod.Name)
-	if !found {
-		retNodeName = client.Predict(modelclient.Resource{
-			Cpu:    modelclient.CpuUnit(curPodCPUUsage),
-			Memory: modelclient.MemoryUnit(curPodMemoryUsage),
-		}, "", pod.Name)
-		klog.Infof("predict node for pod %v: %v", pod.Name, retNodeName)
-		predictCache.Set(pod.Name, retNodeName, cache.DefaultExpiration)
-	}
+	retNodeName := client.Predict(modelclient.Resource{
+		Cpu:    modelclient.CpuUnit(curPodCPUUsage),
+		Memory: modelclient.MemoryUnit(curPodMemoryUsage),
+	}, "", pod.Name)
+	klog.Infof("predict node for pod %v: %v", pod.Name, retNodeName)
 	if retNodeName != nodeName {
 		score = 0
 	}
