@@ -5,7 +5,8 @@ import warnings
 from config import NODE_CLASS_CPU, NODE_CLASS_MEMORY
 
 
-config.load_kube_config()
+config.load_incluster_config()
+# config.load_kube_config()
 
 
 class Resource:
@@ -18,7 +19,7 @@ class Resource:
             NODE_CLASS_CPU: self._cpu,
             NODE_CLASS_MEMORY: self._memory
         }
-    
+
     def get_cpu(self):
         return self._cpu
 
@@ -40,10 +41,10 @@ class K8sClient:
         """
         capacity_map = dict()
         ret = self._core_client.list_node(watch=False)
-        
+
         for i in ret.items:
             capacity_map[i.metadata.name] = Resource(
-                cpu_convert(i.status.allocatable['cpu']), 
+                cpu_convert(i.status.allocatable['cpu']),
                 memory_convert(i.status.allocatable['memory'])
             )
             # {
@@ -73,7 +74,7 @@ class K8sClient:
     def get_all_node_percentage(self):
         capacity = self.get_all_node_capacity()
         usage = self.get_all_node_usage()
-        
+
         nodes_occupy = dict()
         for k, v in capacity.items():
             nodes_occupy[k] = {
@@ -90,7 +91,7 @@ class K8sClient:
         return {
             NODE_CLASS_CPU: usage.get_cpu() * 100 / capacity.get_cpu(),
             NODE_CLASS_MEMORY: usage.get_memory() * 100 / capacity.get_memory()
-            }
+        }
 
     def get_pod(self, pod_name, namespace):
         """get pod info
@@ -103,7 +104,7 @@ class K8sClient:
         """
         node_list = []
         ret = self._core_client.list_node(watch=False)
-        
+
         for i in ret.items:
             if not taints and i.spec.taints is not None:
                 continue
@@ -112,6 +113,7 @@ class K8sClient:
         if len(node_list) == 0:
             warnings.warn("no node available or connect server")
         return node_list
+
 
 def cpu_convert(src):
     if src.endswith("m"):

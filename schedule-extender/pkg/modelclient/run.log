@@ -1,4 +1,0 @@
-[fatal]2021/03/22 18:58:46 could not greet: rpc error: code = Unavailable desc = connection error: desc = "transport: Error while dialing dial tcp 127.0.0.1:50051: connect: connection refused"
-[info]2021/03/22 19:07:31 The selected node test
-[fatal]2021/03/30 15:32:19 could not greet: rpc error: code = Unavailable desc = connection error: desc = "transport: Error while dialing dial tcp 127.0.0.1:50051: connect: connection refused"
-[fatal]2021/03/30 15:32:23 could not greet: rpc error: code = Unavailable desc = connection error: desc = "transport: Error while dialing dial tcp 127.0.0.1:50051: connect: connection refused"

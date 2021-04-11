@@ -16,7 +16,7 @@ spec:
       containers:
       - name: mokuberl-rl-server
         imagePullPolicy: IfNotPresent
-        image: registry.cn-shanghai.aliyuncs.com/charstal/mokuberl:rl-server-v0.0.1
+        image: charstal/mokuberl:rl-server-v0.0.2
         ports:
           - name: grpc
             containerPort: 50051

@@ -12,7 +12,7 @@ spec:
       labels:
         app: cpu-test
     spec:
-      schedulerName: trimaran
+      schedulerName: RLScheduler
       containers:
       - name: cpu-test
         image: registry.cn-shanghai.aliyuncs.com/charstal/cpu-test

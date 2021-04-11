@@ -45,11 +45,11 @@ spec:
           name: mokuberl-schedule-extender-config
       containers:
       - name: mokuberl-schedule-extender-ctrl
-        image: charstal/mokuberl:schedule-extender-v0.0.2
+        image: charstal/mokuberl:schedule-extender-v0.0.3
         imagePullPolicy: IfNotPresent
         env:
         - name: SERVER_ADDRESS
-          value: 192.168.1.233:50051
+          value: dns:///mokuberl-rl-server.kube-system.svc.cluster.local:5051
         args:
         - schedule-extender
         - --config=/scheduler/mokuberl-schedule-extender-config.yaml

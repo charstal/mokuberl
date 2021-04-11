@@ -33,13 +33,17 @@ class ModelPredict(ModelPredictServicer):
 
     def Predict(self, request, context):
         podName = request.podName
-        print("starting predict:", request.podName)
+        print("starting predict:", request.podName, flush=True)
         lock.acquire()
         node_name = cache.get(podName)
-        if node_name != None:
-            return node_name
-        states = self.states
+        lock.release()
 
+        # print("node name:", node_name)
+        if node_name != None:
+            return model_predict_pb2.Choice(nodeName=node_name)
+
+        lock.acquire()
+        states = self.states
         action = self.agent.act(state=states)
         node_name = self.env.pre_step(action)
         cache.set(podName, node_name, 60)
@@ -55,7 +59,7 @@ class ModelPredict(ModelPredictServicer):
         s.run()
 
     def train(self, action):
-        # print("training~~~~~~~~~~")
+        print("training:")
         lock.acquire()
         states = self.states
         next_states, reward, done, _ = self.env.step(action, states)
@@ -75,4 +79,5 @@ class ModelPredict(ModelPredictServicer):
         # print("finished training")
         lock.release()
 
-        print('\tAverage Score: {:.2f}\n'.format(np.mean(self.scores)), end="")
+        print('\tAverage Score: {:.2f}\n'.format(
+            np.mean(self.scores)), end="", flush=True)
