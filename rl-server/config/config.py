@@ -1,3 +1,4 @@
+PORT = 50051
 # node resource class
 # C: cpu
 # M: memory
