@@ -1,25 +1,44 @@
 from config import NODE_CLASS, NODE_STATE, DEFAULT_NODE_SIZE, CLASS_THRESHOLD
-import random
-from k8s import K8sClient
+from client import K8sClient, EtcdClient
 import numpy as np
 from config import POSITIVE_REWARD, NEGATIVE_REWARD
+from config import SysConfig
+
 
 TERMINATE_STATE = 0
 TERMINATE_ACTION = ["none"]
 
+ETCD_PORT = SysConfig.get_etcd_port()
+ETCD_USERNAME = SysConfig.get_etcd_username()
+ETCD_PASSWORD = SysConfig.get_etcd_password()
+
 
 class ScheduleEnv():
+
+    def get_node_list(self):
+
+        k8s_nodes = self.k8sclient.get_nodes()
+        etcd_nodes = self.etcdclient.get_nodes()
+
+        node_list = etcd_nodes
+        for node in k8s_nodes:
+            if node not in etcd_nodes:
+                node_list.append(node)
+
+        self.etcdclient.put_nodes(node_list)
+
+        return node_list
+
     def __init__(self):
 
-        self.k8s_client = K8sClient()
-        node_list = self.k8s_client.get_nodes()
+        self.k8sclient = K8sClient()
+        self.etcdclient = EtcdClient(port=ETCD_PORT, username=ETCD_USERNAME,
+                                     password=ETCD_PASSWORD)
 
-        # node_list = ["node01", "node02", "node03"]
+        node_list = self.get_node_list()
 
         self.node_list = node_list[:min(len(node_list), DEFAULT_NODE_SIZE)]
-        # 状态
-        # self.states = states_init(self.node_list)
-        # 动作
+
         self.actions = list_product(
             self.node_list, NODE_CLASS) + TERMINATE_ACTION
 
@@ -79,7 +98,7 @@ class ScheduleEnv():
             curr_state = curr_state | (1 << (NODE_CLASS.index(kind)))
         states[self.node_list.index(node_name)] = curr_state
         return states
-        
+
     def get_state(self, node_name, states, kind):
         curr_state = states[self.node_list.index(node_name)]
         return (curr_state >> (NODE_CLASS.index(kind))) & 1

@@ -1,41 +1,47 @@
-from pbs import ModelPredictServicer, model_predict_pb2
-from .schedule_env import ScheduleEnv
-from k8s import Resource
-from .dqn_agent import Agent
 from collections import deque
-from config import TRAIN_INTERVAL_SECONDS, MODEL_PATH
 import numpy as np
 import torch
 import time
 import sched
 from threading import Lock, Thread
+
+from .schedule_env import ScheduleEnv
+from .dqn_agent import Agent
+from config import ModelConfig
 from utils import Cache
+from pbs import ModelPredictServicer, model_predict_pb2
 
 cache = Cache()
-
 lock = Lock()
-
-eps_start = 1.0
-eps_end = 0.01
-eps_decay = 0.995
-
 s = sched.scheduler(time.time, time.sleep)
+
+
+train_cnt = 0
+EPS_START = ModelConfig.get_eps_start()
+EPS_END = ModelConfig.get_eps_end()
+EPS_DECAY = ModelConfig.get_eps_decay()
+SAVE_MODEL_TRAIN_TIMES = ModelConfig.get_mode_save_train_times()
+TRAIN_INTERVAL = ModelConfig.get_train_interval()
+MODEL_SAVE_PATH = ModelConfig.get_model_path()
 
 
 class ModelPredict(ModelPredictServicer):
     def __init__(self):
+
         self.env = ScheduleEnv()
         self.agent = Agent(state_size=self.env.get_state_size(
         ), action_size=self.env.get_action_size(), seed=0)
-        self.states = self.env.reset()
         self.scores = deque(maxlen=100)
-        self.eps = eps_start
+
+        self.states = self.env.reset()
+        self.eps = EPS_START
 
     def Predict(self, request, context):
-        podName = request.podName
-        print("starting predict:", request.podName, flush=True)
+        pod_name = request.podName
+        print("starting predict:", pod_name, flush=True)
+
         lock.acquire()
-        node_name = cache.get(podName)
+        node_name = cache.get(pod_name)
         lock.release()
 
         # print("node name:", node_name)
@@ -46,16 +52,15 @@ class ModelPredict(ModelPredictServicer):
         states = self.states
         action = self.agent.act(state=states)
         node_name = self.env.pre_step(action)
-        cache.set(podName, node_name, 60)
+        cache.set(pod_name, node_name, 60)
         lock.release()
 
         Thread(target=self.task, args=(action,)).start()
-        # mem cpu pod usage + rules: kind.
 
         return model_predict_pb2.Choice(nodeName=node_name)
 
     def task(self, action):
-        s.enter(TRAIN_INTERVAL_SECONDS, 1, self.train, (action,))
+        s.enter(TRAIN_INTERVAL, 1, self.train, (action,))
         s.run()
 
     def train(self, action):
@@ -73,9 +78,17 @@ class ModelPredict(ModelPredictServicer):
 
         score += reward
         self.scores.append(score)
-        self.eps = max(eps_end, eps_decay*self.eps)  # decrease epsilon
+        self.eps = max(EPS_END, EPS_END*self.eps)  # decrease epsilon
+        train_cnt += 1
 
-        torch.save(self.agent.qnetwork_local.state_dict(), MODEL_PATH)
+        if self.cnt % SAVE_MODEL_TRAIN_TIMES == 0:
+            torch.save(self.agent.qnetwork_local.state_dict(),
+                       MODEL_SAVE_PATH)
+            print("train times: {}".format(train_cnt), flush=True)
+
+            # 上限 2w
+            if train_cnt == 20000:
+                train_cnt = 0
         # print("finished training")
         lock.release()
 

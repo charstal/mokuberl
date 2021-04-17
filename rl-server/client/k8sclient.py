@@ -2,32 +2,12 @@ from multiprocessing import Value
 from kubernetes import client, config
 import math
 import warnings
-from config import NODE_CLASS_CPU, NODE_CLASS_MEMORY
 
+# from config import NODE_CLASS_CPU, NODE_CLASS_MEMORY
+from .type import Resource
 
-config.load_incluster_config()
-# config.load_kube_config()
-
-
-class Resource:
-    def __init__(self, cpu, memory):
-        self._cpu = cpu
-        self._memory = memory
-
-    def get_all(self):
-        return {
-            NODE_CLASS_CPU: self._cpu,
-            NODE_CLASS_MEMORY: self._memory
-        }
-
-    def get_cpu(self):
-        return self._cpu
-
-    def get_memory(self):
-        return self._memory
-
-    def __str__(self):
-        return "cpu: {}, memory: {}".format(self._cpu, self._memory)
+# config.load_incluster_config()
+config.load_kube_config()
 
 
 class K8sClient:
@@ -77,10 +57,12 @@ class K8sClient:
 
         nodes_occupy = dict()
         for k, v in capacity.items():
-            nodes_occupy[k] = {
-                NODE_CLASS_CPU: usage[k].get_cpu() * 100 / v.get_cpu(),
-                NODE_CLASS_MEMORY: usage[k].get_memory() * 100 / v.get_memory()
-            }
+            nodes_occupy[k] = usage[k] / v
+            # {
+
+            #     NODE_CLASS_CPU: usage[k].get_cpu() * 100 / v.get_cpu(),
+            #     NODE_CLASS_MEMORY: usage[k].get_memory() * 100 / v.get_memory()
+            # }
 
         return nodes_occupy
 
@@ -88,10 +70,11 @@ class K8sClient:
         capacity = self.get_all_node_capacity()[node_name]
         usage = self.get_all_node_usage()[node_name]
 
-        return {
-            NODE_CLASS_CPU: usage.get_cpu() * 100 / capacity.get_cpu(),
-            NODE_CLASS_MEMORY: usage.get_memory() * 100 / capacity.get_memory()
-        }
+        return usage / capacity
+        # return {
+        #     NODE_CLASS_CPU: usage.get_cpu() * 100 / capacity.get_cpu(),
+        #     NODE_CLASS_MEMORY: usage.get_memory() * 100 / capacity.get_memory()
+        # }
 
     def get_pod(self, pod_name, namespace):
         """get pod info
@@ -145,7 +128,7 @@ if __name__ == "__main__":
     # test_usage = k8sclient.get_all_node_usage()
     # for key, value in test_usage.items():
     #     print(key, value)
-    # print(k8sclient.get_node_percentage("minikube"))
+    print(k8sclient.get_node_percentage("minikube"))
     all_nodes_p = k8sclient.get_all_node_percentage()
     for key, value in all_nodes_p.items():
         print(key)
