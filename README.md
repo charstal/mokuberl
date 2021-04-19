@@ -15,10 +15,11 @@
 
 ### v0.0.2
 
-- [ ] 多状态
-- [ ] 支持新增/删减node
+- [x] 多状态
+- [x] 支持新增/删减node
     - invalid node, 选择可用的node
     - node list append
+- [x] 参数化，可配置化
 - [ ] 细化奖惩
 
 

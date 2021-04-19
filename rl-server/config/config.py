@@ -6,7 +6,7 @@ ENV = os.getenv('ENV', 'DEV')
 config = configparser.ConfigParser()
 
 config_url = os.path.join(os.path.dirname(os.path.abspath(__file__)),
-                          'sys.ini')
+                          'config.ini')
 
 config.read(config_url, encoding='utf-8')
 
@@ -27,6 +27,12 @@ class SysConfig:
     def get_etcd_url():
         return config.get(ENV, "ETCD_URL")
 
+    def get_node_size():
+        return int(config.get(ENV, "NODE_SIZE"))
+
+    def get_node_interval():
+        return int(config.get(ENV, "NODE_INTERVAL"))
+
 
 class ModelConfig:
     def get_model_path():
@@ -42,10 +48,31 @@ class ModelConfig:
         return float(config.get("MODEL", "EPS_END"))
 
     def get_eps_decay():
-        return float(config.get("MODEL", "EPS_DEVAY"))
+        return float(config.get("MODEL", "EPS_DECAY"))
 
     def get_mode_save_train_times():
         return int(config.get("MODEL", "MODEL_SAVE_TRAIN_TIMES"))
+
+    def get_buffer_size():
+        return int(float(config.get("MODEL", "BUFFER_SIZE")))
+
+    def get_batch_size():
+        return int(config.get("MODEL", "BATCH_SIZE"))
+
+    def get_gamma():
+        return float(config.get("MODEL", "GAMMA"))
+
+    def get_tau():
+        return float(config.get("MODEL", "TAU"))
+
+    def get_lr():
+        return float(config.get("MODEL", "LR"))
+
+    def get_update_every():
+        return int(config.get("MODEL", "UPDATE_EVERY"))
+
+    def get_node_class():
+        return config.get("MODEL", "NODE_CLASS").split(",")
 
 
 # node resource class
@@ -72,7 +99,7 @@ NODE_CPU_THRESHOLD = 70
 NODE_MEMORY_THRESHOLD = 70
 
 # model train interval
-TRAIN_INTERVAL_SECONDS = 5
+# TRAIN_INTERVAL_SECONDS = 5
 
 
 POSITIVE_REWARD = 1.0
@@ -92,3 +119,9 @@ if __name__ == "__main__":
     print(SysConfig.get_etcd_password())
     print(SysConfig.get_etcd_port())
     print(ModelConfig.get_train_interval())
+    print(ModelConfig.get_batch_size())
+    print(ModelConfig.get_buffer_size())
+    print(ModelConfig.get_eps_decay())
+    print(ModelConfig.get_gamma())
+    print(ModelConfig.get_lr())
+    print(ModelConfig.get_node_class())

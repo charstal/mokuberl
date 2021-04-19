@@ -12,11 +12,12 @@ from utils import Cache
 from pbs import ModelPredictServicer, model_predict_pb2
 
 cache = Cache()
-lock = Lock()
+cache_lock = Lock()
+train_lock = Lock()
 s = sched.scheduler(time.time, time.sleep)
-
-
 train_cnt = 0
+
+
 EPS_START = ModelConfig.get_eps_start()
 EPS_END = ModelConfig.get_eps_end()
 EPS_DECAY = ModelConfig.get_eps_decay()
@@ -29,33 +30,36 @@ class ModelPredict(ModelPredictServicer):
     def __init__(self):
 
         self.env = ScheduleEnv()
-        self.agent = Agent(state_size=self.env.get_state_size(
-        ), action_size=self.env.get_action_size(), seed=0)
+        self.agent = Agent(
+            state_size=self.env.get_state_size(),
+            action_size=self.env.get_action_size(),
+            seed=0)
         self.scores = deque(maxlen=100)
 
-        self.states = self.env.reset()
+        # self.states = self.env.reset()
         self.eps = EPS_START
 
     def Predict(self, request, context):
         pod_name = request.podName
         print("starting predict:", pod_name, flush=True)
 
-        lock.acquire()
+        cache_lock.acquire()
         node_name = cache.get(pod_name)
-        lock.release()
+        cache_lock.release()
 
         # print("node name:", node_name)
-        if node_name != None:
-            return model_predict_pb2.Choice(nodeName=node_name)
+        if node_name == None:
+            train_lock.acquire()
+            states = self.states
+            action = self.agent.act(state=states)
+            node_name = self.env.pre_step(action)
+            train_lock.release()
 
-        lock.acquire()
-        states = self.states
-        action = self.agent.act(state=states)
-        node_name = self.env.pre_step(action)
-        cache.set(pod_name, node_name, 60)
-        lock.release()
+            cache_lock.acquire()
+            cache.set(pod_name, node_name, 60)
+            cache_lock.release()
 
-        Thread(target=self.task, args=(action,)).start()
+            Thread(target=self.task, args=(action,)).start()
 
         return model_predict_pb2.Choice(nodeName=node_name)
 
@@ -64,8 +68,8 @@ class ModelPredict(ModelPredictServicer):
         s.run()
 
     def train(self, action):
-        print("training:")
-        lock.acquire()
+        train_lock.acquire()
+        print("training:", flush=True)
         states = self.states
         next_states, reward, done, _ = self.env.step(action, states)
         score = 0
@@ -90,7 +94,7 @@ class ModelPredict(ModelPredictServicer):
             if train_cnt == 20000:
                 train_cnt = 0
         # print("finished training")
-        lock.release()
+        train_lock.release()
 
         print('\tAverage Score: {:.2f}\n'.format(
             np.mean(self.scores)), end="", flush=True)
