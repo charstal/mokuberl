@@ -10,6 +10,7 @@ from .dqn_agent import Agent
 from config import ModelConfig
 from utils import Cache
 from pbs import ModelPredictServicer, model_predict_pb2
+from client import Resource
 
 cache = Cache()
 cache_lock = Lock()
@@ -49,8 +50,11 @@ class ModelPredict(ModelPredictServicer):
 
         # print("node name:", node_name)
         if node_name == None:
+            cpuUsage = float(request.cpuUsage)
+            memoryUsage = float(request.memeoryUsage)
             train_lock.acquire()
-            states = self.states
+            states = self.env.get_states(
+                Resource(cpu=cpuUsage, memory=memoryUsage))
             action = self.agent.act(state=states)
             node_name = self.env.pre_step(action)
             train_lock.release()
@@ -70,7 +74,7 @@ class ModelPredict(ModelPredictServicer):
     def train(self, action):
         train_lock.acquire()
         print("training:", flush=True)
-        states = self.states
+        states = self.env.get_states()
         next_states, reward, done, _ = self.env.step(action, states)
         score = 0
 
@@ -78,7 +82,7 @@ class ModelPredict(ModelPredictServicer):
                         reward=reward, next_state=next_states, done=done)
         # print(states)
         # print(next_states)
-        self.states = next_states
+        # self.states = next_states
 
         score += reward
         self.scores.append(score)

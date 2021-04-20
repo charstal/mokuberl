@@ -1,3 +1,5 @@
+from os import sysconf
+from client.type import Resource
 from client import K8sClient, EtcdClient
 import numpy as np
 from config import POSITIVE_REWARD, NEGATIVE_REWARD
@@ -8,6 +10,7 @@ TERMINATE_STATE = 0
 TERMINATE_ACTION = ["none"]
 
 ETCD_PORT = SysConfig.get_etcd_port()
+ETCD_URL = SysConfig.get_etcd_url()
 ETCD_USERNAME = SysConfig.get_etcd_username()
 ETCD_PASSWORD = SysConfig.get_etcd_password()
 
@@ -51,13 +54,19 @@ class ScheduleEnv():
         # node_lock.acquire()
         self.node_list = node_list[:NODE_SIZE]
         self.node_states = node_states
+
+        # actions 需要重新设计
+        self.actions = TERMINATE_ACTION + list_product(
+            self.node_list, NODE_CLASS)
+
         # node_lock.release()
         # return node_list
 
     def __init__(self):
 
         self.k8sclient = K8sClient()
-        self.etcdclient = EtcdClient(port=ETCD_PORT,
+        self.etcdclient = EtcdClient(url=ETCD_URL,
+                                     port=ETCD_PORT,
                                      username=ETCD_USERNAME,
                                      password=ETCD_PASSWORD)
 
@@ -67,36 +76,24 @@ class ScheduleEnv():
         self.node_timer = Timer(NODE_INTERVAL, self.update_node_list)
         self.node_timer.start()
         # node_list = self.get_node_list()
-
         # self.node_list = node_list[:min(len(node_list), DEFAULT_NODE_SIZE)]
-
-        self.actions = TERMINATE_ACTION + list_product(
-            self.node_list, NODE_CLASS)
 
         self.terminate_states = TERMINATE_STATE
 
     def pre_step(self, act):
-        action = self.actions[act]
-        if action == TERMINATE_ACTION:
-            return ""
+        node_name = ""
+        # 当前 node 对应的action数量， 包含终止状态
+        if act < len(self.actions):
+            action = self.actions[act]
+            if action == TERMINATE_ACTION:
+                return "no-selected"
 
-        arr = action.split("_")
-        node_name = arr[0]
+            arr = action.split("_")
+            node_name = arr[0]
 
+        if len(node_name) == 0 or not self.node_states[self.node_list.index(node_name)]:
+            node_name = self.trimaran_node_select()
         return node_name
-
-    # def update_state(self, states):
-    #     current_states = states
-    #     current_node_states = self.k8s_client.get_all_node_percentage()
-
-    #     for node_name, resource in current_node_states.items():
-    #         is_full = False
-    #         for kind in NODE_CLASS:
-    #             if resource[kind] > CLASS_THRESHOLD[kind]:
-    #                 is_full = True
-    #                 current_states = self.set_state(
-    #                     node_name=node_name, states=states, kind=kind, is_full=is_full)
-    #     return current_states
 
     def step(self, act, states):
         action = self.actions[act]
@@ -121,26 +118,6 @@ class ScheduleEnv():
 
         return next_states, reward, done, {}
 
-    # def set_state(self, node_name, states, kind, is_full):
-    #     curr_state = states[self.node_list.index(node_name)]
-    #     if is_full:
-    #         curr_state = curr_state & ~(1 << (NODE_CLASS.index(kind)))
-    #     else:
-    #         curr_state = curr_state | (1 << (NODE_CLASS.index(kind)))
-    #     states[self.node_list.index(node_name)] = curr_state
-    #     return states
-
-    # def get_state(self, node_name, states, kind):
-    #     curr_state = states[self.node_list.index(node_name)]
-    #     return (curr_state >> (NODE_CLASS.index(kind))) & 1
-
-    # # callback or timing?
-    # def update_node_list(self):
-    #     node_list = self._k8s_client.get_nodes()
-    #     self.node_list = node_list[:min(len(node_list), DEFAULT_NODE_SIZE)]
-
-    #     return node_list
-
     def reset(self):
         self.update_node_list()
         # states = []
@@ -158,9 +135,36 @@ class ScheduleEnv():
 
     # flattern 之后 每一个node的资源信息和 待分配的pod的资源limit/request
     def get_state_size(self):
-        return len(NODE_CLASS) * NODE_SIZE + len(NODE_CLASS)
+        return len(NODE_CLASS) * NODE_SIZE * 2 + len(NODE_CLASS)
 
-    def get_states(self, pod_resource_limit):
+    def get_states(self, pod_resource):
+        usage = self.k8sclient.get_all_node_usage()
+        capacity = self.k8sclient.get_all_node_capacity()
+        states = np.empty(shape=(0,))
+
+        for node in self.node_list:
+            print(usage[node])
+            st = np.array([
+                usage[node].get_cpu(),
+                usage[node].get_memory(),
+                capacity[node].get_cpu(),
+                capacity[node].get_memory(),
+            ])
+            states = np.concatenate((states, st), axis=0)
+
+        for _ in range(NODE_SIZE - len(self.node_list)):
+            st = np.array([0, 0, 0, 0])
+            states = np.concatenate((states, st), axis=0)
+
+        states = np.concatenate((states, np.array([
+            pod_resource.get_cpu(),
+            pod_resource.get_memory(),
+        ])), axis=0)
+
+        return states
+
+    def trimaran_node_select():
+        pass
 
 
 def list_product(*lists):
@@ -181,4 +185,4 @@ def list_product(*lists):
 if __name__ == "__main__":
     # node = ["node01", "node02", "node03"]
     se = ScheduleEnv()
-    print(se.reset())
+    print(se.get_states(Resource(1000, 1000)))

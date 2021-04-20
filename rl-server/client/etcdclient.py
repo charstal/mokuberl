@@ -14,7 +14,7 @@ class EtcdClient:
     def get_nodes(self):
         res, _ = self.etcd_client.get("/k8s/nodes")
         if res == None:
-            return None
+            return []
         else:
             nodes = str(res.decode()).split(" ")
             return nodes
