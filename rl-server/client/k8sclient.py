@@ -51,6 +51,23 @@ class K8sClient:
             # }
         return usage_map
 
+    def get_all_node_predict_usage_by_addind_pod(self, pod_res):
+        """get node predict usage by adding pod
+        """
+        predict_map = dict()
+        ret = self._custom_api_client.list_cluster_custom_object(
+            'metrics.k8s.io', 'v1beta1', 'nodes')
+        for i in ret['items']:
+            predict_map[i['metadata']['name']] = Resource(
+                cpu_convert(i['usage']['cpu']),
+                memory_convert(i['usage']['memory'])
+            ) + pod_res
+            # {
+            #     "cpu": cpu_convert(i['usage']['cpu']),
+            #     "memory": memory_convert(i['usage']['memory']),
+            # }
+        return predict_map
+
     def get_all_node_percentage(self):
         capacity = self.get_all_node_capacity()
         usage = self.get_all_node_usage()
@@ -128,9 +145,15 @@ if __name__ == "__main__":
     # test_usage = k8sclient.get_all_node_usage()
     # for key, value in test_usage.items():
     #     print(key, value)
-    print(k8sclient.get_node_percentage("minikube"))
-    all_nodes_p = k8sclient.get_all_node_percentage()
+    # print(k8sclient.get_node_percentage("minikube"))
+    # all_nodes_p = k8sclient.get_all_node_percentage()
+    # for key, value in all_nodes_p.items():
+    #     print(key)
+    #     print(value)
+    # print(k8sclient.get_pod("metrics-server-56c4f8c9d6-gxqgt", "kube-system"))
+
+    all_nodes_p = k8sclient.get_all_node_predict_usage_by_addind_pod(
+        Resource(1000, 1000))
     for key, value in all_nodes_p.items():
         print(key)
         print(value)
-    # print(k8sclient.get_pod("metrics-server-56c4f8c9d6-gxqgt", "kube-system"))

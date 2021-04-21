@@ -3,8 +3,9 @@ from client.type import Resource
 from client import K8sClient, EtcdClient
 import numpy as np
 from config import POSITIVE_REWARD, NEGATIVE_REWARD
-from config import SysConfig, ModelConfig
+from config import SysConfig, ModelConfig, TrimaranConfig
 from threading import Lock, Timer
+from algorithm import Trimaran
 
 TERMINATE_STATE = 0
 TERMINATE_ACTION = ["none"]
@@ -18,6 +19,8 @@ NODE_INTERVAL = SysConfig.get_node_interval()
 NODE_SIZE = SysConfig.get_node_size()
 NODE_CLASS = ModelConfig.get_node_class()
 # node_lock = Lock()
+
+TARGET_LOAD_PACKING = TrimaranConfig.get_target_load_packing_config()
 
 
 class ScheduleEnv():
@@ -55,7 +58,11 @@ class ScheduleEnv():
         self.node_list = node_list[:NODE_SIZE]
         self.node_states = node_states
 
+        # action = 56
+        # 56 / node_size = node_ind
+        # 56 % node_size = class index -> class
         # actions 需要重新设计
+        # ["none", "node01_C", "node01_M" ....]
         self.actions = TERMINATE_ACTION + list_product(
             self.node_list, NODE_CLASS)
 
@@ -80,20 +87,34 @@ class ScheduleEnv():
 
         self.terminate_states = TERMINATE_STATE
 
-    def pre_step(self, act):
-        node_name = ""
-        # 当前 node 对应的action数量， 包含终止状态
-        if act < len(self.actions):
-            action = self.actions[act]
-            if action == TERMINATE_ACTION:
-                return "no-selected"
+    def action2node(self, action_idx):
+        action = self.actions[action_idx]
+        if action == TERMINATE_ACTION:
+            return "no-selected"
 
-            arr = action.split("_")
-            node_name = arr[0]
+        arr = action.split("|")
+        node_name = arr[0]
+
+        return node_name
+
+    def node_and_kind2action(self, node_name, action_kind):
+        action = "|".join([node_name, action_kind])
+        print(action)
+        return self.actions.index(action)
+
+    # 找打一个合适aciton
+    def pre_step(self, act, pod_resource):
+        node_name = ""
+        act_idx = act
+        # 当前 node 对应的action数量， 包含终止状态
+        if act_idx < len(self.actions):
+            node_name = self.action2node(act_idx)
 
         if len(node_name) == 0 or not self.node_states[self.node_list.index(node_name)]:
-            node_name = self.trimaran_node_select()
-        return node_name
+            act_idx = self.target_load_packing_node_select(pod_resource)
+            node_name = self.action2node(act_idx)
+
+        return node_name, act_idx
 
     def step(self, act, states):
         action = self.actions[act]
@@ -143,7 +164,7 @@ class ScheduleEnv():
         states = np.empty(shape=(0,))
 
         for node in self.node_list:
-            print(usage[node])
+            # print(usage[node])
             st = np.array([
                 usage[node].get_cpu(),
                 usage[node].get_memory(),
@@ -163,8 +184,37 @@ class ScheduleEnv():
 
         return states
 
-    def trimaran_node_select():
-        pass
+    def target_load_packing_node_select(self, pod_usage):
+        predict_usage = self.k8sclient.get_all_node_predict_usage_by_addind_pod(
+            pod_usage)
+        capacity = self.k8sclient.get_all_node_capacity()
+
+        max_score = 0
+        selected_node = ""
+        selected_kind = ""
+
+        res_class = TARGET_LOAD_PACKING.keys()
+
+        for node_name in predict_usage.keys():
+            u = predict_usage[node_name] / capacity[node_name]
+            score = 0
+            max_s = 0
+            seleted_k = ""
+
+            for kind in res_class:
+                s = Trimaran.target_load_packing_calculate(
+                    u[kind], kind) * TARGET_LOAD_PACKING[kind]
+                if max_s < s:
+                    max_s = s
+                    seleted_k = kind
+                score += s
+                print(node_name, ":kind:", kind, ":", s, ":", score)
+            if score > max_score:
+                selected_node = node_name
+                selected_kind = seleted_k
+                max_score = score
+
+        return self.node_and_kind2action(selected_node, selected_kind)
 
 
 def list_product(*lists):
@@ -177,7 +227,7 @@ def list_product(*lists):
                 tmp.append(x + [y])
         result = tmp
 
-    result_str = ["_".join(item) for item in result]
+    result_str = ["|".join(item) for item in result]
 
     return result_str
 
@@ -185,4 +235,5 @@ def list_product(*lists):
 if __name__ == "__main__":
     # node = ["node01", "node02", "node03"]
     se = ScheduleEnv()
-    print(se.get_states(Resource(1000, 1000)))
+    # print(se.get_states(Resource(1000, 1000)))
+    print(se.target_load_packing_node_select(Resource(1000, 1000)))

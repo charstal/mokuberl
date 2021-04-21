@@ -1,5 +1,6 @@
 import os
 import configparser
+from threading import ThreadError
 
 ENV = os.getenv('ENV', 'DEV')
 
@@ -75,6 +76,31 @@ class ModelConfig:
         return config.get("MODEL", "NODE_CLASS").split(",")
 
 
+class TrimaranConfig:
+
+    def get_node_resource_class():
+        return config.get("MODEL", "NODE_CLASS").split(",")
+
+    def get_target_load_packing_config():
+        target_load_pack_config = dict()
+        k = config.get("MODEL", "NODE_CLASS").split(",")
+        v = config.get("TRIMARAN", "TARGET_LOAD_PACKING_PERCENTAGE").split(",")
+        print(k)
+        for i in range(len(k)):
+            target_load_pack_config[k[i]] = float(v[i])
+        return target_load_pack_config
+
+    def get_resource_threshold():
+
+        k = config.get("MODEL", "NODE_CLASS").split(",")
+        threshold_config = dict()
+        for item in k:
+            threshold_config[item] = float(
+                config.get("TRIMARAN", item + "_THRESHOLD"))
+
+        return threshold_config
+
+
 # node resource class
 # C: cpu
 # M: memory
@@ -125,3 +151,5 @@ if __name__ == "__main__":
     print(ModelConfig.get_gamma())
     print(ModelConfig.get_lr())
     print(ModelConfig.get_node_class())
+    print(TrimaranConfig.get_target_load_packing_config())
+    print(TrimaranConfig.get_resource_threshold())

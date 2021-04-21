@@ -52,11 +52,12 @@ class ModelPredict(ModelPredictServicer):
         if node_name == None:
             cpuUsage = float(request.cpuUsage)
             memoryUsage = float(request.memeoryUsage)
+            pod_resource = Resource(cpu=cpuUsage, memory=memoryUsage)
+
             train_lock.acquire()
-            states = self.env.get_states(
-                Resource(cpu=cpuUsage, memory=memoryUsage))
+            states = self.env.get_states(pod_resource=pod_resource)
             action = self.agent.act(state=states)
-            node_name = self.env.pre_step(action)
+            node_name, action = self.env.pre_step(action, pod_resource)
             train_lock.release()
 
             cache_lock.acquire()

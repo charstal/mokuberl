@@ -7,6 +7,9 @@ class EtcdClient:
         self.etcd_client = etcd3.client(host=url,
                                         port=port, user=username, password=password)
 
+
+    # /kes/nodes 
+    # node1 node2 node3
     def put_nodes(self, node_list):
         nodes = " ".join(node_list)
         self.etcd_client.put("/k8s/nodes", nodes)

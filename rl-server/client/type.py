@@ -18,8 +18,19 @@ class Resource:
 
         return ResourceAnalysis(cpu_per, memory_per)
 
+    def __add__(self, rhs):
+        return Resource(self._cpu + rhs._cpu, self._memory + rhs._memory)
+
     def __str__(self):
         return "cpu: {}, memory: {}".format(self._cpu, self._memory)
+
+    def __getitem__(self, index):
+        res_dict = {
+            "CPU": self.get_cpu,
+            "MEMORY": self.get_memory
+        }
+
+        return res_dict[index]()
 
 
 class ResourceAnalysis:
@@ -33,3 +44,16 @@ class ResourceAnalysis:
     def transfer_to_vec(self):
         para_list = [self.cpu, self.memory]
         return np.array(para_list)
+
+    def __getitem__(self, index):
+        res_dict = {
+            "CPU": self.cpu,
+            "MEMORY": self.memory
+        }
+
+        return res_dict[index]
+
+
+if __name__ == "__main__":
+    a = Resource(1000, 1000)
+    print(a['CPU'])
