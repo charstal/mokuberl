@@ -1,14 +1,13 @@
-from os import sysconf
+from algorithm.target_load_packing import RESOURCE_THRESHOLD
 from client.type import Resource
 from client import K8sClient, EtcdClient
 import numpy as np
-from config import POSITIVE_REWARD, NEGATIVE_REWARD
 from config import SysConfig, ModelConfig, TrimaranConfig
 from threading import Lock, Timer
 from algorithm import Trimaran
 
-TERMINATE_STATE = 0
-TERMINATE_ACTION = ["none"]
+# TERMINATE_STATE = 0
+TERMINATE_ACTION = "no-selected"
 
 ETCD_PORT = SysConfig.get_etcd_port()
 ETCD_URL = SysConfig.get_etcd_url()
@@ -17,8 +16,9 @@ ETCD_PASSWORD = SysConfig.get_etcd_password()
 
 NODE_INTERVAL = SysConfig.get_node_interval()
 NODE_SIZE = SysConfig.get_node_size()
-NODE_CLASS = ModelConfig.get_node_class()
-# node_lock = Lock()
+RESOURCE_CLASS = ModelConfig.get_resource_class()
+POSITIVE_REWARD = ModelConfig.get_positive_reward()
+NEGATIVE_REWARD = ModelConfig.get_negative_reward()
 
 TARGET_LOAD_PACKING = TrimaranConfig.get_target_load_packing_config()
 
@@ -62,10 +62,11 @@ class ScheduleEnv():
         # 56 / node_size = node_ind
         # 56 % node_size = class index -> class
         # actions 需要重新设计
-        # ["none", "node01_C", "node01_M" ....]
-        self.actions = TERMINATE_ACTION + list_product(
-            self.node_list, NODE_CLASS)
+        # ["none", "node01|CPU, "node01|MEMORY" ....]
+        # self.actions = [TERMINATE_ACTION] + list_product(
+        #     self.node_list, NODE_CLASS)
 
+        self.actions = [TERMINATE_ACTION] + self.node_list
         # node_lock.release()
         # return node_list
 
@@ -85,17 +86,19 @@ class ScheduleEnv():
         # node_list = self.get_node_list()
         # self.node_list = node_list[:min(len(node_list), DEFAULT_NODE_SIZE)]
 
-        self.terminate_states = TERMINATE_STATE
+        self.normal_negative_reward = NEGATIVE_REWARD
+        self.normal_positive_reward = POSITIVE_REWARD
+        # self.terminate_states = TERMINATE_STATE
 
     def action2node(self, action_idx):
         action = self.actions[action_idx]
         if action == TERMINATE_ACTION:
-            return "no-selected"
+            return TERMINATE_ACTION, None
 
         arr = action.split("|")
-        node_name = arr[0]
+        node_name, kind = arr[0], arr[1]
 
-        return node_name
+        return node_name, kind
 
     def node_and_kind2action(self, node_name, action_kind):
         action = "|".join([node_name, action_kind])
@@ -108,34 +111,37 @@ class ScheduleEnv():
         act_idx = act
         # 当前 node 对应的action数量， 包含终止状态
         if act_idx < len(self.actions):
-            node_name = self.action2node(act_idx)
+            node_name, _ = self.action2node(act_idx)
 
         if len(node_name) == 0 or not self.node_states[self.node_list.index(node_name)]:
             act_idx = self.target_load_packing_node_select(pod_resource)
-            node_name = self.action2node(act_idx)
+            node_name, _ = self.action2node(act_idx)
 
         return node_name, act_idx
 
-    def step(self, act, states):
-        action = self.actions[act]
+    def step(self, act):
+        node_name, kind = self.action2node(act)
 
-        next_states = self.update_state(states)
-
+        next_states = self.get_states()
         done = True
         reward = POSITIVE_REWARD
-        for state in next_states:
-            if state != 0:
-                done = False
+
+        nodes_occupancy_value = self.k8sclient.get_all_node_percentage().values()
+
+        for v in nodes_occupancy_value:
+            for k in RESOURCE_CLASS:
+                if v[k] < TARGET_LOAD_PACKING[k]:
+                    done = False
+            if not done:
                 break
 
-        if action == TERMINATE_ACTION[0] and done:
-            return next_states, reward, done, {}
-
-        arr = action.split("_")
-        node_name, kind = arr[0], arr[1]
-
-        if self.get_state(node_name, next_states, kind) == 0:
-            reward = NEGATIVE_REWARD
+        if node_name == TERMINATE_ACTION:
+            if not done:
+                reward = NEGATIVE_REWARD
+        else:
+            node_occuppancy = self.k8sclient.get_node_percentage(node_name)
+            if RESOURCE_THRESHOLD[kind] <= node_occuppancy[kind]:
+                reward = NEGATIVE_REWARD
 
         return next_states, reward, done, {}
 
@@ -150,15 +156,16 @@ class ScheduleEnv():
     def get_node_size(self):
         return len(self.node_list)
 
-    # 包含一个TERMINATE_ACTION , 每个node以及每个node支持的资源类型的乘机
+    # 包含一个TERMINATE_ACTION , 以及不同node
     def get_action_size(self):
-        return len(NODE_CLASS) * NODE_SIZE + 1
+        # return len(NODE_CLASS) * NODE_SIZE + 1
+        return len(self.node_list) + 1
 
     # flattern 之后 每一个node的资源信息和 待分配的pod的资源limit/request
     def get_state_size(self):
-        return len(NODE_CLASS) * NODE_SIZE * 2 + len(NODE_CLASS)
+        return len(RESOURCE_CLASS) * NODE_SIZE * 2 + len(RESOURCE_CLASS)
 
-    def get_states(self, pod_resource):
+    def get_states(self, pod_resource=Resource(0, 0)):
         usage = self.k8sclient.get_all_node_usage()
         capacity = self.k8sclient.get_all_node_capacity()
         states = np.empty(shape=(0,))
@@ -184,6 +191,7 @@ class ScheduleEnv():
 
         return states
 
+    # 正常维持替代算法
     def target_load_packing_node_select(self, pod_usage):
         predict_usage = self.k8sclient.get_all_node_predict_usage_by_addind_pod(
             pod_usage)
@@ -193,15 +201,13 @@ class ScheduleEnv():
         selected_node = ""
         selected_kind = ""
 
-        res_class = TARGET_LOAD_PACKING.keys()
-
         for node_name in predict_usage.keys():
             u = predict_usage[node_name] / capacity[node_name]
             score = 0
             max_s = 0
             seleted_k = ""
 
-            for kind in res_class:
+            for kind in RESOURCE_CLASS:
                 s = Trimaran.target_load_packing_calculate(
                     u[kind], kind) * TARGET_LOAD_PACKING[kind]
                 if max_s < s:
@@ -215,6 +221,12 @@ class ScheduleEnv():
                 max_score = score
 
         return self.node_and_kind2action(selected_node, selected_kind)
+
+    def get_normal_negative_reward(self):
+        return self.normal_negative_reward
+
+    def get_normal_positive_reward(self):
+        return self.normal_positive_reward
 
 
 def list_product(*lists):
@@ -236,4 +248,6 @@ if __name__ == "__main__":
     # node = ["node01", "node02", "node03"]
     se = ScheduleEnv()
     # print(se.get_states(Resource(1000, 1000)))
-    print(se.target_load_packing_node_select(Resource(1000, 1000)))
+    # print(se.target_load_packing_node_select(Resource(1000, 1000)))
+    # print(se.pre_step(10, Resource(1000, 1000)))
+    print(se.step(1))

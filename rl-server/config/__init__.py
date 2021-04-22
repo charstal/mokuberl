@@ -1,2 +1,2 @@
-from .config import SysConfig, ModelConfig
-from .config import *
+from .config import SysConfig, ModelConfig, TrimaranConfig
+from .constants import *

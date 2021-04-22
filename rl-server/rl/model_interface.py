@@ -57,35 +57,40 @@ class ModelPredict(ModelPredictServicer):
             train_lock.acquire()
             states = self.env.get_states(pod_resource=pod_resource)
             action = self.agent.act(state=states)
-            node_name, action = self.env.pre_step(action, pod_resource)
+            node_name, transfer_action = self.env.pre_step(
+                action, pod_resource)
             train_lock.release()
 
             cache_lock.acquire()
             cache.set(pod_name, node_name, 60)
             cache_lock.release()
 
-            Thread(target=self.task, args=(action,)).start()
+            if action == transfer_action:
+                Thread(target=self.task, args=(action, states)).start()
+            else:
+                Thread(target=self.train, args=(
+                    action, states, self.env.get_normal_negative_reward(), states, False))
 
         return model_predict_pb2.Choice(nodeName=node_name)
 
-    def task(self, action):
-        s.enter(TRAIN_INTERVAL, 1, self.train, (action,))
+    def task(self, action, states):
+        s.enter(TRAIN_INTERVAL, 1, self.env_trian, (action, states))
         s.run()
 
-    def train(self, action):
-        train_lock.acquire()
+    def env_trian(self, action, states):
         print("training:", flush=True)
-        states = self.env.get_states()
-        next_states, reward, done, _ = self.env.step(action, states)
-        score = 0
+        next_states, reward, done, _ = self.env.step(action)
+        self.train(action, states, reward, next_states, done)
 
+    def train(self, action, states, reward, next_states, done):
+        train_lock.acquire()
         self.agent.step(state=states, action=action,
                         reward=reward, next_state=next_states, done=done)
         # print(states)
         # print(next_states)
         # self.states = next_states
 
-        score += reward
+        score = reward
         self.scores.append(score)
         self.eps = max(EPS_END, EPS_END*self.eps)  # decrease epsilon
         train_cnt += 1

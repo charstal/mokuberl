@@ -26,11 +26,11 @@ class Resource:
 
     def __getitem__(self, index):
         res_dict = {
-            "CPU": self.get_cpu,
-            "MEMORY": self.get_memory
+            "CPU": self._cpu,
+            "MEMORY": self._memory
         }
 
-        return res_dict[index]()
+        return res_dict[index]
 
 
 class ResourceAnalysis:
