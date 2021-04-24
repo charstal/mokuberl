@@ -8,6 +8,8 @@ from config import SysConfig
 from pbs import model_predict_pb2_grpc
 from rl import ModelPredict
 
+PORT = SysConfig.get_grpc_port()
+
 
 def serve():
     print("start server........", flush=True)
@@ -15,7 +17,7 @@ def serve():
     model_predict_pb2_grpc.add_ModelPredictServicer_to_server(
         ModelPredict(), server)
 
-    server.add_insecure_port('[::]:' + SysConfig.get_grpc_port())
+    server.add_insecure_port('[::]:' + PORT)
     server.start()
     server.wait_for_termination()
 

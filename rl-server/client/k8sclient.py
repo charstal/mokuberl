@@ -1,4 +1,3 @@
-from multiprocessing import Value
 from kubernetes import client, config
 import math
 import warnings

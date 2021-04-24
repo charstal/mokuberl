@@ -20,7 +20,17 @@ spec:
         ports:
           - name: grpc
             containerPort: 50051
+        env:
+          - name: ENV
+            value: PROD
+        volumeMounts:
+        - name: config-volume
+          mountPath: /etc/config
       serviceAccountName: mokuberl-sa
+      volumes:
+        - name: config-volume
+          configMap:
+            name: rl-server-config
 ---
 apiVersion: v1
 kind: Service

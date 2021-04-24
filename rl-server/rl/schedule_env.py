@@ -1,6 +1,4 @@
-from algorithm.target_load_packing import RESOURCE_THRESHOLD
-from client.type import Resource
-from client import K8sClient, EtcdClient
+from client import K8sClient, EtcdClient, Resource
 import numpy as np
 from config import SysConfig, ModelConfig, TrimaranConfig
 from threading import Lock, Timer
@@ -20,6 +18,7 @@ RESOURCE_CLASS = ModelConfig.get_resource_class()
 POSITIVE_REWARD = ModelConfig.get_positive_reward()
 NEGATIVE_REWARD = ModelConfig.get_negative_reward()
 
+RESOURCE_THRESHOLD = TrimaranConfig.get_resource_threshold()
 TARGET_LOAD_PACKING = TrimaranConfig.get_target_load_packing_config()
 
 
@@ -91,19 +90,19 @@ class ScheduleEnv():
         # self.terminate_states = TERMINATE_STATE
 
     def action2node(self, action_idx):
-        action = self.actions[action_idx]
-        if action == TERMINATE_ACTION:
-            return TERMINATE_ACTION, None
+        node_name = self.actions[action_idx]
+        # if action == TERMINATE_ACTION:
+        #     return TERMINATE_ACTION, None
 
-        arr = action.split("|")
-        node_name, kind = arr[0], arr[1]
+        # arr = action.split("|")
+        # node_name, kind = arr[0], arr[1]
 
-        return node_name, kind
+        return node_name
 
-    def node_and_kind2action(self, node_name, action_kind):
-        action = "|".join([node_name, action_kind])
-        print(action)
-        return self.actions.index(action)
+    def node_and_kind2action(self, node_name):
+        # action = "|".join([node_name, action_kind])
+        # print(action)
+        return self.actions.index(node_name)
 
     # 找打一个合适aciton
     def pre_step(self, act, pod_resource):
@@ -111,16 +110,16 @@ class ScheduleEnv():
         act_idx = act
         # 当前 node 对应的action数量， 包含终止状态
         if act_idx < len(self.actions):
-            node_name, _ = self.action2node(act_idx)
+            node_name = self.action2node(act_idx)
 
-        if len(node_name) == 0 or not self.node_states[self.node_list.index(node_name)]:
+        if len(node_name) == 0 or node_name in self.node_list and not self.node_states[self.node_list.index(node_name)]:
             act_idx = self.target_load_packing_node_select(pod_resource)
-            node_name, _ = self.action2node(act_idx)
+            node_name = self.action2node(act_idx)
 
         return node_name, act_idx
 
     def step(self, act):
-        node_name, kind = self.action2node(act)
+        node_name = self.action2node(act)
 
         next_states = self.get_states()
         done = True
@@ -140,8 +139,9 @@ class ScheduleEnv():
                 reward = NEGATIVE_REWARD
         else:
             node_occuppancy = self.k8sclient.get_node_percentage(node_name)
-            if RESOURCE_THRESHOLD[kind] <= node_occuppancy[kind]:
-                reward = NEGATIVE_REWARD
+            for k in RESOURCE_CLASS:
+                if RESOURCE_THRESHOLD[k] < node_occuppancy[k]:
+                    reward = NEGATIVE_REWARD
 
         return next_states, reward, done, {}
 
@@ -199,28 +199,24 @@ class ScheduleEnv():
 
         max_score = 0
         selected_node = ""
-        selected_kind = ""
 
         for node_name in predict_usage.keys():
             u = predict_usage[node_name] / capacity[node_name]
             score = 0
             max_s = 0
-            seleted_k = ""
 
             for kind in RESOURCE_CLASS:
                 s = Trimaran.target_load_packing_calculate(
                     u[kind], kind) * TARGET_LOAD_PACKING[kind]
                 if max_s < s:
                     max_s = s
-                    seleted_k = kind
                 score += s
                 print(node_name, ":kind:", kind, ":", s, ":", score)
             if score > max_score:
                 selected_node = node_name
-                selected_kind = seleted_k
                 max_score = score
 
-        return self.node_and_kind2action(selected_node, selected_kind)
+        return self.node_and_kind2action(selected_node)
 
     def get_normal_negative_reward(self):
         return self.normal_negative_reward
@@ -229,25 +225,25 @@ class ScheduleEnv():
         return self.normal_positive_reward
 
 
-def list_product(*lists):
-    result = [[]]
+# def list_product(*lists):
+#     result = [[]]
 
-    for pool in lists:
-        tmp = []
-        for x in result:
-            for y in pool:
-                tmp.append(x + [y])
-        result = tmp
+#     for pool in lists:
+#         tmp = []
+#         for x in result:
+#             for y in pool:
+#                 tmp.append(x + [y])
+#         result = tmp
 
-    result_str = ["|".join(item) for item in result]
+#     result_str = ["|".join(item) for item in result]
 
-    return result_str
+#     return result_str
 
 
 if __name__ == "__main__":
     # node = ["node01", "node02", "node03"]
     se = ScheduleEnv()
-    # print(se.get_states(Resource(1000, 1000)))
-    # print(se.target_load_packing_node_select(Resource(1000, 1000)))
-    # print(se.pre_step(10, Resource(1000, 1000)))
+    print(se.get_states(Resource(1000, 1000)))
+    print(se.target_load_packing_node_select(Resource(1000, 1000)))
+    print(se.pre_step(10, Resource(1000, 1000)))
     print(se.step(1))

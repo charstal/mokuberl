@@ -1,21 +1,26 @@
 import os
 import configparser
-from threading import ThreadError
 from .constants import RESOURCE_CLASS
 
 ENV = os.getenv('ENV', 'DEV')
 
 config = configparser.ConfigParser()
 
-config_url = os.path.join(os.path.dirname(os.path.abspath(__file__)),
-                          'config.ini')
+# config_url = os.path.join(os.path.dirname(os.path.abspath(__file__)),
+#                           'config.ini')
+
+config_url = "/etc/config/config.ini"
+
+if not os.path.exists(config_url):
+    config_url = os.path.join(os.path.dirname(os.path.abspath(__file__)),
+                              'config.ini')
 
 config.read(config_url, encoding='utf-8')
 
 
 class SysConfig:
     def get_grpc_port():
-        return int(config.get(ENV, "GRPC_PORT"))
+        return config.get(ENV, "GRPC_PORT")
 
     def get_etcd_port():
         return int(config.get(ENV, "ETCD_PORT"))
@@ -153,7 +158,6 @@ if __name__ == "__main__":
     print(ModelConfig.get_eps_decay())
     print(ModelConfig.get_gamma())
     print(ModelConfig.get_lr())
-    print(ModelConfig.get_node_class())
     print(ModelConfig.get_positive_reward())
     print(ModelConfig.get_negative_reward())
     print(TrimaranConfig.get_target_load_packing_config())

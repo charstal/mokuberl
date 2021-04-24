@@ -24,6 +24,28 @@
 
 
 ## Usage
+> `mertics-server` and `etcd` are required
+
+### RBAC
+
+```sh
+kubectl appky -f rbac.yaml
+```
+
+### ConfigMap
+```sh
+kubectl create configmap rl-server-config --from-file=config.ini -n kube-system
+```
+
+### Schedule-extender
+```sh
+kubectl apply -f schedule-extender.yaml
+```
+
+### RL-Server
+```sh
+kubectl apply -f rl-server-deployment.yaml
+```
 
 
 

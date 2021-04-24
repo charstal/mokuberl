@@ -36,7 +36,7 @@ class ModelPredict(ModelPredictServicer):
             action_size=self.env.get_action_size(),
             seed=0)
         self.scores = deque(maxlen=100)
-
+        self.train_cnt = 0
         # self.states = self.env.reset()
         self.eps = EPS_START
 
@@ -50,26 +50,30 @@ class ModelPredict(ModelPredictServicer):
 
         # print("node name:", node_name)
         if node_name == None:
-            cpuUsage = float(request.cpuUsage)
-            memoryUsage = float(request.memeoryUsage)
-            pod_resource = Resource(cpu=cpuUsage, memory=memoryUsage)
-
-            train_lock.acquire()
-            states = self.env.get_states(pod_resource=pod_resource)
-            action = self.agent.act(state=states)
-            node_name, transfer_action = self.env.pre_step(
-                action, pod_resource)
-            train_lock.release()
-
             cache_lock.acquire()
-            cache.set(pod_name, node_name, 60)
-            cache_lock.release()
-
-            if action == transfer_action:
-                Thread(target=self.task, args=(action, states)).start()
+            node_name = cache.get(pod_name)
+            if node_name != None:
+                cache_lock.release()
             else:
-                Thread(target=self.train, args=(
-                    action, states, self.env.get_normal_negative_reward(), states, False))
+                cpuUsage = float(request.cpuUsage)
+                memoryUsage = float(request.memeoryUsage)
+                pod_resource = Resource(cpu=cpuUsage, memory=memoryUsage)
+
+                train_lock.acquire()
+                states = self.env.get_states(pod_resource=pod_resource)
+                action = self.agent.act(state=states)
+                node_name, transfer_action = self.env.pre_step(
+                    action, pod_resource)
+                train_lock.release()
+
+                cache.set(pod_name, node_name, 60)
+                cache_lock.release()
+
+                if action == transfer_action:
+                    Thread(target=self.task, args=(action, states)).start()
+                else:
+                    Thread(target=self.train, args=(
+                        action, states, self.env.get_normal_negative_reward(), states, False))
 
         return model_predict_pb2.Choice(nodeName=node_name)
 
@@ -84,6 +88,11 @@ class ModelPredict(ModelPredictServicer):
 
     def train(self, action, states, reward, next_states, done):
         train_lock.acquire()
+        print("action: ", self.env.action2node(action))
+        # print("current states: ", states)
+        # print("next states: ", next_states)
+        print("reward: ", reward)
+        print("done: ", done)
         self.agent.step(state=states, action=action,
                         reward=reward, next_state=next_states, done=done)
         # print(states)
@@ -93,16 +102,16 @@ class ModelPredict(ModelPredictServicer):
         score = reward
         self.scores.append(score)
         self.eps = max(EPS_END, EPS_END*self.eps)  # decrease epsilon
-        train_cnt += 1
+        self.train_cnt += 1
 
-        if self.cnt % SAVE_MODEL_TRAIN_TIMES == 0:
+        if self.train_cnt % SAVE_MODEL_TRAIN_TIMES == 0:
             torch.save(self.agent.qnetwork_local.state_dict(),
                        MODEL_SAVE_PATH)
-            print("train times: {}".format(train_cnt), flush=True)
+            print("train times: {}".format(self.train_cnt), flush=True)
 
             # 上限 2w
-            if train_cnt == 20000:
-                train_cnt = 0
+            if self.train_cnt == 20000:
+                self.train_cnt = 0
         # print("finished training")
         train_lock.release()
 
