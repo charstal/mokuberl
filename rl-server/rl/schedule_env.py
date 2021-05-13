@@ -19,7 +19,7 @@ POSITIVE_REWARD = ModelConfig.get_positive_reward()
 NEGATIVE_REWARD = ModelConfig.get_negative_reward()
 
 RESOURCE_THRESHOLD = TrimaranConfig.get_resource_threshold()
-TARGET_LOAD_PACKING = TrimaranConfig.get_target_load_packing_config()
+# TARGET_LOAD_PACKING = TrimaranConfig.get_target_load_packing_config()
 
 
 class ScheduleEnv():
@@ -127,23 +127,90 @@ class ScheduleEnv():
 
         nodes_occupancy_value = self.k8sclient.get_all_node_percentage().values()
 
+        # 判断所有的nodes是否达到阈值
         for v in nodes_occupancy_value:
             for k in RESOURCE_CLASS:
-                if v[k] < TARGET_LOAD_PACKING[k]:
+                if v[k] < RESOURCE_THRESHOLD:
                     done = False
             if not done:
                 break
 
+        # 如果动作为TERMINATE_ACTION，如果未达到阈值，给予惩罚, 没有则给予奖励
         if node_name == TERMINATE_ACTION:
             if not done:
                 reward = NEGATIVE_REWARD
         else:
-            node_occuppancy = self.k8sclient.get_node_percentage(node_name)
-            for k in RESOURCE_CLASS:
-                if RESOURCE_THRESHOLD[k] < node_occuppancy[k]:
-                    reward = NEGATIVE_REWARD
+            reward = self.load_balanced_reward()
 
         return next_states, reward, done, {}
+
+    def load_balanced_reward(self):
+        # 中高负载节点尽量均衡，可以更好的应对已存在 pod 突如其来的高负载，减少资源抢占
+        # 而低负载节点在高负载的没达到阈值时尽量不要分配 pod，以便上面的 pod 自己跑完从而关闭节点
+        alpha = 0.02
+        beta = 0.01
+        theta = 0.01
+        gamar = 0.01
+
+        return alpha * self.get_util() - beta * self.get_diff_node() - theta * self.get_diff_res() - gamar * self.get_overload_punishment()
+
+    def get_util(self):
+        score = 0
+        nodes_percentage = self.k8sclient.get_all_node_percentage()
+        for node in nodes_percentage.keys():
+            s = 0
+            for k in RESOURCE_CLASS:
+                s += nodes_percentage[node][k]
+            s /= len(RESOURCE_CLASS)
+            score += s
+
+        print("util score: ", score)
+        return score
+
+    def get_diff_node(self):
+        score = 0
+        nodes_percentage = self.k8sclient.get_all_node_percentage()
+        for node in nodes_percentage.keys():
+            for i in range(len(RESOURCE_CLASS)):
+                for j in range(i, len(RESOURCE_CLASS)):
+                    score += abs(nodes_percentage[node][RESOURCE_CLASS[i]] -
+                                 nodes_percentage[node][RESOURCE_CLASS[j]])
+
+        print("diff node score: ", score)
+        return score
+
+    def get_diff_res(self):
+        score = 0
+        nodes_percentage = self.k8sclient.get_all_node_percentage()
+        mid_and_high_load = 50
+        ulist = []
+        for node in nodes_percentage.keys():
+            s = 0
+            for k in RESOURCE_CLASS:
+                s += nodes_percentage[node][k]
+            s /= len(RESOURCE_CLASS)
+            # 只限定中高负载
+            if s > mid_and_high_load:
+                ulist.append(s)
+
+        for i in range(len(ulist)):
+            for j in range(i, len(ulist)):
+                score += abs(ulist[i] - ulist[j])
+        print("diff res score: ", score)
+        return score
+
+    def get_overload_punishment(self):
+        score = 0
+        nodes_percentage = self.k8sclient.get_all_node_percentage()
+        for node in nodes_percentage.keys():
+            s = 0
+            for k in RESOURCE_CLASS:
+                if nodes_percentage[node][k] > RESOURCE_THRESHOLD:
+                    s += abs(nodes_percentage[node]
+                             [k] - RESOURCE_THRESHOLD)
+            score += s
+        print("overload punishment score: ", score)
+        return score
 
     def reset(self):
         self.update_node_list()
@@ -207,7 +274,7 @@ class ScheduleEnv():
 
             for kind in RESOURCE_CLASS:
                 s = Trimaran.target_load_packing_calculate(
-                    u[kind], kind) * TARGET_LOAD_PACKING[kind]
+                    u[kind], kind)
                 if max_s < s:
                     max_s = s
                 score += s
@@ -243,7 +310,8 @@ class ScheduleEnv():
 if __name__ == "__main__":
     # node = ["node01", "node02", "node03"]
     se = ScheduleEnv()
-    print(se.get_states(Resource(1000, 1000)))
-    print(se.target_load_packing_node_select(Resource(1000, 1000)))
-    print(se.pre_step(10, Resource(1000, 1000)))
-    print(se.step(1))
+    # print(se.get_states(Resource(1000, 1000)))
+    # print(se.target_load_packing_node_select(Resource(1000, 1000)))
+    # print(se.pre_step(10, Resource(1000, 1000)))
+    # print(se.step(1))
+    print(se.load_balanced_reward())

@@ -1,23 +1,23 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: cpu-test-deploy
+  name: memory-test-deploy
 spec:
   replicas: 3
   selector:
     matchLabels:
-      app: cpu-test
+      app: memory-test
   template:
     metadata:
       labels:
-        app: cpu-test
+        app: memory-test
     spec:
       schedulerName: RLScheduler
       containers:
-      - name: cpu-test
-        image: registry.cn-shanghai.aliyuncs.com/charstal/cpu-test
+      - name: memory-test
+        image: registry.cn-shanghai.aliyuncs.com/charstal/memory-test
         imagePullPolicy: IfNotPresent
         resources:
           limits:
-            cpu: 500m
-            memory: 30Mi
+            cpu: 30m
+            memory: 500Mi

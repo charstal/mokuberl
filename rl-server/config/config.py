@@ -90,23 +90,23 @@ class ModelConfig:
 
 class TrimaranConfig:
 
-    def get_target_load_packing_config():
-        target_load_pack_config = dict()
-        k = RESOURCE_CLASS
-        v = config.get("TRIMARAN", "TARGET_LOAD_PACKING_PERCENTAGE").split(",")
-        for i in range(len(k)):
-            target_load_pack_config[k[i]] = float(v[i])
-        return target_load_pack_config
+    # def get_target_load_packing_config():
+    #     target_load_pack_config = dict()
+    #     k = RESOURCE_CLASS
+    #     v = config.get("TRIMARAN", "TARGET_LOAD_PACKING_PERCENTAGE").split(",")
+    #     for i in range(len(k)):
+    #         target_load_pack_config[k[i]] = float(v[i])
+    #     return target_load_pack_config
 
     def get_resource_threshold():
 
-        k = RESOURCE_CLASS
-        threshold_config = dict()
-        for item in k:
-            threshold_config[item] = float(
-                config.get("TRIMARAN", item + "_THRESHOLD"))
+        # k = RESOURCE_CLASS
+        # threshold_config = dict()
+        # for item in k:
+        #     threshold_config[item] = float(
+        #         config.get("TRIMARAN", item + "_THRESHOLD"))
 
-        return threshold_config
+        return float(config.get("TRIMARAN", "RESOURCE_THRESHOLD"))
 
 
 # node resource class

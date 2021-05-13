@@ -1,16 +1,16 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: cpu-test-deploy
+  name: balanced-test-deploy
 spec:
   replicas: 3
   selector:
     matchLabels:
-      app: cpu-test
+      app: balanced-test
   template:
     metadata:
       labels:
-        app: cpu-test
+        app: balanced-test
     spec:
       schedulerName: RLScheduler
       containers:
@@ -21,3 +21,10 @@ spec:
           limits:
             cpu: 500m
             memory: 30Mi
+      - name: memory-test
+        image: registry.cn-shanghai.aliyuncs.com/charstal/memory-test
+        imagePullPolicy: IfNotPresent
+        resources:
+          limits:
+            cpu: 30m
+            memory: 500Mi

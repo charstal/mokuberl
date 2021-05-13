@@ -35,7 +35,7 @@ class ModelPredict(ModelPredictServicer):
             state_size=self.env.get_state_size(),
             action_size=self.env.get_action_size(),
             seed=0)
-        self.scores = deque(maxlen=100)
+        self.scores = deque(maxlen=2000)
         self.train_cnt = 0
         # self.states = self.env.reset()
         self.eps = EPS_START
@@ -61,7 +61,7 @@ class ModelPredict(ModelPredictServicer):
 
                 train_lock.acquire()
                 states = self.env.get_states(pod_resource=pod_resource)
-                action = self.agent.act(state=states)
+                action = self.agent.act(state=states, eps=self.eps)
                 node_name, transfer_action = self.env.pre_step(
                     action, pod_resource)
                 train_lock.release()
@@ -73,7 +73,7 @@ class ModelPredict(ModelPredictServicer):
                     Thread(target=self.task, args=(action, states)).start()
                 else:
                     Thread(target=self.train, args=(
-                        action, states, self.env.get_normal_negative_reward(), states, False))
+                        action, states, self.env.get_normal_negative_reward(), states, False)).start()
 
         return model_predict_pb2.Choice(nodeName=node_name)
 
@@ -101,7 +101,7 @@ class ModelPredict(ModelPredictServicer):
 
         score = reward
         self.scores.append(score)
-        self.eps = max(EPS_END, EPS_END*self.eps)  # decrease epsilon
+        self.eps = max(EPS_END, EPS_DECAY*self.eps)  # decrease epsilon
         self.train_cnt += 1
 
         if self.train_cnt % SAVE_MODEL_TRAIN_TIMES == 0:

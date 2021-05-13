@@ -16,7 +16,7 @@ class Trimaran:
         """
         if occupancy_rate > 100:
             return 0
-        elif occupancy_rate > RESOURCE_THRESHOLD[kind]:
-            return 50 * (100 - occupancy_rate) / (100 - RESOURCE_THRESHOLD[kind])
+        elif occupancy_rate > RESOURCE_THRESHOLD:
+            return 50 * (100 - occupancy_rate) / (100 - RESOURCE_THRESHOLD)
         else:
-            return (100 - RESOURCE_THRESHOLD[kind]) * occupancy_rate / RESOURCE_THRESHOLD[kind] + RESOURCE_THRESHOLD[kind]
+            return (100 - RESOURCE_THRESHOLD) * occupancy_rate / RESOURCE_THRESHOLD + RESOURCE_THRESHOLD

@@ -113,6 +113,8 @@ class Agent():
 
         # Compute loss
         loss = F.mse_loss(Q_expected, Q_targets)
+
+        print("loss: ", loss)
         # Minimize the loss
         self.optimizer.zero_grad()
         loss.backward()

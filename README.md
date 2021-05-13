@@ -21,6 +21,8 @@
     - node list append
 - [x] 参数化，可配置化
 - [ ] 细化奖惩
+  - [ ] 将利用率放进惩罚项
+- [ ] 运行脚本跑测试，检查会不会出现不往新节点分的情况，以及 epsilon 值的调节
 
 
 ## Usage
@@ -29,7 +31,7 @@
 ### RBAC
 
 ```sh
-kubectl appky -f rbac.yaml
+kubectl apply -f rbac.yaml
 ```
 
 ### ConfigMap
