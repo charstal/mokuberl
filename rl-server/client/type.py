@@ -39,7 +39,7 @@ class ResourceAnalysis:
         self.memory = memory_percentage
 
     def __str__(self):
-        return "\ncpu percentage: {}, memory percentage: {}\n".format(self.cpu, self.memory)
+        return "{},{}".format(self.cpu, self.memory)
 
     def transfer_to_vec(self):
         para_list = [self.cpu, self.memory]

@@ -1,0 +1,26 @@
+apiVersion: batch/v1
+kind: Job
+metadata:
+  name: random-load-job
+spec:
+  template:
+    spec:
+      # schedulerName: RLScheduler
+      containers:
+        - name: random-load
+          image: registry.cn-shanghai.aliyuncs.com/charstal/random_load
+          imagePullPolicy: Always
+          resources:
+            limits:
+              cpu: 150m
+              memory: 650Mi
+          volumeMounts:
+            - name: config-volume
+              mountPath: /etc/random-load
+      volumes:
+        - name: config-volume
+          configMap:
+            name: random-load-config
+      restartPolicy: Never
+  completions: 1
+  parallelism: 1

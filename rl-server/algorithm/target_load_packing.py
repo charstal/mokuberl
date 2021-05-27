@@ -1,10 +1,10 @@
-from config import TrimaranConfig
+from config import SysConfig
 
-RESOURCE_THRESHOLD = TrimaranConfig.get_resource_threshold()
+RESOURCE_THRESHOLD = SysConfig.get_resource_threshold()
 
 
 class Trimaran:
-    def target_load_packing_calculate(occupancy_rate, kind):
+    def target_load_packing_calculate(occupancy_rate):
         """
         https://github.com/charstal/scheduler-plugins/tree/master/kep/61-Trimaran-real-load-aware-scheduling
         Get the utilization of the current node to be scored. Call it A.

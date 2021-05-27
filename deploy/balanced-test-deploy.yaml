@@ -19,12 +19,12 @@ spec:
         imagePullPolicy: IfNotPresent
         resources:
           limits:
-            cpu: 500m
+            cpu: 200m
             memory: 30Mi
       - name: memory-test
-        image: registry.cn-shanghai.aliyuncs.com/charstal/memory-test
+        image: registry.cn-shanghai.aliyuncs.com/charstal/memory-test:100MB
         imagePullPolicy: IfNotPresent
         resources:
           limits:
             cpu: 30m
-            memory: 500Mi
+            memory: 150Mi

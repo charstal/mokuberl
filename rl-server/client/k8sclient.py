@@ -15,7 +15,7 @@ class K8sClient:
         self._core_client = client.CoreV1Api()
         self._custom_api_client = client.CustomObjectsApi()
 
-    def get_all_node_capacity(self, taints=False):
+    def get_all_node_capacity(self):
         """get node capacity
         """
         capacity_map = dict()
@@ -33,7 +33,7 @@ class K8sClient:
 
         return capacity_map
 
-    def get_all_node_usage(self):
+    def get_all_node_usage(self, taints=False):
         """get node usage
         """
         usage_map = dict()
@@ -117,6 +117,8 @@ class K8sClient:
 def cpu_convert(src):
     if src.endswith("m"):
         return int(float(src[:len(src)-1]))
+    if src.endswith("n"):
+        return int(float(src[:len(src)-1])) / 1000 / 1000
     try:
         return int(float(src) * 1000)
     except ValueError:
@@ -145,14 +147,15 @@ if __name__ == "__main__":
     # for key, value in test_usage.items():
     #     print(key, value)
     # print(k8sclient.get_node_percentage("minikube"))
-    # all_nodes_p = k8sclient.get_all_node_percentage()
-    # for key, value in all_nodes_p.items():
-    #     print(key)
-    #     print(value)
-    # print(k8sclient.get_pod("metrics-server-56c4f8c9d6-gxqgt", "kube-system"))
-
-    all_nodes_p = k8sclient.get_all_node_predict_usage_by_addind_pod(
-        Resource(1000, 1000))
+    all_nodes_p = k8sclient.get_all_node_percentage()
     for key, value in all_nodes_p.items():
         print(key)
         print(value)
+    # print(k8sclient.get_pod("metrics-server-56c4f8c9d6-gxqgt", "kube-system"))
+
+    # all_nodes_p = k8sclient.get_all_node_predict_usage_by_addind_pod(
+    #     Resource(1000, 1000))
+    # for key, value in all_nodes_p.items():
+    #     print(key)
+    #     print(value)
+    # print(k8sclient.get_nodes())

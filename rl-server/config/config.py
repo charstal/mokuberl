@@ -37,8 +37,14 @@ class SysConfig:
     def get_node_size():
         return int(config.get(ENV, "NODE_SIZE"))
 
-    def get_node_interval():
-        return int(config.get(ENV, "NODE_INTERVAL"))
+    def get_node_update_interval():
+        return int(config.get(ENV, "NODE_UPDATE_INTERVAL"))
+
+    def get_resource_threshold():
+        return float(config.get(ENV, "RESOURCE_THRESHOLD"))
+
+    def get_mid_high_loading_threshold():
+        return int(config.get(ENV, "MID_HIGH_LOADING_PERCENTAGE"))
 
 
 class ModelConfig:
@@ -90,6 +96,9 @@ class ModelConfig:
 
 class TrimaranConfig:
 
+    def get_load_score_boundary():
+        return float(config.get("TRIMARAN", "TRIMARAN_LOAD_SCORE_BOUNDARY"))
+
     # def get_target_load_packing_config():
     #     target_load_pack_config = dict()
     #     k = RESOURCE_CLASS
@@ -98,55 +107,40 @@ class TrimaranConfig:
     #         target_load_pack_config[k[i]] = float(v[i])
     #     return target_load_pack_config
 
-    def get_resource_threshold():
+    # node resource class
+    # C: cpu
+    # M: memory
+    # NODE_CLASS = ["C", "M"]
 
-        # k = RESOURCE_CLASS
-        # threshold_config = dict()
-        # for item in k:
-        #     threshold_config[item] = float(
-        #         config.get("TRIMARAN", item + "_THRESHOLD"))
+    # NODE_CLASS_CPU = "C"
+    # NODE_CLASS_MEMORY = "M"
 
-        return float(config.get("TRIMARAN", "RESOURCE_THRESHOLD"))
+    # node state
+    # 1, can be scheduled
+    # 0, cannot be scheduled
+    # NODE_STATE = [0, 1]
 
+    # node amount
+    # DEFAULT_NODE_SIZE = 10
 
-# node resource class
-# C: cpu
-# M: memory
-# NODE_CLASS = ["C", "M"]
+    # CLASS_THRESHOLD = {
+    #     NODE_CLASS_CPU: 70,
+    #     NODE_CLASS_MEMORY: 70
+    # }
+    # NODE_CPU_THRESHOLD = 70
+    # NODE_MEMORY_THRESHOLD = 70
 
-# NODE_CLASS_CPU = "C"
-# NODE_CLASS_MEMORY = "M"
+    # model train interval
+    # TRAIN_INTERVAL_SECONDS = 5
 
-# node state
-# 1, can be scheduled
-# 0, cannot be scheduled
-# NODE_STATE = [0, 1]
+    # POSITIVE_REWARD = 1.0
+    # NEGATIVE_REWARD = -1.0
 
-# node amount
-# DEFAULT_NODE_SIZE = 10
+    # MODEL_PATH = 'checkpoint.pth'
 
-# CLASS_THRESHOLD = {
-#     NODE_CLASS_CPU: 70,
-#     NODE_CLASS_MEMORY: 70
-# }
-# NODE_CPU_THRESHOLD = 70
-# NODE_MEMORY_THRESHOLD = 70
-
-# model train interval
-# TRAIN_INTERVAL_SECONDS = 5
-
-
-# POSITIVE_REWARD = 1.0
-# NEGATIVE_REWARD = -1.0
-
-# MODEL_PATH = 'checkpoint.pth'
-
-
-# ETCD_USERNAME = "root"
-# ETCD_PASSWORD = "JpcQt2zGZL"
-# ETCD_PORT = 2379
-
-
+    # ETCD_USERNAME = "root"
+    # ETCD_PASSWORD = "JpcQt2zGZL"
+    # ETCD_PORT = 2379
 if __name__ == "__main__":
     print(SysConfig.get_grpc_port())
     print(SysConfig.get_etcd_username())
@@ -160,5 +154,6 @@ if __name__ == "__main__":
     print(ModelConfig.get_lr())
     print(ModelConfig.get_positive_reward())
     print(ModelConfig.get_negative_reward())
-    print(TrimaranConfig.get_target_load_packing_config())
-    print(TrimaranConfig.get_resource_threshold())
+    print(SysConfig.get_resource_threshold())
+    print(SysConfig.get_mid_high_loading_threshold())
+    print(TrimaranConfig.get_load_score_boundary())

@@ -49,6 +49,10 @@ kubectl apply -f schedule-extender.yaml
 kubectl apply -f rl-server-deployment.yaml
 ```
 
+### Testing
+```sh
+kubectl create configmap random-load-config --from-file=random-load-config.yaml
+```
 
 
 ## 效果

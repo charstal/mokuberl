@@ -1,8 +1,9 @@
+from typing import overload
 from client import K8sClient, EtcdClient, Resource
 import numpy as np
 from config import SysConfig, ModelConfig, TrimaranConfig
-from threading import Lock, Timer
-from algorithm import Trimaran
+from threading import Timer
+from algorithm import Trimaran, load_balanced_reward_calculate
 
 # TERMINATE_STATE = 0
 TERMINATE_ACTION = "no-selected"
@@ -11,15 +12,15 @@ ETCD_PORT = SysConfig.get_etcd_port()
 ETCD_URL = SysConfig.get_etcd_url()
 ETCD_USERNAME = SysConfig.get_etcd_username()
 ETCD_PASSWORD = SysConfig.get_etcd_password()
+RESOURCE_THRESHOLD = SysConfig.get_resource_threshold()
 
-NODE_INTERVAL = SysConfig.get_node_interval()
+NODE_UPDATE_INTERVAL = SysConfig.get_node_update_interval()
 NODE_SIZE = SysConfig.get_node_size()
 RESOURCE_CLASS = ModelConfig.get_resource_class()
 POSITIVE_REWARD = ModelConfig.get_positive_reward()
 NEGATIVE_REWARD = ModelConfig.get_negative_reward()
 
-RESOURCE_THRESHOLD = TrimaranConfig.get_resource_threshold()
-# TARGET_LOAD_PACKING = TrimaranConfig.get_target_load_packing_config()
+TRIMARAN_LOAD_SCORE_BOUNDARY = TrimaranConfig.get_load_score_boundary()
 
 
 class ScheduleEnv():
@@ -31,8 +32,6 @@ class ScheduleEnv():
             其中node_list = ["node1", "node2"] 放置node名称
             node_states = [True, False] 标识 node 的开关机
 
-            TODO:
-                node_list 应该还有进一步优化空间
         """
         # 已开机的node
         k8s_nodes = self.k8sclient.get_nodes()
@@ -69,6 +68,9 @@ class ScheduleEnv():
         # node_lock.release()
         # return node_list
 
+    def get_alive_node(self):
+        return [node for i, node in enumerate(self.node_list) if self.node_states[i]]
+
     def __init__(self):
 
         self.k8sclient = K8sClient()
@@ -80,7 +82,7 @@ class ScheduleEnv():
         self.update_node_list()
 
         # 暂时使用定时器，之后看需求可以改成 watch 模式
-        self.node_timer = Timer(NODE_INTERVAL, self.update_node_list)
+        self.node_timer = Timer(NODE_UPDATE_INTERVAL, self.update_node_list)
         self.node_timer.start()
         # node_list = self.get_node_list()
         # self.node_list = node_list[:min(len(node_list), DEFAULT_NODE_SIZE)]
@@ -112,7 +114,7 @@ class ScheduleEnv():
         if act_idx < len(self.actions):
             node_name = self.action2node(act_idx)
 
-        if len(node_name) == 0 or node_name in self.node_list and not self.node_states[self.node_list.index(node_name)]:
+        if len(node_name) == 0 or (node_name in self.node_list and not self.node_states[self.node_list.index(node_name)]):
             act_idx = self.target_load_packing_node_select(pod_resource)
             node_name = self.action2node(act_idx)
 
@@ -125,14 +127,19 @@ class ScheduleEnv():
         done = True
         reward = POSITIVE_REWARD
 
-        nodes_occupancy_value = self.k8sclient.get_all_node_percentage().values()
-
-        # 判断所有的nodes是否达到阈值
-        for v in nodes_occupancy_value:
+        nodes_list = self.get_alive_node()
+        nodes_occupancy = self.k8sclient.get_all_node_percentage()
+        # print(nodes_occupancy)
+        # 判断所有正在运行的nodes资源各项资源是否达到阈值
+        # 只有所有nodes有一项资源超过THRESHOLD就认为是done
+        for node in nodes_list:
+            sub_done = False
             for k in RESOURCE_CLASS:
-                if v[k] < RESOURCE_THRESHOLD:
-                    done = False
-            if not done:
+                if nodes_occupancy[node][k] > RESOURCE_THRESHOLD:
+                    sub_done = True
+                    break
+            if not sub_done:
+                done = False
                 break
 
         # 如果动作为TERMINATE_ACTION，如果未达到阈值，给予惩罚, 没有则给予奖励
@@ -140,77 +147,11 @@ class ScheduleEnv():
             if not done:
                 reward = NEGATIVE_REWARD
         else:
-            reward = self.load_balanced_reward()
+            node_list = self.get_alive_node()
+            res = self.k8sclient.get_all_node_percentage()
+            reward = load_balanced_reward_calculate(node_list, res)
 
         return next_states, reward, done, {}
-
-    def load_balanced_reward(self):
-        # 中高负载节点尽量均衡，可以更好的应对已存在 pod 突如其来的高负载，减少资源抢占
-        # 而低负载节点在高负载的没达到阈值时尽量不要分配 pod，以便上面的 pod 自己跑完从而关闭节点
-        alpha = 0.02
-        beta = 0.01
-        theta = 0.01
-        gamar = 0.01
-
-        return alpha * self.get_util() - beta * self.get_diff_node() - theta * self.get_diff_res() - gamar * self.get_overload_punishment()
-
-    def get_util(self):
-        score = 0
-        nodes_percentage = self.k8sclient.get_all_node_percentage()
-        for node in nodes_percentage.keys():
-            s = 0
-            for k in RESOURCE_CLASS:
-                s += nodes_percentage[node][k]
-            s /= len(RESOURCE_CLASS)
-            score += s
-
-        print("util score: ", score)
-        return score
-
-    def get_diff_node(self):
-        score = 0
-        nodes_percentage = self.k8sclient.get_all_node_percentage()
-        for node in nodes_percentage.keys():
-            for i in range(len(RESOURCE_CLASS)):
-                for j in range(i, len(RESOURCE_CLASS)):
-                    score += abs(nodes_percentage[node][RESOURCE_CLASS[i]] -
-                                 nodes_percentage[node][RESOURCE_CLASS[j]])
-
-        print("diff node score: ", score)
-        return score
-
-    def get_diff_res(self):
-        score = 0
-        nodes_percentage = self.k8sclient.get_all_node_percentage()
-        mid_and_high_load = 50
-        ulist = []
-        for node in nodes_percentage.keys():
-            s = 0
-            for k in RESOURCE_CLASS:
-                s += nodes_percentage[node][k]
-            s /= len(RESOURCE_CLASS)
-            # 只限定中高负载
-            if s > mid_and_high_load:
-                ulist.append(s)
-
-        for i in range(len(ulist)):
-            for j in range(i, len(ulist)):
-                score += abs(ulist[i] - ulist[j])
-        print("diff res score: ", score)
-        return score
-
-    def get_overload_punishment(self):
-        score = 0
-        nodes_percentage = self.k8sclient.get_all_node_percentage()
-        for node in nodes_percentage.keys():
-            s = 0
-            for k in RESOURCE_CLASS:
-                if nodes_percentage[node][k] > RESOURCE_THRESHOLD:
-                    s += abs(nodes_percentage[node]
-                             [k] - RESOURCE_THRESHOLD)
-            score += s
-        print("overload punishment score: ", score)
-        return score
 
     def reset(self):
         self.update_node_list()
@@ -237,7 +178,9 @@ class ScheduleEnv():
         capacity = self.k8sclient.get_all_node_capacity()
         states = np.empty(shape=(0,))
 
-        for node in self.node_list:
+        node_list = self.node_list
+
+        for node in node_list:
             # print(usage[node])
             st = np.array([
                 usage[node].get_cpu(),
@@ -247,7 +190,7 @@ class ScheduleEnv():
             ])
             states = np.concatenate((states, st), axis=0)
 
-        for _ in range(NODE_SIZE - len(self.node_list)):
+        for _ in range(NODE_SIZE - len(node_list)):
             st = np.array([0, 0, 0, 0])
             states = np.concatenate((states, st), axis=0)
 
@@ -265,20 +208,23 @@ class ScheduleEnv():
         capacity = self.k8sclient.get_all_node_capacity()
 
         max_score = 0
-        selected_node = ""
+        selected_node = TERMINATE_ACTION
 
-        for node_name in predict_usage.keys():
+        node_list = self.get_alive_node()
+
+        for node_name in node_list:
             u = predict_usage[node_name] / capacity[node_name]
             score = 0
-            max_s = 0
-
+            overhead = False
             for kind in RESOURCE_CLASS:
-                s = Trimaran.target_load_packing_calculate(
-                    u[kind], kind)
-                if max_s < s:
-                    max_s = s
+                s = Trimaran.target_load_packing_calculate(u[kind])
+                if s <= TRIMARAN_LOAD_SCORE_BOUNDARY:
+                    overhead = True
+                    break
                 score += s
-                print(node_name, ":kind:", kind, ":", s, ":", score)
+            if overhead:
+                continue
+            score /= len(RESOURCE_CLASS)
             if score > max_score:
                 selected_node = node_name
                 max_score = score
@@ -314,4 +260,7 @@ if __name__ == "__main__":
     # print(se.target_load_packing_node_select(Resource(1000, 1000)))
     # print(se.pre_step(10, Resource(1000, 1000)))
     # print(se.step(1))
-    print(se.load_balanced_reward())
+    # print(se.load_balanced_reward())
+    # print(se.node_list)
+    # print(se.get_alive_node())
+    print(se.step(1))

@@ -4,6 +4,7 @@ import torch
 import time
 import sched
 from threading import Lock, Thread
+import multiprocessing as mp
 
 from .schedule_env import ScheduleEnv
 from .dqn_agent import Agent
@@ -11,12 +12,12 @@ from config import ModelConfig
 from utils import Cache
 from pbs import ModelPredictServicer, model_predict_pb2
 from client import Resource
+from metrics import Monitor
 
 cache = Cache()
 cache_lock = Lock()
 train_lock = Lock()
 s = sched.scheduler(time.time, time.sleep)
-train_cnt = 0
 
 
 EPS_START = ModelConfig.get_eps_start()
@@ -26,10 +27,23 @@ SAVE_MODEL_TRAIN_TIMES = ModelConfig.get_mode_save_train_times()
 TRAIN_INTERVAL = ModelConfig.get_train_interval()
 MODEL_SAVE_PATH = ModelConfig.get_model_path()
 
+time_str = time.strftime("%Y-%m-%d-%H-%M-%S", time.localtime())
+LOG_PATH = "metrics/data/log-{}.csv".format(time_str)
+log_file = open(LOG_PATH, mode='w')
+
+
+def start_monitor():
+    m = Monitor()
+    m.start()
+
+
+mp.Process(target=start_monitor).start()
+
 
 class ModelPredict(ModelPredictServicer):
     def __init__(self):
 
+        self.start_time = time.time()
         self.env = ScheduleEnv()
         self.agent = Agent(
             state_size=self.env.get_state_size(),
@@ -42,7 +56,6 @@ class ModelPredict(ModelPredictServicer):
 
     def Predict(self, request, context):
         pod_name = request.podName
-        print("starting predict:", pod_name, flush=True)
 
         cache_lock.acquire()
         node_name = cache.get(pod_name)
@@ -50,6 +63,7 @@ class ModelPredict(ModelPredictServicer):
 
         # print("node name:", node_name)
         if node_name == None:
+            print("starting predict:", pod_name, flush=True)
             cache_lock.acquire()
             node_name = cache.get(pod_name)
             if node_name != None:
@@ -82,7 +96,7 @@ class ModelPredict(ModelPredictServicer):
         s.run()
 
     def env_trian(self, action, states):
-        print("training:", flush=True)
+        # print("training:", flush=True)
         next_states, reward, done, _ = self.env.step(action)
         self.train(action, states, reward, next_states, done)
 
@@ -107,13 +121,20 @@ class ModelPredict(ModelPredictServicer):
         if self.train_cnt % SAVE_MODEL_TRAIN_TIMES == 0:
             torch.save(self.agent.qnetwork_local.state_dict(),
                        MODEL_SAVE_PATH)
-            print("train times: {}".format(self.train_cnt), flush=True)
+            # print("train times: {}".format(self.train_cnt), flush=True)
 
             # 上限 2w
             if self.train_cnt == 20000:
                 self.train_cnt = 0
         # print("finished training")
-        train_lock.release()
 
+        spend_time = int(time.time() - self.start_time)
+        print("\ttime:\t", spend_time)
         print('\tAverage Score: {:.2f}\n'.format(
             np.mean(self.scores)), end="", flush=True)
+
+        log_file.write(str(spend_time) + ",{},{:.2f}\n".format(self.train_cnt,
+                                                               np.mean(self.scores)))
+        log_file.flush()
+
+        train_lock.release()

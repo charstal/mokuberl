@@ -3,7 +3,6 @@ import logging
 
 import grpc
 
-import os
 from config import SysConfig
 from pbs import model_predict_pb2_grpc
 from rl import ModelPredict
@@ -13,7 +12,7 @@ PORT = SysConfig.get_grpc_port()
 
 def serve():
     print("start server........", flush=True)
-    server = grpc.server(futures.ThreadPoolExecutor(max_workers=10))
+    server = grpc.server(futures.ThreadPoolExecutor(max_workers=20))
     model_predict_pb2_grpc.add_ModelPredictServicer_to_server(
         ModelPredict(), server)
 
