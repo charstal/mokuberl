@@ -1,0 +1,5125 @@
+nohup: ignoring input
+start server........
+starting predict: random-load-job-0-4p6dt
+starting predict: random-load-job-1-jkvg4
+************************** reward calculate **************************
+util score:  4.893145956496056
+diff node score:  0
+diff res score:  3.1869249871070626
+overload punishment score:  0
+get free node point:  45.106854043503944
+***************************** reward end *****************************
+action:  k8s-node02
+reward:  24.259647991140966
+done:  False
+	time:	 101
+	Average Score: 24.26
+starting predict: random-load-job-2-sdxgm
+************************** reward calculate **************************
+util score:  7.521707659693347
+diff node score:  0
+diff res score:  5.695484262045791
+overload punishment score:  0
+get free node point:  42.47829234030665
+***************************** reward end *****************************
+action:  k8s-node02
+reward:  23.065369567800882
+done:  False
+	time:	 159
+	Average Score: 23.66
+starting predict: random-load-job-3-xpr9z
+************************** reward calculate **************************
+util score:  10.136144511449771
+diff node score:  0
+diff res score:  5.085800210454379
+overload punishment score:  0
+get free node point:  39.86385548855023
+***************************** reward end *****************************
+action:  k8s-node01
+reward:  24.982272045270506
+done:  False
+	time:	 219
+	Average Score: 24.10
+starting predict: random-load-job-4-tl5gw
+************************** reward calculate **************************
+util score:  12.846278704897573
+diff node score:  0
+diff res score:  5.390431605194178
+overload punishment score:  0
+get free node point:  37.15372129510242
+***************************** reward end *****************************
+action:  k8s-node01
+reward:  26.032707747254605
+done:  False
+	time:	 279
+	Average Score: 24.58
+starting predict: random-load-job-5-ptgf4
+************************** reward calculate **************************
+util score:  14.738644617469737
+diff node score:  0
+diff res score:  6.085845404186126
+overload punishment score:  0
+get free node point:  35.26135538253026
+***************************** reward end *****************************
+action:  k8s-master
+reward:  26.283476904548742
+done:  False
+	time:	 339
+	Average Score: 24.92
+starting predict: random-load-job-6-vpnkr
+************************** reward calculate **************************
+util score:  17.772259318742584
+diff node score:  0
+diff res score:  6.861489887341265
+overload punishment score:  0
+get free node point:  32.227740681257416
+***************************** reward end *****************************
+action:  k8s-node01
+reward:  27.024639772030028
+done:  False
+	time:	 399
+	Average Score: 25.27
+starting predict: random-load-job-7-hzzfn
+action:  no-selected
+reward:  -100.0
+done:  False
+	time:	 459
+	Average Score: 7.38
+starting predict: random-load-job-8-fvhm7
+starting predict: random-load-job-8-fvhm7
+************************** reward calculate **************************
+util score:  21.1110145443402
+diff node score:  0
+diff res score:  6.0583267194917845
+overload punishment score:  0
+get free node point:  28.888985455659803
+***************************** reward end *****************************
+action:  k8s-node01
+reward:  29.497180552678316
+done:  False
+	time:	 519
+	Average Score: 10.14
+starting predict: random-load-job-9-lzxxg
+************************** reward calculate **************************
+util score:  22.323521387126096
+diff node score:  0
+diff res score:  11.698819250179042
+overload punishment score:  0
+get free node point:  27.676478612873904
+***************************** reward end *****************************
+action:  k8s-node02
+reward:  24.462941443384004
+done:  False
+	time:	 579
+	Average Score: 11.73
+starting predict: random-load-job-10-x7xfg
+************************** reward calculate **************************
+util score:  24.303576433808228
+diff node score:  0
+diff res score:  14.64009707273442
+overload punishment score:  0
+get free node point:  25.696423566191772
+***************************** reward end *****************************
+action:  k8s-master
+reward:  22.511691144169696
+done:  False
+	time:	 639
+	Average Score: 12.81
+starting predict: random-load-job-11-6q5vm
+action:  no-selected
+reward:  -100.0
+done:  False
+	time:	 699
+	Average Score: 2.56
+starting predict: random-load-job-12-d48ws
+************************** reward calculate **************************
+util score:  30.814490725393387
+diff node score:  0
+diff res score:  16.776074633423736
+overload punishment score:  0
+get free node point:  19.18550927460661
+***************************** reward end *****************************
+action:  k8s-node01
+reward:  23.631170729272956
+done:  False
+	time:	 759
+	Average Score: 4.31
+starting predict: random-load-job-13-9f6zc
+action:  no-selected
+reward:  -100.0
+done:  False
+	time:	 819
+	Average Score: -3.71
+starting predict: random-load-job-14-l5t9m
+starting predict: random-load-job-14-l5t9m
+************************** reward calculate **************************
+util score:  28.905502189723418
+diff node score:  0.0
+diff res score:  16.089939427540106
+overload punishment score:  13.446540657759824
+get free node point:  21.54773826316554
+***************************** reward end *****************************
+action:  k8s-node01
+reward:  -16.750190079513388
+done:  False
+	time:	 879
+	Average Score: -4.64
+starting predict: random-load-job-15-xhphg
+starting predict: random-load-job-15-xhphg
+************************** reward calculate **************************
+util score:  27.96240386199207
+diff node score:  0
+diff res score:  13.907468319112615
+overload punishment score:  0
+get free node point:  22.03759613800793
+***************************** reward end *****************************
+action:  k8s-master
+reward:  25.07373361188342
+done:  False
+	time:	 939
+	Average Score: -2.66
+starting predict: random-load-job-16-jtbwq
+************************** reward calculate **************************
+util score:  31.412228093898094
+diff node score:  0
+diff res score:  14.683092795030563
+overload punishment score:  0
+get free node point:  18.58777190610191
+***************************** reward end *****************************
+action:  k8s-node02
+reward:  26.023021251918486
+done:  False
+	time:	 1000
+	Average Score: -0.87
+starting predict: random-load-job-17-8h9lq
+starting predict: random-load-job-17-8h9lq
+************************** reward calculate **************************
+util score:  33.331810902196466
+diff node score:  0.0
+diff res score:  14.484355785816632
+overload punishment score:  0
+get free node point:  17.39188443508635
+***************************** reward end *****************************
+action:  k8s-node01
+reward:  27.54339733392301
+done:  False
+	time:	 1060
+	Average Score: 0.80
+starting predict: random-load-job-18-c2b8z
+action:  no-selected
+reward:  -100.0
+done:  False
+	time:	 1120
+	Average Score: -4.80
+starting predict: random-load-job-19-8dspr
+starting predict: random-load-job-19-8dspr
+************************** reward calculate **************************
+util score:  36.65486946459222
+diff node score:  0.0
+diff res score:  17.890428498885743
+overload punishment score:  0
+get free node point:  14.71827579067454
+***************************** reward end *****************************
+action:  k8s-node02
+reward:  26.123578861043743
+done:  False
+	time:	 1180
+	Average Score: -3.17
+starting predict: random-load-job-20-cthpp
+action:  no-selected
+reward:  -100.0
+done:  False
+	time:	 1240
+	Average Score: -8.01
+starting predict: random-load-job-21-pbcdf
+************************** reward calculate **************************
+util score:  37.98917273808261
+diff node score:  0.0
+diff res score:  21.466056858315387
+overload punishment score:  16.402969557376526
+get free node point:  13.63680142042999
+***************************** reward end *****************************
+action:  k8s-node01
+reward:  -25.86739208214737
+done:  False
+	time:	 1300
+	Average Score: -8.86
+starting predict: random-load-job-22-2xrql
+************************** reward calculate **************************
+util score:  39.311157145707455
+diff node score:  0.0
+diff res score:  26.42066140080944
+overload punishment score:  32.015996686844574
+get free node point:  15.206920306010154
+***************************** reward end *****************************
+action:  k8s-node01
+reward:  -75.55403416263063
+done:  False
+	time:	 1360
+	Average Score: -11.89
+starting predict: random-load-job-23-cggrz
+action:  no-selected
+reward:  -100.0
+done:  False
+	time:	 1420
+	Average Score: -15.72
+starting predict: random-load-job-24-f5v8j
+starting predict: random-load-job-24-f5v8j
+starting predict: random-load-job-24-f5v8j
+************************** reward calculate **************************
+util score:  35.11776320544575
+diff node score:  0
+diff res score:  16.838292183746702
+overload punishment score:  0
+get free node point:  14.88223679455426
+***************************** reward end *****************************
+action:  k8s-master
+reward:  25.720589418976175
+done:  False
+	time:	 1480
+	Average Score: -14.00
+starting predict: random-load-job-25-4h9gr
+starting predict: random-load-job-25-4h9gr
+************************** reward calculate **************************
+util score:  34.48920438937958
+diff node score:  0
+diff res score:  13.579298305451362
+overload punishment score:  0
+get free node point:  15.51079561062042
+***************************** reward end *****************************
+action:  k8s-master
+reward:  28.66530388923843
+done:  False
+	time:	 1540
+	Average Score: -12.29
+starting predict: random-load-job-26-hpmjj
+starting predict: random-load-job-26-hpmjj
+starting predict: random-load-job-26-hpmjj
+************************** reward calculate **************************
+util score:  35.48377757661613
+diff node score:  0
+diff res score:  15.944909315702676
+overload punishment score:  0
+get free node point:  14.516222423383875
+***************************** reward end *****************************
+action:  k8s-node02
+reward:  26.79697947260539
+done:  False
+	time:	 1600
+	Average Score: -10.79
+starting predict: random-load-job-27-9x6nw
+starting predict: random-load-job-27-9x6nw
+************************** reward calculate **************************
+util score:  35.28862127296555
+diff node score:  0
+diff res score:  6.41799497336713
+overload punishment score:  0
+get free node point:  14.711378727034445
+***************************** reward end *****************************
+action:  k8s-node01
+reward:  36.22631566311564
+done:  False
+	time:	 1660
+	Average Score: -9.05
+starting predict: random-load-job-28-wlcd6
+starting predict: random-load-job-28-wlcd6
+************************** reward calculate **************************
+util score:  36.14935833429496
+diff node score:  0
+diff res score:  7.680911478149471
+overload punishment score:  0
+get free node point:  13.85064166570504
+***************************** reward end *****************************
+action:  k8s-node02
+reward:  35.39376768899801
+done:  False
+	time:	 1720
+	Average Score: -7.46
+starting predict: random-load-job-29-m6rbb
+************************** reward calculate **************************
+util score:  35.234651586446496
+diff node score:  0
+diff res score:  17.059389774475424
+overload punishment score:  0
+get free node point:  14.765348413553502
+***************************** reward end *****************************
+action:  k8s-node01
+reward:  25.557936018747824
+done:  False
+	time:	 1780
+	Average Score: -6.32
+starting predict: random-load-job-30-bx9mf
+************************** reward calculate **************************
+util score:  36.41361840199901
+diff node score:  0
+diff res score:  19.298062062668638
+overload punishment score:  0
+get free node point:  13.58638159800099
+***************************** reward end *****************************
+action:  k8s-node01
+reward:  23.908747138330867
+done:  False
+	time:	 1840
+	Average Score: -5.31
+starting predict: random-load-job-31-mq646
+************************** reward calculate **************************
+util score:  37.19892875760019
+diff node score:  0
+diff res score:  23.87798430585224
+overload punishment score:  0
+get free node point:  12.801071242399805
+***************************** reward end *****************************
+action:  k8s-master
+reward:  19.721480072947855
+done:  False
+	time:	 1900
+	Average Score: -4.51
+starting predict: random-load-job-32-5xjqd
+starting predict: random-load-job-32-5xjqd
+************************** reward calculate **************************
+util score:  37.759963542081785
+diff node score:  0
+diff res score:  24.467164080748717
+overload punishment score:  0
+get free node point:  12.240036457918215
+***************************** reward end *****************************
+action:  k8s-node02
+reward:  19.412817690292176
+done:  False
+	time:	 1961
+	Average Score: -3.76
+starting predict: random-load-job-33-bcg4s
+************************** reward calculate **************************
+util score:  38.89653364542358
+diff node score:  0
+diff res score:  26.01010974424055
+overload punishment score:  0
+get free node point:  11.103466354576419
+***************************** reward end *****************************
+action:  k8s-node01
+reward:  18.438157078471242
+done:  False
+	time:	 2021
+	Average Score: -3.09
+starting predict: random-load-job-34-5xmlh
+************************** reward calculate **************************
+util score:  40.32043782731317
+diff node score:  0.0
+diff res score:  23.50840282607541
+overload punishment score:  14.594155813617101
+get free node point:  10.700301081254798
+***************************** reward end *****************************
+action:  k8s-node02
+reward:  -21.620281898986146
+done:  False
+	time:	 2081
+	Average Score: -3.63
+starting predict: random-load-job-35-5hswr
+************************** reward calculate **************************
+util score:  42.332951674558565
+diff node score:  0.0
+diff res score:  26.38157152807584
+overload punishment score:  0
+get free node point:  8.791659506713433
+***************************** reward end *****************************
+action:  k8s-master
+reward:  20.34720989983944
+done:  False
+	time:	 2141
+	Average Score: -2.95
+starting predict: random-load-job-36-txfnh
+starting predict: random-load-job-36-txfnh
+************************** reward calculate **************************
+util score:  42.81070832034123
+diff node score:  0
+diff res score:  26.081063145282446
+overload punishment score:  0
+get free node point:  7.189291679658773
+***************************** reward end *****************************
+action:  k8s-master
+reward:  20.324291014888168
+done:  False
+	time:	 2201
+	Average Score: -2.30
+starting predict: random-load-job-37-pc7pz
+starting predict: random-load-job-37-pc7pz
+action:  no-selected
+reward:  -100.0
+done:  False
+	time:	 2261
+	Average Score: -4.94
+starting predict: random-load-job-38-mwv4q
+starting predict: random-load-job-38-mwv4q
+************************** reward calculate **************************
+util score:  41.90933404876382
+diff node score:  0
+diff res score:  29.853535698963594
+overload punishment score:  0
+get free node point:  8.090665951236183
+***************************** reward end *****************************
+action:  k8s-node01
+reward:  16.101131325418315
+done:  False
+	time:	 2321
+	Average Score: -4.39
+starting predict: random-load-job-39-sl2tg
+action:  no-selected
+reward:  -100.0
+done:  False
+	time:	 2381
+	Average Score: -6.84
+starting predict: random-load-job-40-5s62p
+starting predict: random-load-job-40-5s62p
+************************** reward calculate **************************
+util score:  41.09231403228001
+diff node score:  0
+diff res score:  21.112968995089094
+overload punishment score:  0
+get free node point:  8.907685967719987
+***************************** reward end *****************************
+action:  k8s-master
+reward:  24.433188021050906
+done:  False
+	time:	 2441
+	Average Score: -6.06
+starting predict: random-load-job-41-tb476
+starting predict: random-load-job-41-tb476
+************************** reward calculate **************************
+util score:  41.2184826981383
+diff node score:  0
+diff res score:  20.843545179161996
+overload punishment score:  0
+get free node point:  8.781517301861697
+***************************** reward end *****************************
+action:  k8s-node02
+reward:  24.765696169907155
+done:  False
+	time:	 2501
+	Average Score: -5.30
+starting predict: random-load-job-42-hnlxq
+starting predict: random-load-job-42-hnlxq
+starting predict: random-load-job-42-hnlxq
+************************** reward calculate **************************
+util score:  41.40436243202823
+diff node score:  0.0
+diff res score:  26.607562097347046
+overload punishment score:  12.512771600395297
+get free node point:  9.543458062193602
+***************************** reward end *****************************
+action:  k8s-node02
+reward:  -17.969785435407907
+done:  False
+	time:	 2561
+	Average Score: -5.61
+starting predict: random-load-job-43-2qljs
+starting predict: random-load-job-43-2qljs
+************************** reward calculate **************************
+util score:  41.35782456761384
+diff node score:  0.0
+diff res score:  27.017279356000387
+overload punishment score:  14.982667620294624
+get free node point:  9.760053613516797
+***************************** reward end *****************************
+action:  k8s-node02
+reward:  -25.727430842512025
+done:  False
+	time:	 2621
+	Average Score: -6.07
+starting predict: random-load-job-42-j9q99
+starting predict: random-load-job-42-j9q99
+starting predict: random-load-job-42-j9q99
+starting predict: random-load-job-44-ms559
+************************** reward calculate **************************
+util score:  39.88109364615284
+diff node score:  0.0
+diff res score:  30.55617878488729
+overload punishment score:  14.06417935748799
+get free node point:  10.375425561580009
+***************************** reward end *****************************
+action:  k8s-node02
+reward:  -27.679910430408416
+done:  False
+	time:	 2681
+	Average Score: -6.56
+starting predict: random-load-job-45-n4prv
+************************** reward calculate **************************
+util score:  42.0602399133057
+diff node score:  0.0
+diff res score:  32.660026861107895
+overload punishment score:  29.088060725861332
+get free node point:  10.485088411904563
+***************************** reward end *****************************
+action:  k8s-node02
+reward:  -72.62142491943389
+done:  False
+	time:	 2726
+	Average Score: -8.03
+************************** reward calculate **************************
+util score:  42.76983269823304
+diff node score:  0.0
+diff res score:  33.41744973686728
+overload punishment score:  42.373324753771215
+get free node point:  11.417334176594325
+***************************** reward end *****************************
+action:  k8s-node02
+reward:  -112.05892421165073
+done:  False
+	time:	 2741
+	Average Score: -10.29
+starting predict: random-load-job-46-fpr2w
+************************** reward calculate **************************
+util score:  43.67334467441458
+diff node score:  0.0
+diff res score:  37.40570023362698
+overload punishment score:  61.05818696948764
+get free node point:  12.595563913801904
+***************************** reward end *****************************
+action:  k8s-node02
+reward:  -170.60913451077437
+done:  False
+	time:	 2802
+	Average Score: -13.70
+starting predict: random-load-job-47-tdnh2
+************************** reward calculate **************************
+util score:  42.57229603786792
+diff node score:  0.0
+diff res score:  33.23458496286064
+overload punishment score:  0
+get free node point:  12.522315065896102
+***************************** reward end *****************************
+action:  k8s-master
+reward:  15.598868607955335
+done:  False
+	time:	 2862
+	Average Score: -13.09
+starting predict: random-load-job-48-vtrg4
+************************** reward calculate **************************
+util score:  42.91981722772956
+diff node score:  0.0
+diff res score:  36.90480432699703
+overload punishment score:  46.71040021561875
+get free node point:  12.462946191154664
+***************************** reward end *****************************
+action:  k8s-node02
+reward:  -127.8847146505464
+done:  False
+	time:	 2922
+	Average Score: -15.44
+starting predict: random-load-job-49-8ss8n
+starting predict: random-load-job-49-8ss8n
+************************** reward calculate **************************
+util score:  45.20462933535402
+diff node score:  0.0
+diff res score:  37.450589167888445
+overload punishment score:  57.32903831537092
+get free node point:  12.307339279760596
+***************************** reward end *****************************
+action:  k8s-node02
+reward:  -158.0794051387669
+done:  False
+	time:	 2982
+	Average Score: -18.29
+starting predict: random-load-job-50-qk6zn
+starting predict: random-load-job-50-qk6zn
+************************** reward calculate **************************
+util score:  36.56353327187703
+diff node score:  0.0
+diff res score:  21.27408922115824
+overload punishment score:  23.969724568782237
+get free node point:  18.218291171554554
+***************************** reward end *****************************
+action:  k8s-node02
+reward:  -47.510584069850644
+done:  False
+	time:	 3042
+	Average Score: -18.86
+starting predict: random-load-job-51-gs22x
+starting predict: random-load-job-51-gs22x
+************************** reward calculate **************************
+util score:  33.70110593696006
+diff node score:  0.0
+diff res score:  16.654989806781625
+overload punishment score:  20.072556349482994
+get free node point:  21.100789597393252
+***************************** reward end *****************************
+action:  k8s-node02
+reward:  -32.62115811957392
+done:  False
+	time:	 3102
+	Average Score: -19.13
+starting predict: random-load-job-52-xwdgp
+************************** reward calculate **************************
+util score:  34.65274593390547
+diff node score:  0.0
+diff res score:  18.551122372075426
+overload punishment score:  0
+get free node point:  20.956420718639134
+***************************** reward end *****************************
+action:  k8s-node01
+reward:  26.579833921149614
+done:  False
+	time:	 3162
+	Average Score: -18.27
+starting predict: random-load-job-53-kx4jp
+starting predict: random-load-job-53-kx4jp
+action:  no-selected
+reward:  -100.0
+done:  False
+	time:	 3222
+	Average Score: -19.78
+starting predict: random-load-job-54-rdln8
+starting predict: random-load-job-54-rdln8
+************************** reward calculate **************************
+util score:  39.26002479770067
+diff node score:  0.0
+diff res score:  23.75566393442323
+overload punishment score:  0
+get free node point:  15.593296537774142
+***************************** reward end *****************************
+action:  k8s-node01
+reward:  23.301009132164516
+done:  False
+	time:	 3282
+	Average Score: -19.00
+starting predict: random-load-job-55-hkcwc
+************************** reward calculate **************************
+util score:  37.33817076907953
+diff node score:  0.0
+diff res score:  21.398424480597665
+overload punishment score:  43.53280352854877
+get free node point:  18.960055034925322
+***************************** reward end *****************************
+action:  k8s-node02
+reward:  -105.17863677970179
+done:  False
+	time:	 3342
+	Average Score: -20.53
+starting predict: random-load-job-56-q5vvl
+************************** reward calculate **************************
+util score:  37.18551276602464
+diff node score:  0.0
+diff res score:  19.061876235874887
+overload punishment score:  0
+get free node point:  18.90166366239049
+***************************** reward end *****************************
+action:  k8s-node01
+reward:  27.574468361344994
+done:  False
+	time:	 3402
+	Average Score: -19.69
+starting predict: random-load-job-57-d4lfw
+starting predict: random-load-job-57-d4lfw
+************************** reward calculate **************************
+util score:  38.39343617013842
+diff node score:  0.0
+diff res score:  21.245502909199523
+overload punishment score:  0
+get free node point:  17.07811357714269
+***************************** reward end *****************************
+action:  k8s-master
+reward:  25.686990049510243
+done:  False
+	time:	 3462
+	Average Score: -18.91
+starting predict: random-load-job-58-5bmc5
+starting predict: random-load-job-58-5bmc5
+starting predict: random-load-job-58-5bmc5
+************************** reward calculate **************************
+util score:  38.83518638780388
+diff node score:  0.0
+diff res score:  22.830628907485934
+overload punishment score:  0
+get free node point:  15.827483337350708
+***************************** reward end *****************************
+action:  k8s-master
+reward:  23.9182991489933
+done:  False
+	time:	 3522
+	Average Score: -18.18
+starting predict: random-load-job-59-vmtfq
+starting predict: random-load-job-59-vmtfq
+action:  no-selected
+reward:  -100.0
+done:  False
+	time:	 3583
+	Average Score: -19.55
+starting predict: random-load-job-60-6k2t7
+************************** reward calculate **************************
+util score:  39.64434987851114
+diff node score:  0.0
+diff res score:  26.334603216822345
+overload punishment score:  0
+get free node point:  11.215146907130725
+***************************** reward end *****************************
+action:  k8s-master
+reward:  18.91732011525416
+done:  False
+	time:	 3643
+	Average Score: -18.92
+starting predict: random-load-job-61-h2tvm
+************************** reward calculate **************************
+util score:  41.405175590360024
+diff node score:  0.0
+diff res score:  23.981580851182922
+overload punishment score:  29.231432406033086
+get free node point:  11.11325401832734
+***************************** reward end *****************************
+action:  k8s-node02
+reward:  -64.71407546975848
+done:  False
+	time:	 3703
+	Average Score: -19.65
+starting predict: random-load-job-62-xtb4m
+action:  no-selected
+reward:  -100.0
+done:  False
+	time:	 3763
+	Average Score: -20.93
+starting predict: random-load-job-63-c8w9p
+starting predict: random-load-job-63-c8w9p
+************************** reward calculate **************************
+util score:  43.39809743543035
+diff node score:  0.0
+diff res score:  16.337753479039236
+overload punishment score:  0
+get free node point:  7.327092210908892
+***************************** reward end *****************************
+action:  k8s-master
+reward:  30.723890061845562
+done:  False
+	time:	 3823
+	Average Score: -20.12
+starting predict: random-load-job-64-zpjk9
+starting predict: random-load-job-64-zpjk9
+action:  no-selected
+reward:  -100.0
+done:  False
+	time:	 3883
+	Average Score: -21.35
+starting predict: random-load-job-65-wbbld
+starting predict: random-load-job-65-wbbld
+************************** reward calculate **************************
+util score:  45.71344260261312
+diff node score:  0.0
+diff res score:  20.29745211775477
+overload punishment score:  0
+get free node point:  5.075264575853413
+***************************** reward end *****************************
+action:  k8s-node01
+reward:  27.953622772785057
+done:  False
+	time:	 3943
+	Average Score: -20.60
+starting predict: random-load-job-66-d4b5l
+starting predict: random-load-job-66-d4b5l
+************************** reward calculate **************************
+util score:  46.40018970769867
+diff node score:  0.0
+diff res score:  22.833207202546735
+overload punishment score:  27.533251046087795
+get free node point:  5.996320944449067
+***************************** reward end *****************************
+action:  k8s-node02
+reward:  -56.034610160886906
+done:  False
+	time:	 4003
+	Average Score: -21.13
+starting predict: random-load-job-67-8w2m5
+action:  no-selected
+reward:  -100.0
+done:  False
+	time:	 4063
+	Average Score: -22.29
+starting predict: random-load-job-68-c6x2b
+************************** reward calculate **************************
+util score:  42.82500665542665
+diff node score:  0
+diff res score:  16.73632481195373
+overload punishment score:  0
+get free node point:  7.174993344573352
+***************************** reward end *****************************
+action:  k8s-master
+reward:  29.676178515759595
+done:  False
+	time:	 4123
+	Average Score: -21.54
+starting predict: random-load-job-69-twpzz
+************************** reward calculate **************************
+util score:  42.549967969920296
+diff node score:  0
+diff res score:  19.98165697945765
+overload punishment score:  0
+get free node point:  7.450032030079704
+***************************** reward end *****************************
+action:  k8s-node02
+reward:  26.293327005502498
+done:  False
+loss:  tensor(2.1730e+18, device='cuda:0', grad_fn=<MseLossBackward>)
+	time:	 4183
+	Average Score: -20.86
+starting predict: random-load-job-70-4tnwp
+starting predict: random-load-job-70-4tnwp
+action:  no-selected
+reward:  -100.0
+done:  False
+	time:	 4243
+	Average Score: -21.97
+starting predict: random-load-job-71-dh44h
+starting predict: random-load-job-71-dh44h
+************************** reward calculate **************************
+util score:  38.49524431616126
+diff node score:  0
+diff res score:  14.405735844870463
+overload punishment score:  0
+get free node point:  11.50475568383874
+***************************** reward end *****************************
+action:  k8s-node01
+reward:  29.841886313210168
+done:  False
+	time:	 4303
+	Average Score: -21.25
+starting predict: random-load-job-72-qs6cx
+************************** reward calculate **************************
+util score:  37.24742084993979
+diff node score:  0
+diff res score:  12.755297387839704
+overload punishment score:  0
+get free node point:  12.752579150060207
+***************************** reward end *****************************
+action:  k8s-master
+reward:  30.868413037130193
+done:  False
+	time:	 4363
+	Average Score: -20.54
+starting predict: random-load-job-73-jmjpv
+starting predict: random-load-job-73-jmjpv
+starting predict: random-load-job-73-jmjpv
+************************** reward calculate **************************
+util score:  39.183595296146805
+diff node score:  0
+diff res score:  20.231014593671308
+overload punishment score:  0
+get free node point:  10.816404703853195
+***************************** reward end *****************************
+action:  k8s-node01
+reward:  24.360783054402095
+done:  False
+	time:	 4423
+	Average Score: -19.93
+starting predict: random-load-job-74-lnp4l
+starting predict: random-load-job-74-lnp4l
+starting predict: random-load-job-74-lnp4l
+************************** reward calculate **************************
+util score:  38.45404193064292
+diff node score:  0
+diff res score:  18.035051636959768
+overload punishment score:  0
+get free node point:  11.545958069357077
+***************************** reward end *****************************
+action:  k8s-node02
+reward:  26.191969328361694
+done:  False
+	time:	 4483
+	Average Score: -19.32
+starting predict: random-load-job-75-jfj62
+starting predict: random-load-job-75-jfj62
+************************** reward calculate **************************
+util score:  40.402948142089535
+diff node score:  0
+diff res score:  24.942073385996366
+overload punishment score:  0
+get free node point:  9.597051857910463
+***************************** reward end *****************************
+action:  k8s-node01
+reward:  20.2594006850484
+done:  False
+	time:	 4544
+	Average Score: -18.79
+starting predict: random-load-job-76-plv67
+starting predict: random-load-job-76-plv67
+************************** reward calculate **************************
+util score:  42.74288060926042
+diff node score:  0
+diff res score:  27.858729907794967
+overload punishment score:  0
+get free node point:  7.2571193907395894
+***************************** reward end *****************************
+action:  k8s-master
+reward:  18.512710396835246
+done:  False
+	time:	 4604
+	Average Score: -18.31
+starting predict: random-load-job-77-wdg48
+starting predict: random-load-job-77-wdg48
+************************** reward calculate **************************
+util score:  42.859616740553385
+diff node score:  0
+diff res score:  27.46054033292832
+overload punishment score:  0
+get free node point:  7.140383259446615
+***************************** reward end *****************************
+action:  k8s-node01
+reward:  18.96926803734837
+done:  False
+	time:	 4664
+	Average Score: -17.83
+starting predict: random-load-job-78-4fqqf
+starting predict: random-load-job-78-4fqqf
+************************** reward calculate **************************
+util score:  41.1458502757796
+diff node score:  0
+diff res score:  20.552504922124992
+overload punishment score:  0
+get free node point:  8.854149724220397
+***************************** reward end *****************************
+action:  k8s-master
+reward:  25.02042021576481
+done:  False
+	time:	 4724
+	Average Score: -17.29
+starting predict: random-load-job-79-j96vz
+starting predict: random-load-job-79-j96vz
+************************** reward calculate **************************
+util score:  40.99912260940631
+diff node score:  0
+diff res score:  23.178554654871586
+overload punishment score:  0
+get free node point:  9.000877390593693
+***************************** reward end *****************************
+action:  k8s-node02
+reward:  22.321006649831567
+done:  False
+loss:  tensor(1.7645e+20, device='cuda:0', grad_fn=<MseLossBackward>)
+	time:	 4784
+	Average Score: -16.79
+starting predict: random-load-job-80-4q26n
+************************** reward calculate **************************
+util score:  38.979321763600545
+diff node score:  0
+diff res score:  14.36361568332523
+overload punishment score:  0
+get free node point:  11.020678236399457
+***************************** reward end *****************************
+action:  k8s-node01
+reward:  30.126045198475044
+done:  False
+	time:	 4844
+	Average Score: -16.22
+starting predict: random-load-job-81-8rwkd
+************************** reward calculate **************************
+util score:  40.33914498287066
+diff node score:  0
+diff res score:  15.669653483381481
+overload punishment score:  0
+get free node point:  9.660855017129341
+***************************** reward end *****************************
+action:  k8s-master
+reward:  29.499919008053848
+done:  False
+	time:	 4904
+	Average Score: -15.66
+starting predict: random-load-job-82-lvbt8
+starting predict: random-load-job-82-lvbt8
+starting predict: random-load-job-82-lvbt8
+action:  no-selected
+reward:  -100.0
+done:  False
+	time:	 4964
+	Average Score: -16.67
+starting predict: random-load-job-83-js5mw
+starting predict: random-load-job-83-js5mw
+starting predict: random-load-job-83-js5mw
+************************** reward calculate **************************
+util score:  42.06235338896744
+diff node score:  0.0
+diff res score:  14.086180481714242
+overload punishment score:  0
+get free node point:  8.05460157470526
+***************************** reward end *****************************
+action:  k8s-master
+reward:  32.00347369460582
+done:  False
+	time:	 5024
+	Average Score: -16.09
+starting predict: random-load-job-84-9mrh7
+starting predict: random-load-job-84-9mrh7
+************************** reward calculate **************************
+util score:  41.32753198235326
+diff node score:  0.0
+diff res score:  17.187489428275942
+overload punishment score:  15.343995861758899
+get free node point:  11.778409132522663
+***************************** reward end *****************************
+action:  k8s-master
+reward:  -16.00274046493805
+done:  False
+	time:	 5084
+	Average Score: -16.09
+starting predict: random-load-job-85-j2n8w
+************************** reward calculate **************************
+util score:  39.4550194360494
+diff node score:  0.0
+diff res score:  14.72059880158542
+overload punishment score:  0
+get free node point:  11.863660091288958
+***************************** reward end *****************************
+action:  k8s-node01
+reward:  30.66625068010846
+done:  False
+	time:	 5145
+	Average Score: -15.55
+starting predict: random-load-job-86-nd9fd
+starting predict: random-load-job-86-nd9fd
+************************** reward calculate **************************
+util score:  40.66163197920372
+diff node score:  0.0
+diff res score:  17.125998238083785
+overload punishment score:  0
+get free node point:  10.769281461547706
+***************************** reward end *****************************
+action:  k8s-master
+reward:  28.920274471893787
+done:  False
+	time:	 5205
+	Average Score: -15.04
+starting predict: random-load-job-87-4m844
+************************** reward calculate **************************
+util score:  40.32419188767813
+diff node score:  0.0
+diff res score:  15.888963431661276
+overload punishment score:  0
+get free node point:  11.303688424181631
+***************************** reward end *****************************
+action:  k8s-master
+reward:  30.087072668107673
+done:  False
+	time:	 5265
+	Average Score: -14.53
+starting predict: random-load-job-88-cltzj
+************************** reward calculate **************************
+util score:  40.581837992480054
+diff node score:  0.0
+diff res score:  15.246561958899543
+overload punishment score:  0
+get free node point:  11.404844557245447
+***************************** reward end *****************************
+action:  k8s-node02
+reward:  31.037698312203236
+done:  False
+	time:	 5325
+	Average Score: -14.01
+starting predict: random-load-job-89-vlwjn
+starting predict: random-load-job-89-vlwjn
+************************** reward calculate **************************
+util score:  43.151927055082304
+diff node score:  0.0
+diff res score:  17.101730440712572
+overload punishment score:  13.577691421725643
+get free node point:  10.539247256143211
+***************************** reward end *****************************
+action:  k8s-master
+reward:  -9.413254022735586
+done:  False
+loss:  tensor(3.1399e+19, device='cuda:0', grad_fn=<MseLossBackward>)
+	time:	 5385
+	Average Score: -13.96
+starting predict: random-load-job-90-27lp8
+************************** reward calculate **************************
+util score:  41.91657561874258
+diff node score:  0.0
+diff res score:  14.447728408128869
+overload punishment score:  29.743279408293752
+get free node point:  13.723769892711635
+***************************** reward end *****************************
+action:  k8s-master
+reward:  -54.89910606791174
+done:  False
+	time:	 5445
+	Average Score: -14.41
+starting predict: random-load-job-91-kxgxp
+starting predict: random-load-job-91-kxgxp
+************************** reward calculate **************************
+util score:  44.36820119180951
+diff node score:  0.0
+diff res score:  15.676961528661664
+overload punishment score:  0
+get free node point:  11.274909990187131
+***************************** reward end *****************************
+action:  k8s-node02
+reward:  34.32869465824141
+done:  False
+	time:	 5505
+	Average Score: -13.88
+starting predict: random-load-job-92-2bsjm
+action:  no-selected
+reward:  -100.0
+done:  False
+	time:	 5565
+	Average Score: -14.81
+starting predict: random-load-job-93-gzpmx
+action:  no-selected
+reward:  -100.0
+done:  False
+	time:	 5625
+	Average Score: -15.72
+starting predict: random-load-job-94-rkxm8
+starting predict: random-load-job-94-rkxm8
+action:  no-selected
+reward:  -100.0
+done:  False
+	time:	 5685
+	Average Score: -16.60
+starting predict: random-load-job-95-ks8l5
+************************** reward calculate **************************
+util score:  45.385283288395385
+diff node score:  0.0
+diff res score:  13.692710553033782
+overload punishment score:  13.78282496199091
+get free node point:  9.233402442075993
+***************************** reward end *****************************
+action:  k8s-master
+reward:  -5.03920092957313
+done:  False
+	time:	 5745
+	Average Score: -16.48
+starting predict: random-load-job-96-5p9v4
+starting predict: random-load-job-96-5p9v4
+action:  no-selected
+reward:  -100.0
+done:  False
+	time:	 5806
+	Average Score: -17.34
+starting predict: random-load-job-97-27vqv
+************************** reward calculate **************************
+util score:  42.23538095010084
+diff node score:  0.0
+diff res score:  15.794848114723441
+overload punishment score:  0
+get free node point:  12.336765070705662
+***************************** reward end *****************************
+action:  k8s-node01
+reward:  32.60891537073023
+done:  False
+	time:	 5866
+	Average Score: -16.83
+starting predict: random-load-job-98-q88hm
+************************** reward calculate **************************
+util score:  42.79968312127355
+diff node score:  0.0
+diff res score:  14.134769823642756
+overload punishment score:  0
+get free node point:  11.605845090419812
+***************************** reward end *****************************
+action:  k8s-node02
+reward:  34.4678358428407
+done:  False
+	time:	 5926
+	Average Score: -16.32
+starting predict: random-load-job-99-6rj98
+action:  no-selected
+reward:  -100.0
+done:  False
+loss:  tensor(9.3552e+18, device='cuda:0', grad_fn=<MseLossBackward>)
+	time:	 5986
+	Average Score: -17.15
+starting predict: random-load-job-100-77ps2
+starting predict: random-load-job-100-77ps2
+action:  no-selected
+reward:  -100.0
+done:  False
+	time:	 6046
+	Average Score: -17.97
+starting predict: random-load-job-101-bc8j9
+************************** reward calculate **************************
+util score:  45.5040302935569
+diff node score:  2.7491012055858626
+diff res score:  12.678138798851103
+overload punishment score:  0
+get free node point:  6.734239625933654
+***************************** reward end *****************************
+action:  k8s-node02
+reward:  33.44391010208676
+done:  False
+	time:	 6106
+	Average Score: -17.47
+starting predict: random-load-job-102-sv6sc
+starting predict: random-load-job-102-sv6sc
+action:  no-selected
+reward:  -100.0
+done:  False
+	time:	 6166
+	Average Score: -18.27
+starting predict: random-load-job-103-mrxmb
+action:  no-selected
+reward:  -100.0
+done:  False
+	time:	 6226
+	Average Score: -19.06
+starting predict: random-load-job-104-thx4c
+starting predict: random-load-job-104-thx4c
+************************** reward calculate **************************
+util score:  48.483545391450185
+diff node score:  1.688831125091717
+diff res score:  15.096457564468041
+overload punishment score:  0
+get free node point:  4.90113473248199
+***************************** reward end *****************************
+action:  k8s-master
+reward:  34.148824068131425
+done:  False
+	time:	 6286
+	Average Score: -18.55
+starting predict: random-load-job-105-fdgp4
+starting predict: random-load-job-105-fdgp4
+action:  no-selected
+reward:  -100.0
+done:  False
+	time:	 6346
+	Average Score: -19.32
+starting predict: random-load-job-106-tfwdk
+starting predict: random-load-job-106-tfwdk
+************************** reward calculate **************************
+util score:  49.82948414816102
+diff node score:  5.733537820694423
+diff res score:  16.89084042648499
+overload punishment score:  0
+get free node point:  5.935826278098266
+***************************** reward end *****************************
+action:  k8s-node02
+reward:  30.173019040030745
+done:  False
+	time:	 6406
+	Average Score: -18.85
+starting predict: random-load-job-107-fvmc5
+************************** reward calculate **************************
+util score:  51.71649709097582
+diff node score:  3.277412225981884
+diff res score:  14.530516225065895
+overload punishment score:  0
+get free node point:  6.042749453516843
+***************************** reward end *****************************
+action:  k8s-master
+reward:  36.929943366686466
+done:  False
+	time:	 6466
+	Average Score: -18.34
+starting predict: random-load-job-108-mktnl
+************************** reward calculate **************************
+util score:  48.693949322718616
+diff node score:  1.451334686100747
+diff res score:  19.165854796668018
+overload punishment score:  10.76610499560635
+get free node point:  5.994288130521023
+***************************** reward end *****************************
+action:  k8s-node02
+reward:  -1.2244110816086846
+done:  False
+	time:	 6526
+	Average Score: -18.18
+starting predict: random-load-job-109-97mhs
+************************** reward calculate **************************
+util score:  44.71606536326194
+diff node score:  1.1490645572646727
+diff res score:  21.019651957686637
+overload punishment score:  0
+get free node point:  6.634878217840331
+***************************** reward end *****************************
+action:  k8s-node02
+reward:  25.864787957230796
+done:  False
+loss:  tensor(5.0572e+19, device='cuda:0', grad_fn=<MseLossBackward>)
+	time:	 6587
+	Average Score: -17.78
+starting predict: random-load-job-110-v8sfp
+starting predict: random-load-job-110-v8sfp
+starting predict: random-load-job-110-v8sfp
+************************** reward calculate **************************
+util score:  44.072944085525286
+diff node score:  0.0
+diff res score:  18.88109698312411
+overload punishment score:  0
+get free node point:  7.131438297829291
+***************************** reward end *****************************
+action:  k8s-node01
+reward:  28.757566251315822
+done:  False
+	time:	 6647
+	Average Score: -17.36
+starting predict: random-load-job-111-qjrwt
+starting predict: random-load-job-111-qjrwt
+starting predict: random-load-job-111-qjrwt
+************************** reward calculate **************************
+util score:  44.90559250905923
+diff node score:  0.0
+diff res score:  16.7163686116626
+overload punishment score:  0
+get free node point:  6.158197310787952
+***************************** reward end *****************************
+action:  k8s-node02
+reward:  31.26832255279061
+done:  False
+	time:	 6707
+	Average Score: -16.93
+starting predict: random-load-job-112-57whz
+starting predict: random-load-job-112-57whz
+action:  no-selected
+reward:  -100.0
+done:  False
+	time:	 6767
+	Average Score: -17.66
+starting predict: random-load-job-113-jm9cl
+************************** reward calculate **************************
+util score:  42.285446751309685
+diff node score:  0
+diff res score:  9.003494364047304
+overload punishment score:  0
+get free node point:  7.714553248690318
+***************************** reward end *****************************
+action:  k8s-master
+reward:  37.13922901160754
+done:  False
+	time:	 6827
+	Average Score: -17.18
+starting predict: random-load-job-114-qpfqb
+starting predict: random-load-job-114-qpfqb
+starting predict: random-load-job-114-qpfqb
+************************** reward calculate **************************
+util score:  41.832237694120785
+diff node score:  0
+diff res score:  11.591821714662428
+overload punishment score:  0
+get free node point:  8.167762305879217
+***************************** reward end *****************************
+action:  k8s-master
+reward:  34.324297132397966
+done:  False
+	time:	 6887
+	Average Score: -16.73
+starting predict: random-load-job-115-cvxw8
+starting predict: random-load-job-115-cvxw8
+************************** reward calculate **************************
+util score:  40.6884331788968
+diff node score:  0
+diff res score:  8.998301950978329
+overload punishment score:  0
+get free node point:  9.3115668211032
+***************************** reward end *****************************
+action:  k8s-node02
+reward:  36.34591463847007
+done:  False
+	time:	 6947
+	Average Score: -16.28
+starting predict: random-load-job-116-z89cv
+************************** reward calculate **************************
+util score:  38.5454886227971
+diff node score:  0
+diff res score:  13.282618189493514
+overload punishment score:  0
+get free node point:  11.454511377202897
+***************************** reward end *****************************
+action:  k8s-node01
+reward:  30.99012612190504
+done:  False
+	time:	 7007
+	Average Score: -15.87
+starting predict: random-load-job-117-cn26g
+************************** reward calculate **************************
+util score:  39.43419691572253
+diff node score:  0.0
+diff res score:  17.838065894870734
+overload punishment score:  0
+get free node point:  11.419118322024302
+***************************** reward end *****************************
+action:  k8s-node02
+reward:  27.305690181863948
+done:  False
+	time:	 7067
+	Average Score: -15.51
+starting predict: random-load-job-118-mjpxh
+starting predict: random-load-job-118-mjpxh
+starting predict: random-load-job-118-mjpxh
+action:  no-selected
+reward:  -100.0
+done:  False
+	time:	 7127
+	Average Score: -16.22
+starting predict: random-load-job-119-2g8db
+************************** reward calculate **************************
+util score:  37.94625970994918
+diff node score:  0.0
+diff res score:  7.9345016888735636
+overload punishment score:  0
+get free node point:  13.446434364115795
+***************************** reward end *****************************
+action:  k8s-node02
+reward:  36.734975203133516
+done:  False
+loss:  tensor(6.1562e+19, device='cuda:0', grad_fn=<MseLossBackward>)
+	time:	 7187
+	Average Score: -15.77
+starting predict: random-load-job-120-c66cx
+starting predict: random-load-job-120-c66cx
+************************** reward calculate **************************
+util score:  38.3460057465666
+diff node score:  0.0
+diff res score:  7.664240713884361
+overload punishment score:  0
+get free node point:  12.500342670904354
+***************************** reward end *****************************
+action:  k8s-node01
+reward:  36.931936368134416
+done:  False
+	time:	 7247
+	Average Score: -15.34
+starting predict: random-load-job-121-dd29z
+************************** reward calculate **************************
+util score:  39.75188422505337
+diff node score:  0.0
+diff res score:  10.919218583150046
+overload punishment score:  13.555624073436901
+get free node point:  13.061429699656166
+***************************** reward end *****************************
+action:  k8s-node02
+reward:  -5.303491728579299
+done:  False
+	time:	 7307
+	Average Score: -15.26
+starting predict: random-load-job-122-dgxxv
+************************** reward calculate **************************
+util score:  42.748546387550384
+diff node score:  0.0
+diff res score:  10.582780024340682
+overload punishment score:  24.933273362426945
+get free node point:  12.766135311190604
+***************************** reward end *****************************
+action:  k8s-node02
+reward:  -36.25098606847583
+done:  False
+	time:	 7367
+	Average Score: -15.43
+starting predict: random-load-job-123-fnmp5
+************************** reward calculate **************************
+util score:  39.945970824628525
+diff node score:  0.0
+diff res score:  11.394835074483348
+overload punishment score:  18.229274645557496
+get free node point:  14.916427229008628
+***************************** reward end *****************************
+action:  k8s-node02
+reward:  -18.678474572022996
+done:  False
+	time:	 7428
+	Average Score: -15.45
+starting predict: random-load-job-124-7skj2
+starting predict: random-load-job-124-7skj2
+action:  no-selected
+reward:  -100.0
+done:  False
+	time:	 7488
+	Average Score: -16.13
+starting predict: random-load-job-125-w2s8r
+starting predict: random-load-job-125-w2s8r
+action:  no-selected
+reward:  -100.0
+done:  False
+	time:	 7548
+	Average Score: -16.80
+starting predict: random-load-job-126-k69fl
+starting predict: random-load-job-126-k69fl
+************************** reward calculate **************************
+util score:  43.528747880669904
+diff node score:  0.0
+diff res score:  16.947996569400406
+overload punishment score:  0
+get free node point:  12.431114482655
+***************************** reward end *****************************
+action:  k8s-master
+reward:  32.796308552597
+done:  False
+	time:	 7608
+	Average Score: -16.41
+starting predict: random-load-job-127-w6ppd
+************************** reward calculate **************************
+util score:  42.78858470117323
+diff node score:  0.0
+diff res score:  13.693757790635992
+overload punishment score:  0
+get free node point:  13.147747431523998
+***************************** reward end *****************************
+action:  k8s-master
+reward:  35.668700626299234
+done:  False
+	time:	 7668
+	Average Score: -16.00
+starting predict: random-load-job-128-cptwd
+starting predict: random-load-job-128-cptwd
+************************** reward calculate **************************
+util score:  44.5922715064425
+diff node score:  0.0
+diff res score:  21.66732031343078
+overload punishment score:  30.716840468707826
+get free node point:  12.115228215268246
+***************************** reward end *****************************
+action:  k8s-node02
+reward:  -63.16795610547763
+done:  False
+	time:	 7728
+	Average Score: -16.36
+starting predict: random-load-job-129-qrg8g
+starting predict: random-load-job-129-qrg8g
+************************** reward calculate **************************
+util score:  45.69052111484939
+diff node score:  8.901441518675227
+diff res score:  26.367175577318772
+overload punishment score:  14.867450657799182
+get free node point:  11.347667426916715
+***************************** reward end *****************************
+action:  k8s-master
+reward:  -28.506614241083803
+done:  False
+loss:  tensor(5.3702e+19, device='cuda:0', grad_fn=<MseLossBackward>)
+	time:	 7788
+	Average Score: -16.46
+starting predict: random-load-job-130-smczx
+************************** reward calculate **************************
+util score:  43.177790213842705
+diff node score:  6.561205838529872
+diff res score:  20.17315638634969
+overload punishment score:  0
+get free node point:  11.860551540366785
+***************************** reward end *****************************
+action:  k8s-master
+reward:  22.373703759146537
+done:  False
+	time:	 7848
+	Average Score: -16.16
+starting predict: random-load-job-131-872bn
+************************** reward calculate **************************
+util score:  41.036749476691384
+diff node score:  0.0
+diff res score:  26.74811705012601
+overload punishment score:  14.435562242044629
+get free node point:  12.412757161138458
+***************************** reward end *****************************
+action:  k8s-node02
+reward:  -22.811675718999286
+done:  False
+	time:	 7908
+	Average Score: -16.21
+starting predict: random-load-job-132-tlpx4
+starting predict: random-load-job-132-tlpx4
+starting predict: random-load-job-132-tlpx4
+************************** reward calculate **************************
+util score:  43.119593797298656
+diff node score:  0.0
+diff res score:  25.696438215928996
+overload punishment score:  27.792202117848035
+get free node point:  13.207183149265575
+***************************** reward end *****************************
+action:  k8s-node02
+reward:  -59.34985919754166
+done:  False
+	time:	 7968
+	Average Score: -16.54
+starting predict: random-load-job-133-6xc6v
+************************** reward calculate **************************
+util score:  39.1453304568173
+diff node score:  0.0
+diff res score:  21.762113595137322
+overload punishment score:  24.764296325729536
+get free node point:  16.659702841943844
+***************************** reward end *****************************
+action:  k8s-node02
+reward:  -48.579820694536714
+done:  False
+	time:	 8028
+	Average Score: -16.78
+starting predict: random-load-job-134-xkgjz
+starting predict: random-load-job-134-xkgjz
+************************** reward calculate **************************
+util score:  36.72398454690137
+diff node score:  0.0
+diff res score:  26.103648995953638
+overload punishment score:  27.90239869337678
+get free node point:  18.328183069282517
+***************************** reward end *****************************
+action:  k8s-node02
+reward:  -63.92276899454136
+done:  False
+	time:	 8088
+	Average Score: -17.12
+starting predict: random-load-job-135-x4kkr
+starting predict: random-load-job-135-x4kkr
+starting predict: random-load-job-135-x4kkr
+************************** reward calculate **************************
+util score:  38.11109477170723
+diff node score:  0.0
+diff res score:  24.700803576398588
+overload punishment score:  44.65117160463065
+get free node point:  19.84556736381024
+***************************** reward end *****************************
+action:  k8s-node02
+reward:  -110.6204399366782
+done:  False
+	time:	 8149
+	Average Score: -17.81
+starting predict: random-load-job-136-m5t94
+action:  no-selected
+reward:  -100.0
+done:  False
+	time:	 8209
+	Average Score: -18.41
+starting predict: random-load-job-137-9hvkq
+starting predict: random-load-job-137-9hvkq
+************************** reward calculate **************************
+util score:  36.557366540817405
+diff node score:  0.0
+diff res score:  17.54924739856379
+overload punishment score:  0
+get free node point:  19.719657621464446
+***************************** reward end *****************************
+action:  k8s-node01
+reward:  28.867947952985837
+done:  False
+	time:	 8269
+	Average Score: -18.07
+starting predict: random-load-job-138-gbts6
+starting predict: random-load-job-138-gbts6
+************************** reward calculate **************************
+util score:  35.23490641452323
+diff node score:  0.0
+diff res score:  24.910624634111425
+overload punishment score:  0
+get free node point:  18.395385084497537
+***************************** reward end *****************************
+action:  k8s-node01
+reward:  19.521974322660576
+done:  False
+	time:	 8329
+	Average Score: -17.80
+starting predict: random-load-job-139-zr66r
+starting predict: random-load-job-139-zr66r
+************************** reward calculate **************************
+util score:  36.03728989576156
+diff node score:  0.0
+diff res score:  22.963409362862837
+overload punishment score:  24.740801324115672
+get free node point:  17.846508721746044
+***************************** reward end *****************************
+action:  k8s-node02
+reward:  -52.22526907857527
+done:  False
+loss:  tensor(2.7238e+19, device='cuda:0', grad_fn=<MseLossBackward>)
+	time:	 8389
+	Average Score: -18.04
+starting predict: random-load-job-140-wt69m
+************************** reward calculate **************************
+util score:  36.26200835417793
+diff node score:  0.0
+diff res score:  24.007624796907283
+overload punishment score:  0
+get free node point:  15.43675981937252
+***************************** reward end *****************************
+action:  k8s-master
+reward:  19.972763466956906
+done:  False
+	time:	 8449
+	Average Score: -17.77
+starting predict: random-load-job-141-wrgx7
+************************** reward calculate **************************
+util score:  37.66476426845526
+diff node score:  0.0
+diff res score:  26.598606922738607
+overload punishment score:  0
+get free node point:  13.86654735779463
+***************************** reward end *****************************
+action:  k8s-node01
+reward:  17.999431024613965
+done:  False
+	time:	 8509
+	Average Score: -17.52
+starting predict: random-load-job-142-9mt77
+************************** reward calculate **************************
+util score:  39.65647443237138
+diff node score:  0.0
+diff res score:  27.782148637011613
+overload punishment score:  0
+get free node point:  11.957244073266251
+***************************** reward end *****************************
+action:  k8s-master
+reward:  17.852947831992896
+done:  False
+	time:	 8569
+	Average Score: -17.28
+starting predict: random-load-job-143-lc8qn
+starting predict: random-load-job-143-lc8qn
+starting predict: random-load-job-143-lc8qn
+************************** reward calculate **************************
+util score:  40.49158691720621
+diff node score:  0.0
+diff res score:  26.925164284885813
+overload punishment score:  27.780633750091745
+get free node point:  13.252919093367547
+***************************** reward end *****************************
+action:  k8s-node02
+reward:  -63.14901907127107
+done:  False
+	time:	 8629
+	Average Score: -17.59
+starting predict: random-load-job-144-tzz4r
+************************** reward calculate **************************
+util score:  39.36108883908698
+diff node score:  0.0
+diff res score:  26.156960097264648
+overload punishment score:  0
+get free node point:  11.698671843100056
+***************************** reward end *****************************
+action:  k8s-node01
+reward:  19.053464663372363
+done:  False
+	time:	 8689
+	Average Score: -17.34
+starting predict: random-load-job-145-d6r6h
+starting predict: random-load-job-145-d6r6h
+************************** reward calculate **************************
+util score:  39.365689411239174
+diff node score:  0
+diff res score:  25.819882170504115
+overload punishment score:  0
+get free node point:  10.634310588760828
+***************************** reward end *****************************
+action:  k8s-node01
+reward:  18.86296253511547
+done:  False
+	time:	 8749
+	Average Score: -17.09
+starting predict: random-load-job-146-cs7nq
+starting predict: random-load-job-146-cs7nq
+************************** reward calculate **************************
+util score:  39.477647652433355
+diff node score:  0
+diff res score:  25.79081125302803
+overload punishment score:  0
+get free node point:  10.522352347566649
+***************************** reward end *****************************
+action:  k8s-master
+reward:  18.94801257318865
+done:  False
+	time:	 8809
+	Average Score: -16.85
+starting predict: random-load-job-147-jdjmg
+starting predict: random-load-job-147-jdjmg
+************************** reward calculate **************************
+util score:  37.99543596292818
+diff node score:  0
+diff res score:  22.336336474143646
+overload punishment score:  0
+get free node point:  12.004564037071825
+***************************** reward end *****************************
+action:  k8s-node02
+reward:  21.661381507320442
+done:  False
+	time:	 8869
+	Average Score: -16.59
+starting predict: random-load-job-148-2mr5d
+************************** reward calculate **************************
+util score:  37.86757185275234
+diff node score:  0
+diff res score:  20.25728096817952
+overload punishment score:  0
+get free node point:  12.132428147247659
+***************************** reward end *****************************
+action:  k8s-node02
+reward:  23.676504958196652
+done:  False
+	time:	 8929
+	Average Score: -16.32
+starting predict: random-load-job-149-ft6mr
+************************** reward calculate **************************
+util score:  40.57876910541491
+diff node score:  0
+diff res score:  27.42095379267896
+overload punishment score:  10.983207539442473
+get free node point:  9.421230894585092
+***************************** reward end *****************************
+action:  k8s-node01
+reward:  -15.081191858298926
+done:  False
+loss:  tensor(4.3678e+18, device='cuda:0', grad_fn=<MseLossBackward>)
+	time:	 8989
+	Average Score: -16.31
+starting predict: random-load-job-150-28ctl
+starting predict: random-load-job-150-28ctl
+************************** reward calculate **************************
+util score:  43.78156652459929
+diff node score:  0
+diff res score:  30.6260989648365
+overload punishment score:  0
+get free node point:  6.218433475400711
+***************************** reward end *****************************
+action:  k8s-master
+reward:  16.264684297463145
+done:  False
+	time:	 9049
+	Average Score: -16.09
+starting predict: random-load-job-151-dzjgf
+starting predict: random-load-job-151-dzjgf
+************************** reward calculate **************************
+util score:  43.86966882312037
+diff node score:  0.0
+diff res score:  29.558530736215392
+overload punishment score:  25.471089700033303
+get free node point:  8.085771069504831
+***************************** reward end *****************************
+action:  k8s-node01
+reward:  -58.05924547844252
+done:  False
+	time:	 9109
+	Average Score: -16.37
+starting predict: random-load-job-152-7lwdw
+************************** reward calculate **************************
+util score:  45.59883136492105
+diff node score:  0.0
+diff res score:  28.86254392629824
+overload punishment score:  30.498379632617922
+get free node point:  7.957487499942107
+***************************** reward end *****************************
+action:  k8s-node01
+reward:  -70.7801077092599
+done:  False
+	time:	 9170
+	Average Score: -16.73
+starting predict: random-load-job-153-zpww5
+starting predict: random-load-job-153-zpww5
+************************** reward calculate **************************
+util score:  45.81886091466068
+diff node score:  0.0
+diff res score:  31.8720827005032
+overload punishment score:  0
+get free node point:  8.096537967141032
+***************************** reward end *****************************
+action:  k8s-node02
+reward:  17.995047197728
+done:  False
+	time:	 9230
+	Average Score: -16.50
+starting predict: random-load-job-154-4bdkf
+************************** reward calculate **************************
+util score:  45.778633457299115
+diff node score:  0.0
+diff res score:  37.14515142224387
+overload punishment score:  54.92292477580421
+get free node point:  9.497317079431797
+***************************** reward end *****************************
+action:  k8s-node01
+reward:  -151.3866337526415
+done:  False
+	time:	 9290
+	Average Score: -17.37
+starting predict: random-load-job-155-bjbgv
+starting predict: random-load-job-155-bjbgv
+starting predict: random-load-job-155-bjbgv
+************************** reward calculate **************************
+util score:  43.091838612776336
+diff node score:  0.0
+diff res score:  33.45297297799803
+overload punishment score:  49.870620038686326
+get free node point:  12.702717309737773
+***************************** reward end *****************************
+action:  k8s-node01
+reward:  -133.6216358264118
+done:  False
+	time:	 9350
+	Average Score: -18.12
+starting predict: random-load-job-156-dltcp
+starting predict: random-load-job-156-dltcp
+************************** reward calculate **************************
+util score:  45.41101411197764
+diff node score:  8.663075840118829
+diff res score:  38.29436671922446
+overload punishment score:  14.882616682573811
+get free node point:  11.715352359819098
+***************************** reward end *****************************
+action:  k8s-node02
+reward:  -40.33660231517754
+done:  False
+	time:	 9410
+	Average Score: -18.26
+starting predict: random-load-job-157-pdgp9
+starting predict: random-load-job-157-pdgp9
+starting predict: random-load-job-157-pdgp9
+************************** reward calculate **************************
+util score:  45.0452604461592
+diff node score:  0.0
+diff res score:  38.313390658176495
+overload punishment score:  0
+get free node point:  11.10358337552025
+***************************** reward end *****************************
+action:  k8s-master
+reward:  12.283661475742829
+done:  False
+	time:	 9470
+	Average Score: -18.06
+starting predict: random-load-job-158-q75xk
+************************** reward calculate **************************
+util score:  40.62529035010777
+diff node score:  0.0
+diff res score:  31.37031074890727
+overload punishment score:  62.3539663393939
+get free node point:  16.177354428075887
+***************************** reward end *****************************
+action:  k8s-node01
+reward:  -169.71824220294326
+done:  False
+	time:	 9530
+	Average Score: -19.02
+starting predict: random-load-job-159-2v6gk
+************************** reward calculate **************************
+util score:  40.25062079718776
+diff node score:  0.0
+diff res score:  30.517873138957825
+overload punishment score:  0
+get free node point:  14.874577671172068
+***************************** reward end *****************************
+action:  k8s-master
+reward:  17.170036493815967
+done:  False
+loss:  tensor(2.7362e+18, device='cuda:0', grad_fn=<MseLossBackward>)
+	time:	 9590
+	Average Score: -18.79
+starting predict: random-load-job-160-w7jm5
+starting predict: random-load-job-160-w7jm5
+starting predict: random-load-job-160-w7jm5
+************************** reward calculate **************************
+util score:  43.22000324556911
+diff node score:  0.0
+diff res score:  31.84363943868635
+overload punishment score:  0
+get free node point:  12.086465810277959
+***************************** reward end *****************************
+action:  k8s-node02
+reward:  17.41959671202174
+done:  False
+	time:	 9650
+	Average Score: -18.57
+starting predict: random-load-job-161-grphc
+************************** reward calculate **************************
+util score:  44.79591499607279
+diff node score:  0.0
+diff res score:  29.31262542539827
+overload punishment score:  0
+get free node point:  10.540198704934701
+***************************** reward end *****************************
+action:  k8s-master
+reward:  20.75338892314187
+done:  False
+	time:	 9710
+	Average Score: -18.32
+starting predict: random-load-job-162-vskjl
+starting predict: random-load-job-162-vskjl
+action:  no-selected
+reward:  -100.0
+done:  False
+	time:	 9770
+	Average Score: -18.82
+starting predict: random-load-job-163-vt4vf
+action:  no-selected
+reward:  -100.0
+done:  False
+	time:	 9830
+	Average Score: -19.32
+starting predict: random-load-job-164-rp46p
+starting predict: random-load-job-164-rp46p
+action:  no-selected
+reward:  -100.0
+done:  False
+	time:	 9890
+	Average Score: -19.81
+starting predict: random-load-job-165-ttckl
+starting predict: random-load-job-165-ttckl
+************************** reward calculate **************************
+util score:  47.808715201357614
+diff node score:  2.657124404809796
+diff res score:  23.574806590267233
+overload punishment score:  13.782735218707488
+get free node point:  7.7262980549663896
+***************************** reward end *****************************
+action:  k8s-node01
+reward:  -15.908272422358683
+done:  False
+	time:	 9950
+	Average Score: -19.79
+starting predict: random-load-job-166-99dmw
+starting predict: random-load-job-166-99dmw
+************************** reward calculate **************************
+util score:  44.52356618864846
+diff node score:  0.0
+diff res score:  21.27292918410659
+overload punishment score:  22.28910132622611
+get free node point:  11.112010489518203
+***************************** reward end *****************************
+action:  k8s-master
+reward:  -38.060661729377365
+done:  False
+	time:	 10010
+	Average Score: -19.89
+starting predict: random-load-job-167-7c2cj
+starting predict: random-load-job-167-7c2cj
+************************** reward calculate **************************
+util score:  44.64672441508811
+diff node score:  0.0
+diff res score:  20.537869145262366
+overload punishment score:  0
+get free node point:  10.737908192725255
+***************************** reward end *****************************
+action:  k8s-node01
+reward:  29.47780936618837
+done:  False
+	time:	 10070
+	Average Score: -19.60
+starting predict: random-load-job-168-nqtn6
+starting predict: random-load-job-168-nqtn6
+************************** reward calculate **************************
+util score:  45.31266758776106
+diff node score:  1.6527674564635646
+diff res score:  27.12506678939017
+overload punishment score:  0
+get free node point:  8.849751298811178
+***************************** reward end *****************************
+action:  k8s-node02
+reward:  20.959708991312915
+done:  False
+	time:	 10131
+	Average Score: -19.36
+starting predict: random-load-job-169-trxtb
+************************** reward calculate **************************
+util score:  44.715078075186305
+diff node score:  1.7703647852087485
+diff res score:  26.17395680050458
+overload punishment score:  13.034241351001363
+get free node point:  9.618441455816578
+***************************** reward end *****************************
+action:  k8s-node01
+reward:  -17.522746835622822
+done:  False
+loss:  tensor(1.4947e+19, device='cuda:0', grad_fn=<MseLossBackward>)
+	time:	 10191
+	Average Score: -19.35
+starting predict: random-load-job-170-sb7mk
+action:  no-selected
+reward:  -100.0
+done:  False
+	time:	 10251
+	Average Score: -19.82
+starting predict: random-load-job-171-4sf5n
+starting predict: random-load-job-171-4sf5n
+action:  no-selected
+reward:  -100.0
+done:  False
+	time:	 10311
+	Average Score: -20.29
+starting predict: random-load-job-172-kp2d6
+starting predict: random-load-job-172-kp2d6
+starting predict: random-load-job-172-kp2d6
+action:  no-selected
+reward:  -100.0
+done:  False
+	time:	 10371
+	Average Score: -20.75
+starting predict: random-load-job-173-v5bnm
+starting predict: random-load-job-173-v5bnm
+************************** reward calculate **************************
+util score:  50.844566050955585
+diff node score:  3.118324766509307
+diff res score:  26.768846582299357
+overload punishment score:  0
+get free node point:  4.750134615926252
+***************************** reward end *****************************
+action:  k8s-node02
+reward:  23.332462010110042
+done:  False
+	time:	 10431
+	Average Score: -20.50
+starting predict: random-load-job-174-xj64k
+starting predict: random-load-job-174-xj64k
+starting predict: random-load-job-174-xj64k
+action:  no-selected
+reward:  -100.0
+done:  False
+	time:	 10491
+	Average Score: -20.95
+starting predict: random-load-job-175-b6w4k
+starting predict: random-load-job-175-b6w4k
+************************** reward calculate **************************
+util score:  48.20579276815126
+diff node score:  0.0038101077288743568
+diff res score:  28.879103698785197
+overload punishment score:  0
+get free node point:  5.771140437447438
+***************************** reward end *****************************
+action:  k8s-node01
+reward:  22.20844918036091
+done:  False
+	time:	 10551
+	Average Score: -20.70
+starting predict: random-load-job-176-rzdtr
+starting predict: random-load-job-176-rzdtr
+************************** reward calculate **************************
+util score:  47.306538238788754
+diff node score:  3.325474180414542
+diff res score:  29.8342045575102
+overload punishment score:  10.015483481153332
+get free node point:  5.68011459317538
+***************************** reward end *****************************
+action:  k8s-node01
+reward:  -13.059533646008292
+done:  False
+	time:	 10611
+	Average Score: -20.66
+starting predict: random-load-job-177-ccvxs
+starting predict: random-load-job-177-ccvxs
+************************** reward calculate **************************
+util score:  48.530922366687115
+diff node score:  3.4453937279178817
+diff res score:  27.848196856099467
+overload punishment score:  13.85391904341478
+get free node point:  5.6753597799922515
+***************************** reward end *****************************
+action:  k8s-master
+reward:  -21.486745457578454
+done:  False
+	time:	 10671
+	Average Score: -20.67
+starting predict: random-load-job-178-mr4v6
+starting predict: random-load-job-178-mr4v6
+************************** reward calculate **************************
+util score:  51.610758140335214
+diff node score:  7.475711096749798
+diff res score:  34.379340312312024
+overload punishment score:  26.12178710462198
+get free node point:  5.124431315715296
+***************************** reward end *****************************
+action:  k8s-node01
+reward:  -66.0474389247349
+done:  False
+	time:	 10732
+	Average Score: -20.92
+starting predict: random-load-job-179-76lxb
+starting predict: random-load-job-179-76lxb
+action:  no-selected
+reward:  -100.0
+done:  False
+loss:  tensor(2.8705e+19, device='cuda:0', grad_fn=<MseLossBackward>)
+	time:	 10792
+	Average Score: -21.36
+starting predict: random-load-job-180-tgf4r
+************************** reward calculate **************************
+util score:  50.68586661601004
+diff node score:  4.3817740488436385
+diff res score:  27.95195037499745
+overload punishment score:  0
+get free node point:  3.9685227647107078
+***************************** reward end *****************************
+action:  k8s-node02
+reward:  20.336403574524304
+done:  False
+	time:	 10852
+	Average Score: -21.13
+starting predict: random-load-job-181-8fmnz
+starting predict: random-load-job-181-8fmnz
+action:  no-selected
+reward:  -100.0
+done:  False
+	time:	 10912
+	Average Score: -21.56
+starting predict: random-load-job-182-pvrzz
+************************** reward calculate **************************
+util score:  50.2866114875406
+diff node score:  3.287447589144353
+diff res score:  29.417322196848612
+overload punishment score:  0
+get free node point:  3.8682675809790177
+***************************** reward end *****************************
+action:  k8s-node01
+reward:  19.515975492037143
+done:  False
+	time:	 10972
+	Average Score: -21.34
+starting predict: random-load-job-183-fd8hm
+starting predict: random-load-job-183-fd8hm
+starting predict: random-load-job-183-fd8hm
+action:  no-selected
+reward:  -100.0
+done:  False
+	time:	 11032
+	Average Score: -21.76
+starting predict: random-load-job-184-gbgdz
+************************** reward calculate **************************
+util score:  51.24869838876244
+diff node score:  0.0
+diff res score:  28.80570852072074
+overload punishment score:  24.67045299267829
+get free node point:  3.4971699758286263
+***************************** reward end *****************************
+action:  k8s-node01
+reward:  -49.81978412207884
+done:  False
+	time:	 11092
+	Average Score: -21.92
+starting predict: random-load-job-185-k6d7s
+action:  no-selected
+reward:  -100.0
+done:  False
+	time:	 11152
+	Average Score: -22.34
+starting predict: random-load-job-186-wjdlj
+************************** reward calculate **************************
+util score:  50.977660726348994
+diff node score:  0.0
+diff res score:  21.01961091572307
+overload punishment score:  0
+get free node point:  3.985667586254152
+***************************** reward end *****************************
+action:  k8s-master
+reward:  31.950883603753
+done:  False
+	time:	 11212
+	Average Score: -22.05
+starting predict: random-load-job-187-9pnnm
+starting predict: random-load-job-187-9pnnm
+************************** reward calculate **************************
+util score:  50.55134982737033
+diff node score:  0.0
+diff res score:  17.819990050522488
+overload punishment score:  0
+get free node point:  2.922131631043719
+***************************** reward end *****************************
+action:  k8s-node02
+reward:  34.1924255923697
+done:  False
+	time:	 11272
+	Average Score: -21.75
+starting predict: random-load-job-188-5xzm9
+action:  no-selected
+reward:  -100.0
+done:  False
+	time:	 11332
+	Average Score: -22.16
+starting predict: random-load-job-189-9rtc6
+starting predict: random-load-job-189-9rtc6
+action:  no-selected
+reward:  -100.0
+done:  False
+loss:  tensor(3.3345e+19, device='cuda:0', grad_fn=<MseLossBackward>)
+	time:	 11392
+	Average Score: -22.57
+starting predict: random-load-job-190-ht6b6
+************************** reward calculate **************************
+util score:  52.70388800892522
+diff node score:  3.5041080591554348
+diff res score:  27.252508076886397
+overload punishment score:  27.022184674950946
+get free node point:  3.4799714955082783
+***************************** reward end *****************************
+action:  k8s-node01
+reward:  -57.3792964042153
+done:  False
+	time:	 11453
+	Average Score: -22.75
+starting predict: random-load-job-191-q8tmf
+action:  no-selected
+reward:  -100.0
+done:  False
+	time:	 11513
+	Average Score: -23.16
+starting predict: random-load-job-192-nxjdk
+************************** reward calculate **************************
+util score:  53.140588567056646
+diff node score:  0.5919279597877534
+diff res score:  21.586567922027076
+overload punishment score:  15.494862328254664
+get free node point:  4.190193212149157
+***************************** reward end *****************************
+action:  k8s-node02
+reward:  -13.427397693447597
+done:  False
+	time:	 11573
+	Average Score: -23.10
+starting predict: random-load-job-193-b8tpp
+action:  no-selected
+reward:  -100.0
+done:  False
+	time:	 11633
+	Average Score: -23.50
+starting predict: random-load-job-194-7pmzc
+starting predict: random-load-job-194-7pmzc
+************************** reward calculate **************************
+util score:  51.4058963004484
+diff node score:  2.5100919118181864
+diff res score:  23.96454149734882
+overload punishment score:  14.59614228894915
+get free node point:  4.427977339033869
+***************************** reward end *****************************
+action:  k8s-node01
+reward:  -16.64317530604912
+done:  False
+	time:	 11693
+	Average Score: -23.47
+starting predict: random-load-job-195-qwxbz
+starting predict: random-load-job-195-qwxbz
+action:  no-selected
+reward:  -100.0
+done:  False
+	time:	 11753
+	Average Score: -23.86
+starting predict: random-load-job-196-9vrm6
+starting predict: random-load-job-196-9vrm6
+action:  no-selected
+reward:  -100.0
+done:  False
+	time:	 11813
+	Average Score: -24.24
+starting predict: random-load-job-197-w8krh
+starting predict: random-load-job-197-w8krh
+action:  no-selected
+reward:  -100.0
+done:  False
+	time:	 11873
+	Average Score: -24.63
+starting predict: random-load-job-198-v2gns
+action:  no-selected
+reward:  -100.0
+done:  False
+	time:	 11933
+	Average Score: -25.00
+starting predict: random-load-job-199-h2dtx
+starting predict: random-load-job-199-h2dtx
+action:  no-selected
+reward:  -100.0
+done:  False
+loss:  tensor(2.2971e+19, device='cuda:0', grad_fn=<MseLossBackward>)
+	time:	 11993
+	Average Score: -25.38
+starting predict: random-load-job-200-d2phf
+action:  no-selected
+reward:  -100.0
+done:  False
+	time:	 12053
+	Average Score: -25.75
+starting predict: random-load-job-201-9wfzm
+starting predict: random-load-job-201-9wfzm
+action:  no-selected
+reward:  -100.0
+done:  False
+	time:	 12113
+	Average Score: -26.12
+starting predict: random-load-job-202-sw4cl
+************************** reward calculate **************************
+util score:  41.59789697669448
+diff node score:  0.0
+diff res score:  18.117676573171835
+overload punishment score:  0
+get free node point:  8.921150145322578
+***************************** reward end *****************************
+action:  k8s-master
+reward:  27.940795476183933
+done:  False
+	time:	 12173
+	Average Score: -25.85
+starting predict: random-load-job-203-m4b84
+action:  no-selected
+reward:  -100.0
+done:  False
+	time:	 12234
+	Average Score: -26.22
+starting predict: random-load-job-204-f9htw
+action:  no-selected
+reward:  -100.0
+done:  False
+	time:	 12294
+	Average Score: -26.58
+starting predict: random-load-job-205-wq9vj
+starting predict: random-load-job-205-wq9vj
+starting predict: random-load-job-205-wq9vj
+action:  no-selected
+reward:  -100.0
+done:  False
+	time:	 12354
+	Average Score: -26.93
+starting predict: random-load-job-206-fbl5x
+starting predict: random-load-job-206-fbl5x
+action:  no-selected
+reward:  -100.0
+done:  False
+	time:	 12414
+	Average Score: -27.28
+starting predict: random-load-job-207-nxbn9
+starting predict: random-load-job-207-nxbn9
+action:  no-selected
+reward:  -100.0
+done:  False
+	time:	 12474
+	Average Score: -27.63
+starting predict: random-load-job-208-c4qsp
+starting predict: random-load-job-208-c4qsp
+action:  no-selected
+reward:  -100.0
+done:  False
+	time:	 12534
+	Average Score: -27.98
+starting predict: random-load-job-209-7c69w
+action:  no-selected
+reward:  -100.0
+done:  False
+loss:  tensor(1.3116e+19, device='cuda:0', grad_fn=<MseLossBackward>)
+	time:	 12594
+	Average Score: -28.32
+starting predict: random-load-job-210-9qfb2
+starting predict: random-load-job-210-9qfb2
+action:  no-selected
+reward:  -100.0
+done:  False
+	time:	 12654
+	Average Score: -28.66
+starting predict: random-load-job-211-d5t66
+action:  no-selected
+reward:  -100.0
+done:  False
+	time:	 12714
+	Average Score: -29.00
+starting predict: random-load-job-212-zcdvv
+starting predict: random-load-job-212-zcdvv
+starting predict: random-load-job-212-zcdvv
+************************** reward calculate **************************
+util score:  38.53016327929038
+diff node score:  0
+diff res score:  13.814010472998207
+overload punishment score:  0
+get free node point:  11.469836720709628
+***************************** reward end *****************************
+action:  k8s-master
+reward:  30.451071166646987
+done:  False
+	time:	 12774
+	Average Score: -28.72
+starting predict: random-load-job-213-brc8c
+starting predict: random-load-job-213-brc8c
+************************** reward calculate **************************
+util score:  38.61683898546343
+diff node score:  0.0
+diff res score:  13.606869411529287
+overload punishment score:  0
+get free node point:  12.561119659547387
+***************************** reward end *****************************
+action:  k8s-master
+reward:  31.290529403707836
+done:  False
+	time:	 12834
+	Average Score: -28.44
+starting predict: random-load-job-214-z2zw7
+starting predict: random-load-job-214-z2zw7
+starting predict: random-load-job-214-z2zw7
+************************** reward calculate **************************
+util score:  40.66992585580541
+diff node score:  0.0
+diff res score:  17.319256112950583
+overload punishment score:  0
+get free node point:  9.993956811099581
+***************************** reward end *****************************
+action:  k8s-node02
+reward:  28.347648148404616
+done:  False
+	time:	 12894
+	Average Score: -28.18
+starting predict: random-load-job-215-wkltf
+************************** reward calculate **************************
+util score:  40.765318904557
+diff node score:  0.0
+diff res score:  17.28352165404389
+overload punishment score:  16.337598722595782
+get free node point:  11.508104609953158
+***************************** reward end *****************************
+action:  k8s-master
+reward:  -19.776946612297657
+done:  False
+	time:	 12955
+	Average Score: -28.14
+starting predict: random-load-job-216-68r9g
+************************** reward calculate **************************
+util score:  42.44466003514838
+diff node score:  0.0
+diff res score:  21.25786064628549
+overload punishment score:  32.77445970475657
+get free node point:  12.74828534775996
+***************************** reward end *****************************
+action:  k8s-master
+reward:  -70.76243705152686
+done:  False
+	time:	 13015
+	Average Score: -28.33
+starting predict: random-load-job-217-lqwgw
+************************** reward calculate **************************
+util score:  40.24953101673799
+diff node score:  0.0
+diff res score:  26.842370482977874
+overload punishment score:  49.98692048982319
+get free node point:  17.339519808459002
+***************************** reward end *****************************
+action:  k8s-master
+reward:  -127.88384103147996
+done:  False
+	time:	 13075
+	Average Score: -28.79
+starting predict: random-load-job-218-88shl
+************************** reward calculate **************************
+util score:  35.24253807137316
+diff node score:  0.0
+diff res score:  21.534895510094714
+overload punishment score:  32.60606700039859
+get free node point:  19.376022788675062
+***************************** reward end *****************************
+action:  k8s-master
+reward:  -74.42254704557979
+done:  False
+	time:	 13135
+	Average Score: -29.00
+starting predict: random-load-job-219-g6qd5
+************************** reward calculate **************************
+util score:  37.81805517364716
+diff node score:  0.0
+diff res score:  20.726493452042348
+overload punishment score:  44.1526498263331
+get free node point:  19.224115550358494
+***************************** reward end *****************************
+action:  k8s-master
+reward:  -105.75432998221522
+done:  False
+loss:  tensor(2.7575e+18, device='cuda:0', grad_fn=<MseLossBackward>)
+	time:	 13195
+	Average Score: -29.35
+starting predict: random-load-job-220-dpkmd
+************************** reward calculate **************************
+util score:  36.24027534908862
+diff node score:  0.0
+diff res score:  18.831395740416976
+overload punishment score:  0
+get free node point:  17.94089508432128
+***************************** reward end *****************************
+action:  k8s-node02
+reward:  26.37932715083228
+done:  False
+	time:	 13255
+	Average Score: -29.10
+starting predict: random-load-job-221-rzhmc
+************************** reward calculate **************************
+util score:  36.13921216411135
+diff node score:  0.0
+diff res score:  20.92102529633872
+overload punishment score:  0
+get free node point:  16.225358172174552
+***************************** reward end *****************************
+action:  k8s-node02
+reward:  23.330865953859906
+done:  False
+	time:	 13315
+	Average Score: -28.86
+starting predict: random-load-job-222-4gjwv
+starting predict: random-load-job-222-4gjwv
+************************** reward calculate **************************
+util score:  36.37453168293559
+diff node score:  0
+diff res score:  18.834113125356893
+overload punishment score:  0
+get free node point:  13.625468317064408
+***************************** reward end *****************************
+action:  k8s-node01
+reward:  24.353152716110902
+done:  False
+	time:	 13375
+	Average Score: -28.62
+starting predict: random-load-job-223-4sjvl
+starting predict: random-load-job-223-4sjvl
+************************** reward calculate **************************
+util score:  32.809275432205816
+diff node score:  0
+diff res score:  13.619195268921715
+overload punishment score:  0
+get free node point:  17.190724567794184
+***************************** reward end *****************************
+action:  k8s-node02
+reward:  27.785442447181193
+done:  False
+	time:	 13435
+	Average Score: -28.37
+starting predict: random-load-job-224-gw476
+starting predict: random-load-job-224-gw476
+************************** reward calculate **************************
+util score:  34.915563978051715
+diff node score:  0
+diff res score:  16.42973475968604
+overload punishment score:  0
+get free node point:  15.084436021948285
+***************************** reward end *****************************
+action:  k8s-node02
+reward:  26.02804722933982
+done:  False
+	time:	 13495
+	Average Score: -28.13
+starting predict: random-load-job-225-zlxjn
+starting predict: random-load-job-225-zlxjn
+************************** reward calculate **************************
+util score:  36.972195971448365
+diff node score:  0.0
+diff res score:  18.415395057103275
+overload punishment score:  0
+get free node point:  13.98450449226214
+***************************** reward end *****************************
+action:  k8s-node02
+reward:  25.54905316047616
+done:  False
+	time:	 13556
+	Average Score: -27.89
+starting predict: random-load-job-226-24xgf
+starting predict: random-load-job-226-24xgf
+starting predict: random-load-job-226-24xgf
+************************** reward calculate **************************
+util score:  35.91023889193592
+diff node score:  0.0
+diff res score:  19.91502291504627
+overload punishment score:  0
+get free node point:  15.848820158616755
+***************************** reward end *****************************
+action:  k8s-node02
+reward:  23.919626056198027
+done:  False
+	time:	 13616
+	Average Score: -27.66
+starting predict: random-load-job-227-lmzrm
+************************** reward calculate **************************
+util score:  35.103075553376634
+diff node score:  0.0
+diff res score:  13.716736622418367
+overload punishment score:  17.43596516947243
+get free node point:  19.18093117781252
+***************************** reward end *****************************
+action:  k8s-node02
+reward:  -21.33109098855276
+done:  False
+	time:	 13676
+	Average Score: -27.63
+starting predict: random-load-job-228-jpdfq
+************************** reward calculate **************************
+util score:  37.76862704080755
+diff node score:  0.0
+diff res score:  15.616069632181938
+overload punishment score:  30.994577986004426
+get free node point:  18.053035045656006
+***************************** reward end *****************************
+action:  k8s-node02
+reward:  -61.80465902655966
+done:  False
+	time:	 13736
+	Average Score: -27.78
+starting predict: random-load-job-229-nq7jj
+************************** reward calculate **************************
+util score:  38.39837139925704
+diff node score:  0.0
+diff res score:  13.463484843929287
+overload punishment score:  0
+get free node point:  16.73302242240334
+***************************** reward end *****************************
+action:  k8s-master
+reward:  33.30139776652942
+done:  False
+loss:  tensor(3.1469e+17, device='cuda:0', grad_fn=<MseLossBackward>)
+	time:	 13796
+	Average Score: -27.52
+starting predict: random-load-job-230-mztcn
+starting predict: random-load-job-230-mztcn
+starting predict: random-load-job-230-mztcn
+************************** reward calculate **************************
+util score:  39.669814520870105
+diff node score:  0.0
+diff res score:  12.554384198048211
+overload punishment score:  26.729022403394993
+get free node point:  17.542265411573272
+***************************** reward end *****************************
+action:  k8s-node02
+reward:  -44.30050418157645
+done:  False
+	time:	 13856
+	Average Score: -27.59
+starting predict: random-load-job-231-7d9pj
+starting predict: random-load-job-231-7d9pj
+************************** reward calculate **************************
+util score:  26.41204276892417
+diff node score:  0
+diff res score:  29.49171168077004
+overload punishment score:  0
+get free node point:  23.58795723107583
+***************************** reward end *****************************
+action:  k8s-node02
+reward:  8.714309703692043
+done:  False
+	time:	 13916
+	Average Score: -27.43
+starting predict: random-load-job-232-mq789
+starting predict: random-load-job-232-mq789
+************************** reward calculate **************************
+util score:  42.552573504589695
+diff node score:  0.0
+diff res score:  13.913954626187097
+overload punishment score:  109.5082470369971
+get free node point:  20.14253441481205
+***************************** reward end *****************************
+action:  k8s-node02
+reward:  -289.8148550251827
+done:  False
+	time:	 13976
+	Average Score: -28.56
+starting predict: random-load-job-233-g6tx6
+starting predict: random-load-job-233-g6tx6
+************************** reward calculate **************************
+util score:  41.510737768712424
+diff node score:  0.0
+diff res score:  14.5769696561854
+overload punishment score:  63.28819179676749
+get free node point:  20.50413381412741
+***************************** reward end *****************************
+action:  k8s-node02
+reward:  -152.67874037071178
+done:  False
+	time:	 14036
+	Average Score: -29.09
+starting predict: random-load-job-234-xdrjx
+starting predict: random-load-job-234-xdrjx
+starting predict: random-load-job-234-xdrjx
+************************** reward calculate **************************
+util score:  41.75627481136591
+diff node score:  0.0
+diff res score:  17.497495966706392
+overload punishment score:  0
+get free node point:  20.396616102649087
+***************************** reward end *****************************
+action:  k8s-node01
+reward:  34.45708689598406
+done:  False
+	time:	 14096
+	Average Score: -28.82
+starting predict: random-load-job-235-gk4v5
+starting predict: random-load-job-235-gk4v5
+starting predict: random-load-job-235-gk4v5
+************************** reward calculate **************************
+util score:  41.26208415620433
+diff node score:  0.0
+diff res score:  21.743172853672558
+overload punishment score:  72.34698908992756
+get free node point:  20.66776526514649
+***************************** reward end *****************************
+action:  k8s-node02
+reward:  -187.18817333467769
+done:  False
+	time:	 14156
+	Average Score: -29.49
+starting predict: random-load-job-236-2vjmd
+starting predict: random-load-job-236-2vjmd
+************************** reward calculate **************************
+util score:  38.4023312719979
+diff node score:  0.0
+diff res score:  21.30796633068181
+overload punishment score:  57.38800409008089
+get free node point:  22.484800874380227
+***************************** reward end *****************************
+action:  k8s-node02
+reward:  -143.82724689173648
+done:  False
+	time:	 14216
+	Average Score: -29.97
+Process Process-1:
+Traceback (most recent call last):
+  File "/usr/lib64/python3.6/multiprocessing/process.py", line 258, in _bootstrap
+    self.run()
+  File "/usr/lib64/python3.6/multiprocessing/process.py", line 93, in run
+    self._target(*self._args, **self._kwargs)
+  File "/root/hy/rl-server/rl/model_interface.py", line 37, in start_monitor
+    m.start()
+  File "/root/hy/rl-server/metrics/monitor.py", line 27, in start
+    self.run()
+  File "/root/hy/rl-server/metrics/monitor.py", line 31, in run
+    nodes_per = self.k8sclient.get_all_node_percentage()
+  File "/root/hy/rl-server/client/k8sclient.py", line 76, in get_all_node_percentage
+    nodes_occupy[k] = usage[k] / v
+KeyError: 'k8s-node02'
+starting predict: random-load-job-237-d2gj6
+starting predict: random-load-job-237-d2gj6
+************************** reward calculate **************************
+util score:  40.15667848691728
+diff node score:  0.0
+diff res score:  24.272584987596634
+overload punishment score:  72.55916760484477
+get free node point:  22.537689837415268
+***************************** reward end *****************************
+action:  k8s-node02
+reward:  -190.52456439650604
+done:  False
+	time:	 14276
+	Average Score: -30.65
+starting predict: random-load-job-238-svjk2
+starting predict: random-load-job-238-svjk2
+************************** reward calculate **************************
+util score:  43.32214653063744
+diff node score:  0.0
+diff res score:  26.639050042579935
+overload punishment score:  0
+get free node point:  20.175574012356453
+***************************** reward end *****************************
+action:  k8s-node01
+reward:  26.770883494235733
+done:  False
+	time:	 14336
+	Average Score: -30.41
+starting predict: random-load-job-239-4qtmf
+starting predict: random-load-job-239-4qtmf
+************************** reward calculate **************************
+util score:  43.737117516165284
+diff node score:  0.0
+diff res score:  23.827183928458727
+overload punishment score:  129.3874546149308
+get free node point:  20.1075295882292
+***************************** reward end *****************************
+action:  k8s-node02
+reward:  -358.1986654629712
+done:  False
+loss:  tensor(2.6934e+18, device='cuda:0', grad_fn=<MseLossBackward>)
+	time:	 14396
+	Average Score: -31.77
+starting predict: random-load-job-240-ldlkv
+starting predict: random-load-job-240-ldlkv
+starting predict: random-load-job-240-ldlkv
+action:  no-selected
+reward:  -100.0
+done:  False
+	time:	 14456
+	Average Score: -32.06
+starting predict: random-load-job-241-kjw78
+************************** reward calculate **************************
+util score:  43.94520460042987
+diff node score:  0.0
+diff res score:  27.044160015731194
+overload punishment score:  0
+get free node point:  19.555533251182595
+***************************** reward end *****************************
+action:  k8s-node01
+reward:  26.67881121028997
+done:  False
+	time:	 14517
+	Average Score: -31.81
+starting predict: random-load-job-242-dcf9k
+starting predict: random-load-job-242-dcf9k
+************************** reward calculate **************************
+util score:  45.487813274349286
+diff node score:  0.0
+diff res score:  25.086841494552704
+overload punishment score:  143.8832891543632
+get free node point:  19.402409977583343
+***************************** reward end *****************************
+action:  k8s-node02
+reward:  -401.5476906945014
+done:  False
+	time:	 14577
+	Average Score: -33.33
+starting predict: random-load-job-243-nb4sr
+starting predict: random-load-job-243-nb4sr
+************************** reward calculate **************************
+util score:  45.17106613490012
+diff node score:  0.0
+diff res score:  23.156129586482994
+overload punishment score:  135.68024924500142
+get free node point:  19.37888360849314
+***************************** reward end *****************************
+action:  k8s-node02
+reward:  -375.33636938234054
+done:  False
+	time:	 14637
+	Average Score: -34.74
+starting predict: random-load-job-244-gcmm8
+************************** reward calculate **************************
+util score:  44.10734826943959
+diff node score:  0.0
+diff res score:  23.00667944575524
+overload punishment score:  141.10079710087695
+get free node point:  20.866793289623352
+***************************** reward end *****************************
+action:  k8s-node02
+reward:  -391.76832583413477
+done:  False
+	time:	 14697
+	Average Score: -36.19
+starting predict: random-load-job-245-68pp6
+starting predict: random-load-job-246-fxw2t
+************************** reward calculate **************************
+util score:  44.927464034374374
+diff node score:  0.0
+diff res score:  29.09244409410667
+overload punishment score:  132.23671235326213
+get free node point:  19.09144152654184
+***************************** reward end *****************************
+action:  k8s-node02
+reward:  -371.32939635624774
+done:  False
+	time:	 14817
+	Average Score: -37.56
+starting predict: random-load-job-247-5hnn7
+************************** reward calculate **************************
+util score:  46.121484592458934
+diff node score:  0.0
+diff res score:  25.81850940749654
+overload punishment score:  126.57655714927726
+get free node point:  17.54465817470036
+***************************** reward end *****************************
+action:  k8s-node02
+reward:  -350.6543671755192
+done:  False
+	time:	 14877
+	Average Score: -38.82
+starting predict: random-load-job-248-gj88p
+starting predict: random-load-job-248-gj88p
+action:  no-selected
+reward:  -100.0
+done:  False
+	time:	 14937
+	Average Score: -39.07
+starting predict: random-load-job-249-zrz87
+action:  no-selected
+reward:  -100.0
+done:  False
+	time:	 14997
+	Average Score: -39.32
+starting predict: random-load-job-250-rvcl7
+starting predict: random-load-job-250-rvcl7
+************************** reward calculate **************************
+util score:  43.31243727043855
+diff node score:  0.0
+diff res score:  25.651952511754462
+overload punishment score:  64.75961508538317
+get free node point:  17.957795545471992
+***************************** reward end *****************************
+action:  k8s-node02
+reward:  -167.63946272472944
+done:  False
+loss:  tensor(7.7506e+18, device='cuda:0', grad_fn=<MseLossBackward>)
+	time:	 15057
+	Average Score: -39.83
+starting predict: random-load-job-251-x9jdr
+************************** reward calculate **************************
+util score:  44.91467533144269
+diff node score:  0.0
+diff res score:  22.72375935816724
+overload punishment score:  110.08837399680087
+get free node point:  17.737008007133028
+***************************** reward end *****************************
+action:  k8s-node02
+reward:  -299.20570201356065
+done:  False
+	time:	 15117
+	Average Score: -40.86
+starting predict: random-load-job-252-sqp2q
+************************** reward calculate **************************
+util score:  44.76219490890276
+diff node score:  0.0
+diff res score:  27.24365092956292
+overload punishment score:  73.81872050070594
+get free node point:  17.768174197882857
+***************************** reward end *****************************
+action:  k8s-node02
+reward:  -195.05353042383658
+done:  False
+	time:	 15177
+	Average Score: -41.47
+starting predict: random-load-job-253-l288f
+************************** reward calculate **************************
+util score:  44.798953457100275
+diff node score:  0.0
+diff res score:  24.108898166501216
+overload punishment score:  73.59875026031952
+get free node point:  18.507181143423754
+***************************** reward end *****************************
+action:  k8s-node02
+reward:  -190.85260491864764
+done:  False
+	time:	 15237
+	Average Score: -42.06
+starting predict: random-load-job-254-wmmbp
+starting predict: random-load-job-254-wmmbp
+************************** reward calculate **************************
+util score:  43.78421719773423
+diff node score:  0.0
+diff res score:  24.118214409918703
+overload punishment score:  0
+get free node point:  17.43269032328803
+***************************** reward end *****************************
+action:  k8s-node01
+reward:  28.38234794945954
+done:  False
+	time:	 15297
+	Average Score: -41.79
+starting predict: random-load-job-255-qp6mm
+************************** reward calculate **************************
+util score:  43.97106422133037
+diff node score:  0.0
+diff res score:  24.853583270914257
+overload punishment score:  63.88572522327778
+get free node point:  17.167821341322515
+***************************** reward end *****************************
+action:  k8s-node02
+reward:  -163.955784048756
+done:  False
+	time:	 15357
+	Average Score: -42.27
+starting predict: random-load-job-256-2lrr6
+************************** reward calculate **************************
+util score:  42.88023628596212
+diff node score:  0.0
+diff res score:  25.91083831579508
+overload punishment score:  71.94352565532358
+get free node point:  19.02507383241125
+***************************** reward end *****************************
+action:  k8s-node02
+reward:  -189.34864207959808
+done:  False
+	time:	 15418
+	Average Score: -42.84
+starting predict: random-load-job-257-6grqw
+************************** reward calculate **************************
+util score:  40.160133166073415
+diff node score:  0.0
+diff res score:  19.23479156259002
+overload punishment score:  61.887695307413715
+get free node point:  21.04991019112739
+***************************** reward end *****************************
+action:  k8s-node02
+reward:  -154.21278922319408
+done:  False
+	time:	 15478
+	Average Score: -43.27
+starting predict: random-load-job-258-m27sf
+starting predict: random-load-job-258-m27sf
+************************** reward calculate **************************
+util score:  40.926640579736656
+diff node score:  0.0
+diff res score:  21.563497570351245
+overload punishment score:  73.36726587899281
+get free node point:  21.270962643925472
+***************************** reward end *****************************
+action:  k8s-node02
+reward:  -190.10317330563026
+done:  False
+	time:	 15538
+	Average Score: -43.84
+starting predict: random-load-job-259-kf9n6
+starting predict: random-load-job-259-kf9n6
+************************** reward calculate **************************
+util score:  42.4307878474801
+diff node score:  0.0
+diff res score:  18.75106299977664
+overload punishment score:  129.4634118664049
+get free node point:  21.38232313602957
+***************************** reward end *****************************
+action:  k8s-node02
+reward:  -354.01934918349644
+done:  False
+	time:	 15598
+	Average Score: -45.04
+starting predict: random-load-job-260-cft26
+************************** reward calculate **************************
+util score:  41.31221166181604
+diff node score:  0.0
+diff res score:  16.17221809742055
+overload punishment score:  112.50152715623646
+get free node point:  21.506275555628154
+***************************** reward end *****************************
+action:  k8s-node02
+reward:  -301.61145012649985
+done:  False
+loss:  tensor(1.8021e+19, device='cuda:0', grad_fn=<MseLossBackward>)
+	time:	 15658
+	Average Score: -46.03
+starting predict: random-load-job-261-q5m4w
+************************** reward calculate **************************
+util score:  39.15262913888784
+diff node score:  0.0
+diff res score:  19.454440601098714
+overload punishment score:  75.22796254329177
+get free node point:  23.113768350106284
+***************************** reward end *****************************
+action:  k8s-node02
+reward:  -194.42881491703304
+done:  False
+	time:	 15718
+	Average Score: -46.60
+starting predict: random-load-job-262-xnc4q
+starting predict: random-load-job-262-xnc4q
+************************** reward calculate **************************
+util score:  37.79706241233757
+diff node score:  0.0
+diff res score:  18.998942476045258
+overload punishment score:  77.96031484141562
+get free node point:  25.62556068765763
+***************************** reward end *****************************
+action:  k8s-node02
+reward:  -202.27004424412576
+done:  False
+	time:	 15778
+	Average Score: -47.19
+starting predict: random-load-job-263-zhqxx
+starting predict: random-load-job-263-zhqxx
+************************** reward calculate **************************
+util score:  35.96716616792718
+diff node score:  0.0
+diff res score:  14.382543420931102
+overload punishment score:  57.9603533890378
+get free node point:  25.467975399579274
+***************************** reward end *****************************
+action:  k8s-node02
+reward:  -139.56244972032766
+done:  False
+	time:	 15838
+	Average Score: -47.54
+starting predict: random-load-job-264-29rnq
+************************** reward calculate **************************
+util score:  36.64244561454019
+diff node score:  0.0
+diff res score:  16.26366396747269
+overload punishment score:  65.82012589086223
+get free node point:  25.75802592612216
+***************************** reward end *****************************
+action:  k8s-node02
+reward:  -164.20258306245807
+done:  False
+	time:	 15898
+	Average Score: -47.98
+starting predict: random-load-job-265-smskn
+starting predict: random-load-job-265-smskn
+************************** reward calculate **************************
+util score:  38.07351512097409
+diff node score:  0.0
+diff res score:  12.607025225338768
+overload punishment score:  122.12189197467063
+get free node point:  25.724940252013237
+***************************** reward end *****************************
+action:  k8s-node02
+reward:  -328.03671590236996
+done:  False
+	time:	 15958
+	Average Score: -49.04
+starting predict: random-load-job-266-5qx54
+starting predict: random-load-job-266-5qx54
+************************** reward calculate **************************
+util score:  38.96749575808805
+diff node score:  0.0
+diff res score:  10.06519905385881
+overload punishment score:  129.02833860481573
+get free node point:  25.62819591628302
+***************************** reward end *****************************
+action:  k8s-node02
+reward:  -345.3686211520764
+done:  False
+	time:	 16018
+	Average Score: -50.15
+starting predict: random-load-job-267-zqx8d
+starting predict: random-load-job-267-zqx8d
+************************** reward calculate **************************
+util score:  41.40084496231041
+diff node score:  0.0
+diff res score:  13.987137187659878
+overload punishment score:  0
+get free node point:  23.00966393949392
+***************************** reward end *****************************
+action:  k8s-master
+reward:  38.91853974439749
+done:  False
+	time:	 16078
+	Average Score: -49.82
+starting predict: random-load-job-268-2r25b
+action:  no-selected
+reward:  -100.0
+done:  False
+	time:	 16138
+	Average Score: -50.01
+starting predict: random-load-job-269-2pgdj
+************************** reward calculate **************************
+util score:  40.901143064825554
+diff node score:  0.0
+diff res score:  16.697855519471712
+overload punishment score:  115.81640827288251
+get free node point:  22.365959645865363
+***************************** reward end *****************************
+action:  k8s-node02
+reward:  -312.062957450361
+done:  False
+	time:	 16198
+	Average Score: -50.98
+starting predict: random-load-job-270-q7ztf
+starting predict: random-load-job-270-q7ztf
+************************** reward calculate **************************
+util score:  38.17401020700955
+diff node score:  0.0
+diff res score:  22.014273880717727
+overload punishment score:  80.4041659815705
+get free node point:  24.256438094186777
+***************************** reward end *****************************
+action:  k8s-node02
+reward:  -212.9245425713263
+done:  False
+loss:  tensor(1.2887e+19, device='cuda:0', grad_fn=<MseLossBackward>)
+	time:	 16258
+	Average Score: -51.58
+starting predict: random-load-job-271-j9mp2
+************************** reward calculate **************************
+util score:  37.631930244614374
+diff node score:  0.0
+diff res score:  20.7236169283151
+overload punishment score:  73.91040834607273
+get free node point:  24.7777136696828
+***************************** reward end *****************************
+action:  k8s-node02
+reward:  -192.4340548870775
+done:  False
+	time:	 16318
+	Average Score: -52.10
+starting predict: random-load-job-272-vd7vc
+starting predict: random-load-job-272-vd7vc
+************************** reward calculate **************************
+util score:  37.52780273908943
+diff node score:  0.0
+diff res score:  17.452695030593066
+overload punishment score:  65.6181388600443
+get free node point:  24.794624057441535
+***************************** reward end *****************************
+action:  k8s-node02
+reward:  -164.38199684291575
+done:  False
+	time:	 16379
+	Average Score: -52.51
+starting predict: random-load-job-273-wnd5r
+************************** reward calculate **************************
+util score:  34.80903396527142
+diff node score:  0.0
+diff res score:  15.757454980044088
+overload punishment score:  64.55223513255484
+get free node point:  26.998682998483968
+***************************** reward end *****************************
+action:  k8s-node02
+reward:  -161.1057849131952
+done:  False
+	time:	 16439
+	Average Score: -52.91
+starting predict: random-load-job-274-gnmhv
+************************** reward calculate **************************
+util score:  36.617822834147375
+diff node score:  0.0
+diff res score:  13.726531902507423
+overload punishment score:  137.78407190118003
+get free node point:  28.12083902572051
+***************************** reward end *****************************
+action:  k8s-node02
+reward:  -376.40050525903985
+done:  False
+	time:	 16499
+	Average Score: -54.09
+starting predict: random-load-job-275-hpfsh
+************************** reward calculate **************************
+util score:  36.584549985554354
+diff node score:  0.0
+diff res score:  12.055841936160206
+overload punishment score:  122.5060655388913
+get free node point:  27.358592171428384
+***************************** reward end *****************************
+action:  k8s-node02
+reward:  -329.31019248156554
+done:  False
+	time:	 16559
+	Average Score: -55.09
+starting predict: random-load-job-276-w9vkc
+************************** reward calculate **************************
+util score:  38.33060703050088
+diff node score:  0.0
+diff res score:  9.931368376067612
+overload punishment score:  0
+get free node point:  26.55050524424143
+***************************** reward end *****************************
+action:  k8s-master
+reward:  41.67449127655399
+done:  False
+	time:	 16619
+	Average Score: -54.74
+starting predict: random-load-job-277-nf2v2
+starting predict: random-load-job-277-nf2v2
+************************** reward calculate **************************
+util score:  40.22567817342065
+diff node score:  0.0
+diff res score:  10.327029136371022
+overload punishment score:  151.67321499078184
+get free node point:  25.840589269810835
+***************************** reward end *****************************
+action:  k8s-node02
+reward:  -412.2007013003905
+done:  False
+	time:	 16679
+	Average Score: -56.03
+starting predict: random-load-job-278-kgqmc
+starting predict: random-load-job-278-kgqmc
+************************** reward calculate **************************
+util score:  40.56825340909444
+diff node score:  0.0
+diff res score:  9.776577115546232
+overload punishment score:  156.89561073514878
+get free node point:  25.92256551045846
+***************************** reward end *****************************
+action:  k8s-node02
+reward:  -426.9338731566689
+done:  False
+	time:	 16739
+	Average Score: -57.37
+starting predict: random-load-job-279-7rmgw
+starting predict: random-load-job-279-7rmgw
+************************** reward calculate **************************
+util score:  41.30733613081616
+diff node score:  0.0
+diff res score:  10.528991266518904
+overload punishment score:  0
+get free node point:  25.213428858011223
+***************************** reward end *****************************
+action:  k8s-master
+reward:  43.38505929330287
+done:  False
+	time:	 16799
+	Average Score: -57.01
+starting predict: random-load-job-280-kwj52
+starting predict: random-load-job-280-kwj52
+************************** reward calculate **************************
+util score:  41.660496882912526
+diff node score:  0.0
+diff res score:  14.31352672338672
+overload punishment score:  0
+get free node point:  21.79361337203407
+***************************** reward end *****************************
+action:  k8s-master
+reward:  38.24377684554284
+done:  False
+loss:  tensor(8.8315e+18, device='cuda:0', grad_fn=<MseLossBackward>)
+	time:	 16859
+	Average Score: -56.67
+starting predict: random-load-job-281-2bkj8
+************************** reward calculate **************************
+util score:  42.7872702894418
+diff node score:  0.0
+diff res score:  15.320446858171579
+overload punishment score:  137.91799959547726
+get free node point:  21.88268654314098
+***************************** reward end *****************************
+action:  k8s-node02
+reward:  -375.3458320835911
+done:  False
+	time:	 16919
+	Average Score: -57.80
+starting predict: random-load-job-282-qcnqr
+starting predict: random-load-job-282-qcnqr
+starting predict: random-load-job-282-qcnqr
+************************** reward calculate **************************
+util score:  43.52346137307533
+diff node score:  0.0
+diff res score:  17.21301095209495
+overload punishment score:  0
+get free node point:  19.692714126790516
+***************************** reward end *****************************
+action:  k8s-node01
+reward:  36.15680748437563
+done:  False
+	time:	 16979
+	Average Score: -57.47
+starting predict: random-load-job-283-cdsfh
+************************** reward calculate **************************
+util score:  42.853305646080365
+diff node score:  0.0
+diff res score:  17.591843518365582
+overload punishment score:  0
+get free node point:  17.089484590265023
+***************************** reward end *****************************
+action:  k8s-node01
+reward:  33.806204422847294
+done:  False
+	time:	 17039
+	Average Score: -57.14
+starting predict: random-load-job-284-4k6th
+************************** reward calculate **************************
+util score:  43.67296189642144
+diff node score:  0.0
+diff res score:  18.18185112645539
+overload punishment score:  0
+get free node point:  14.86526926559658
+***************************** reward end *****************************
+action:  k8s-node01
+reward:  32.92374540276434
+done:  False
+	time:	 17099
+	Average Score: -56.83
+starting predict: random-load-job-285-pfg87
+************************** reward calculate **************************
+util score:  44.18119592208894
+diff node score:  0.0
+diff res score:  27.79210789617299
+overload punishment score:  0
+get free node point:  11.371740124568644
+***************************** reward end *****************************
+action:  k8s-node01
+reward:  22.074958088200272
+done:  False
+	time:	 17159
+	Average Score: -56.55
+starting predict: random-load-job-286-qwmfx
+************************** reward calculate **************************
+util score:  46.98236347923889
+diff node score:  0.0
+diff res score:  28.1133856555573
+overload punishment score:  0
+get free node point:  8.727721307191159
+***************************** reward end *****************************
+action:  k8s-node01
+reward:  23.232838477277173
+done:  False
+	time:	 17219
+	Average Score: -56.27
+starting predict: random-load-job-287-t8dhh
+starting predict: random-load-job-287-t8dhh
+************************** reward calculate **************************
+util score:  44.92045476326183
+diff node score:  0.0
+diff res score:  32.60533292610791
+overload punishment score:  0
+get free node point:  9.769566436727716
+***************************** reward end *****************************
+action:  k8s-node01
+reward:  17.199905055517775
+done:  False
+	time:	 17280
+	Average Score: -56.02
+starting predict: random-load-job-288-8d7rp
+starting predict: random-load-job-288-8d7rp
+************************** reward calculate **************************
+util score:  44.540550634916
+diff node score:  0.0
+diff res score:  31.14938090560659
+overload punishment score:  0
+get free node point:  6.885166281376658
+***************************** reward end *****************************
+action:  k8s-node01
+reward:  16.83375286999774
+done:  False
+	time:	 17340
+	Average Score: -55.76
+starting predict: random-load-job-289-hdb8x
+************************** reward calculate **************************
+util score:  45.659631365035615
+diff node score:  1.1978913078115987
+diff res score:  30.567061196244538
+overload punishment score:  15.24033397073734
+get free node point:  6.1119495363981855
+***************************** reward end *****************************
+action:  k8s-node01
+reward:  -28.77034828303345
+done:  False
+	time:	 17400
+	Average Score: -55.67
+starting predict: random-load-job-290-f72jq
+starting predict: random-load-job-290-f72jq
+************************** reward calculate **************************
+util score:  42.33735941258317
+diff node score:  0.0
+diff res score:  26.465017536237173
+overload punishment score:  15.11955655355287
+get free node point:  10.056419707026793
+***************************** reward end *****************************
+action:  k8s-node01
+reward:  -24.458117930799222
+done:  False
+loss:  tensor(2.9863e+18, device='cuda:0', grad_fn=<MseLossBackward>)
+	time:	 17460
+	Average Score: -55.56
+starting predict: random-load-job-291-5rlb9
+************************** reward calculate **************************
+util score:  45.72245399820829
+diff node score:  0.0
+diff res score:  29.85308811586414
+overload punishment score:  27.710868446826066
+get free node point:  8.957719358167639
+***************************** reward end *****************************
+action:  k8s-node01
+reward:  -62.784379779050234
+done:  False
+	time:	 17520
+	Average Score: -55.59
+starting predict: random-load-job-292-995w8
+starting predict: random-load-job-292-995w8
+************************** reward calculate **************************
+util score:  46.78991483801703
+diff node score:  0.0
+diff res score:  31.540517562562417
+overload punishment score:  44.885927095318465
+get free node point:  10.828045171462138
+***************************** reward end *****************************
+action:  k8s-node01
+reward:  -113.9943614247697
+done:  False
+	time:	 17580
+	Average Score: -55.79
+starting predict: random-load-job-293-thp9t
+************************** reward calculate **************************
+util score:  43.80242327525121
+diff node score:  0.0
+diff res score:  25.597611821427407
+overload punishment score:  40.53022440429566
+get free node point:  13.366867486867557
+***************************** reward end *****************************
+action:  k8s-node01
+reward:  -96.7024280156294
+done:  False
+	time:	 17640
+	Average Score: -55.93
+starting predict: random-load-job-294-4xfdt
+************************** reward calculate **************************
+util score:  45.36365894917717
+diff node score:  0.0
+diff res score:  27.760486319189507
+overload punishment score:  0
+get free node point:  12.015606306015675
+***************************** reward end *****************************
+action:  k8s-master
+reward:  23.610975782995503
+done:  False
+	time:	 17700
+	Average Score: -55.66
+starting predict: random-load-job-295-th8g6
+starting predict: random-load-job-295-th8g6
+************************** reward calculate **************************
+util score:  47.90758317876046
+diff node score:  0.0
+diff res score:  35.021432116163275
+overload punishment score:  65.28466022475978
+get free node point:  12.92928689250008
+***************************** reward end *****************************
+action:  k8s-node01
+reward:  -176.5031861654321
+done:  False
+	time:	 17760
+	Average Score: -56.07
+starting predict: random-load-job-296-w2hz8
+************************** reward calculate **************************
+util score:  46.42927837888046
+diff node score:  0.0
+diff res score:  28.490764343993458
+overload punishment score:  0
+get free node point:  13.795457270907617
+***************************** reward end *****************************
+action:  k8s-node02
+reward:  24.836242670340813
+done:  False
+	time:	 17820
+	Average Score: -55.79
+starting predict: random-load-job-297-2q6qk
+starting predict: random-load-job-297-2q6qk
+starting predict: random-load-job-297-2q6qk
+************************** reward calculate **************************
+util score:  44.50687353670892
+diff node score:  0.0
+diff res score:  19.81411356868742
+overload punishment score:  47.91475901378273
+get free node point:  15.559239239817797
+***************************** reward end *****************************
+action:  k8s-node01
+reward:  -111.2718974534178
+done:  False
+	time:	 17880
+	Average Score: -55.98
+starting predict: random-load-job-298-dsll8
+************************** reward calculate **************************
+util score:  46.19527138393719
+diff node score:  0.0
+diff res score:  20.999724025108076
+overload punishment score:  56.57395889399934
+get free node point:  15.334011621192074
+***************************** reward end *****************************
+action:  k8s-node01
+reward:  -136.85932351257287
+done:  False
+	time:	 17940
+	Average Score: -56.25
+starting predict: random-load-job-299-l2s4z
+starting predict: random-load-job-299-l2s4z
+************************** reward calculate **************************
+util score:  45.33248334031225
+diff node score:  0.0
+diff res score:  23.608126919375493
+overload punishment score:  68.3654400844493
+get free node point:  17.170210368266563
+***************************** reward end *****************************
+action:  k8s-node01
+reward:  -174.78685864827787
+done:  False
+	time:	 18000
+	Average Score: -56.65
+starting predict: random-load-job-300-pvc7c
+************************** reward calculate **************************
+util score:  44.680471657270346
+diff node score:  0.0
+diff res score:  24.04431194159966
+overload punishment score:  72.35091313659107
+get free node point:  18.766413987821142
+***************************** reward end *****************************
+action:  k8s-node01
+reward:  -187.03337270019196
+done:  False
+loss:  tensor(5.4738e+17, device='cuda:0', grad_fn=<MseLossBackward>)
+	time:	 18060
+	Average Score: -57.08
+starting predict: random-load-job-301-rsrxx
+starting predict: random-load-job-301-rsrxx
+starting predict: random-load-job-301-rsrxx
+************************** reward calculate **************************
+util score:  45.00348320142847
+diff node score:  0.0
+diff res score:  23.73734822170448
+overload punishment score:  130.4735748981876
+get free node point:  18.920996888623105
+***************************** reward end *****************************
+action:  k8s-node01
+reward:  -360.6940912705272
+done:  False
+	time:	 18120
+	Average Score: -58.09
+starting predict: random-load-job-302-rpvsm
+starting predict: random-load-job-302-rpvsm
+action:  no-selected
+reward:  -100.0
+done:  False
+	time:	 18180
+	Average Score: -58.23
+starting predict: random-load-job-303-86nd6
+starting predict: random-load-job-303-86nd6
+************************** reward calculate **************************
+util score:  41.49309790929665
+diff node score:  0.0
+diff res score:  8.282025852260828
+overload punishment score:  114.81702386980898
+get free node point:  22.024853567233222
+***************************** reward end *****************************
+action:  k8s-node01
+reward:  -300.2275727687745
+done:  False
+	time:	 18241
+	Average Score: -59.03
+starting predict: random-load-job-304-6f827
+starting predict: random-load-job-304-6f827
+starting predict: random-load-job-304-6f827
+action:  no-selected
+reward:  -100.0
+done:  False
+	time:	 18301
+	Average Score: -59.16
+starting predict: random-load-job-305-5t7gj
+starting predict: random-load-job-305-5t7gj
+************************** reward calculate **************************
+util score:  41.72064783651228
+diff node score:  0.0
+diff res score:  11.218923139094862
+overload punishment score:  147.01924273981948
+get free node point:  24.21937348957712
+***************************** reward end *****************************
+action:  k8s-node01
+reward:  -398.44631677725243
+done:  False
+	time:	 18361
+	Average Score: -60.27
+starting predict: random-load-job-306-xcphj
+************************** reward calculate **************************
+util score:  42.48621843552693
+diff node score:  0.0
+diff res score:  10.529063335748399
+overload punishment score:  159.4339392339147
+get free node point:  24.391397224722795
+***************************** reward end *****************************
+action:  k8s-node01
+reward:  -434.1489639896042
+done:  False
+	time:	 18421
+	Average Score: -61.50
+starting predict: random-load-job-307-hxvvb
+************************** reward calculate **************************
+util score:  44.16288282219276
+diff node score:  0.0
+diff res score:  9.463545779910412
+overload punishment score:  0
+get free node point:  22.154833657206254
+***************************** reward end *****************************
+action:  k8s-node02
+reward:  45.77675387088548
+done:  False
+	time:	 18481
+	Average Score: -61.15
+starting predict: random-load-job-308-5hdqz
+************************** reward calculate **************************
+util score:  44.48248430157188
+diff node score:  0.0
+diff res score:  14.583648708212658
+overload punishment score:  151.7643468270136
+get free node point:  21.576905437047742
+***************************** reward end *****************************
+action:  k8s-node01
+reward:  -414.60575216915777
+done:  False
+	time:	 18541
+	Average Score: -62.29
+starting predict: random-load-job-309-g6v88
+starting predict: random-load-job-309-g6v88
+starting predict: random-load-job-309-g6v88
+************************** reward calculate **************************
+util score:  45.378777255032134
+diff node score:  0.0
+diff res score:  14.879522854848014
+overload punishment score:  0
+get free node point:  20.03003758536212
+***************************** reward end *****************************
+action:  k8s-node02
+reward:  40.51427319286518
+done:  False
+	time:	 18601
+	Average Score: -61.96
+starting predict: random-load-job-310-bgzxp
+starting predict: random-load-job-310-bgzxp
+************************** reward calculate **************************
+util score:  46.417907810709856
+diff node score:  0.0
+diff res score:  18.214813817176765
+overload punishment score:  0
+get free node point:  17.685555106403445
+***************************** reward end *****************************
+action:  k8s-node02
+reward:  37.045871546734816
+done:  False
+loss:  tensor(1.1670e+18, device='cuda:0', grad_fn=<MseLossBackward>)
+	time:	 18661
+	Average Score: -61.64
+starting predict: random-load-job-311-h8vtt
+starting predict: random-load-job-311-h8vtt
+************************** reward calculate **************************
+util score:  46.6951597003572
+diff node score:  0.0
+diff res score:  22.895639209811915
+overload punishment score:  131.79574690997148
+get free node point:  17.547108208979164
+***************************** reward end *****************************
+action:  k8s-node01
+reward:  -362.8141661348796
+done:  False
+	time:	 18721
+	Average Score: -62.61
+starting predict: random-load-job-312-p7rxw
+action:  no-selected
+reward:  -100.0
+done:  False
+	time:	 18781
+	Average Score: -62.73
+starting predict: random-load-job-313-2mphq
+action:  no-selected
+reward:  -100.0
+done:  False
+	time:	 18841
+	Average Score: -62.85
+starting predict: random-load-job-314-2sccb
+************************** reward calculate **************************
+util score:  44.6119522192036
+diff node score:  0.0
+diff res score:  22.092632028259445
+overload punishment score:  0
+get free node point:  12.713365307332486
+***************************** reward end *****************************
+action:  k8s-node02
+reward:  28.8760028446104
+done:  False
+	time:	 18901
+	Average Score: -62.56
+starting predict: random-load-job-315-9fwqm
+action:  no-selected
+reward:  -100.0
+done:  False
+	time:	 18961
+	Average Score: -62.68
+starting predict: random-load-job-316-4r6sb
+starting predict: random-load-job-316-4r6sb
+************************** reward calculate **************************
+util score:  47.46006230616808
+diff node score:  0.0
+diff res score:  22.237490257839273
+overload punishment score:  27.813015258564256
+get free node point:  10.257564253873348
+***************************** reward end *****************************
+action:  k8s-node01
+reward:  -53.08769160042728
+done:  False
+	time:	 19021
+	Average Score: -62.65
+starting predict: random-load-job-317-wqttw
+starting predict: random-load-job-317-wqttw
+action:  no-selected
+reward:  -100.0
+done:  False
+	time:	 19081
+	Average Score: -62.76
+starting predict: random-load-job-318-j56l2
+************************** reward calculate **************************
+util score:  43.85550643999472
+diff node score:  0.0
+diff res score:  21.52059593053687
+overload punishment score:  0
+get free node point:  9.86056014401922
+***************************** reward end *****************************
+action:  k8s-master
+reward:  27.265190581467458
+done:  False
+	time:	 19142
+	Average Score: -62.48
+starting predict: random-load-job-319-82zn9
+************************** reward calculate **************************
+util score:  44.476748433007366
+diff node score:  0.0
+diff res score:  27.4914282673186
+overload punishment score:  0
+get free node point:  8.085572835350641
+***************************** reward end *****************************
+action:  k8s-master
+reward:  21.028106583364085
+done:  False
+	time:	 19202
+	Average Score: -62.22
+starting predict: random-load-job-320-wdbb6
+starting predict: random-load-job-320-wdbb6
+************************** reward calculate **************************
+util score:  43.63015519791961
+diff node score:  0.0
+diff res score:  22.885041126967792
+overload punishment score:  0
+get free node point:  8.908244540601403
+***************************** reward end *****************************
+action:  k8s-master
+reward:  25.199236341252522
+done:  False
+loss:  tensor(2.6137e+18, device='cuda:0', grad_fn=<MseLossBackward>)
+	time:	 19262
+	Average Score: -61.95
+starting predict: random-load-job-321-bnxh6
+starting predict: random-load-job-321-bnxh6
+************************** reward calculate **************************
+util score:  43.274894009530044
+diff node score:  0.0
+diff res score:  24.65474890374693
+overload punishment score:  0
+get free node point:  8.14172349587889
+***************************** reward end *****************************
+action:  k8s-master
+reward:  22.69100685372256
+done:  False
+	time:	 19322
+	Average Score: -61.68
+starting predict: random-load-job-322-x9cgj
+starting predict: random-load-job-322-x9cgj
+************************** reward calculate **************************
+util score:  46.6031967245888
+diff node score:  3.054470537666223
+diff res score:  31.269653922752223
+overload punishment score:  10.444542323624564
+get free node point:  6.615328708910806
+***************************** reward end *****************************
+action:  k8s-master
+reward:  -15.746890352247933
+done:  False
+	time:	 19382
+	Average Score: -61.54
+starting predict: random-load-job-323-fjpdx
+starting predict: random-load-job-323-fjpdx
+************************** reward calculate **************************
+util score:  43.94864812865103
+diff node score:  0.5568141881660438
+diff res score:  29.124606233926016
+overload punishment score:  10.138257168834299
+get free node point:  8.527926781145736
+***************************** reward end *****************************
+action:  k8s-master
+reward:  -11.883580409371056
+done:  False
+	time:	 19442
+	Average Score: -61.39
+starting predict: random-load-job-324-jfzlc
+starting predict: random-load-job-324-jfzlc
+************************** reward calculate **************************
+util score:  42.00523579457562
+diff node score:  0.0
+diff res score:  25.233012961725944
+overload punishment score:  10.846269419733805
+get free node point:  10.561581736620782
+***************************** reward end *****************************
+action:  k8s-master
+reward:  -10.485794558041352
+done:  False
+	time:	 19502
+	Average Score: -61.23
+starting predict: random-load-job-325-mcz8b
+starting predict: random-load-job-325-mcz8b
+starting predict: random-load-job-325-mcz8b
+************************** reward calculate **************************
+util score:  41.39414074652536
+diff node score:  0.0
+diff res score:  20.391792563089624
+overload punishment score:  12.494733178743788
+get free node point:  12.307936396999601
+***************************** reward end *****************************
+action:  k8s-master
+reward:  -10.32788315429583
+done:  False
+	time:	 19562
+	Average Score: -61.07
+starting predict: random-load-job-326-lbx4v
+starting predict: random-load-job-326-lbx4v
+************************** reward calculate **************************
+util score:  41.96971266587539
+diff node score:  0.0
+diff res score:  18.999133899828166
+overload punishment score:  29.180965794896643
+get free node point:  14.309830119489668
+***************************** reward end *****************************
+action:  k8s-master
+reward:  -57.41740355889786
+done:  False
+	time:	 19622
+	Average Score: -61.06
+starting predict: random-load-job-327-znzzp
+starting predict: random-load-job-327-znzzp
+************************** reward calculate **************************
+util score:  40.616840996496315
+diff node score:  0.0
+diff res score:  16.307216470165265
+overload punishment score:  31.436491668204475
+get free node point:  16.85951245416622
+***************************** reward end *****************************
+action:  k8s-master
+reward:  -61.57009425119927
+done:  False
+	time:	 19683
+	Average Score: -61.06
+starting predict: random-load-job-328-rf2b4
+************************** reward calculate **************************
+util score:  41.38095133524778
+diff node score:  0.0
+diff res score:  14.7450995189781
+overload punishment score:  29.189891757169146
+get free node point:  17.28760997412509
+***************************** reward end *****************************
+action:  k8s-master
+reward:  -52.29001846817521
+done:  False
+	time:	 19742
+	Average Score: -61.04
+starting predict: random-load-job-329-rtfzr
+************************** reward calculate **************************
+util score:  40.267014835515646
+diff node score:  0.0
+diff res score:  10.079271757038887
+overload punishment score:  34.183416795889805
+get free node point:  17.33885862936808
+***************************** reward end *****************************
+action:  k8s-master
+reward:  -63.69307799450863
+done:  False
+	time:	 19803
+	Average Score: -61.04
+starting predict: random-load-job-330-tln79
+************************** reward calculate **************************
+util score:  41.843916306267985
+diff node score:  0.0
+diff res score:  11.591105703253513
+overload punishment score:  55.28915182555695
+get free node point:  17.45762071802494
+***************************** reward end *****************************
+action:  k8s-master
+reward:  -126.8858345146439
+done:  False
+loss:  tensor(5.1571e+18, device='cuda:0', grad_fn=<MseLossBackward>)
+	time:	 19863
+	Average Score: -61.24
+starting predict: random-load-job-331-6hljg
+************************** reward calculate **************************
+util score:  40.93869406943339
+diff node score:  0.0
+diff res score:  8.542531148257494
+overload punishment score:  58.68249517785497
+get free node point:  19.066702016382767
+***************************** reward end *****************************
+action:  k8s-master
+reward:  -134.11797160419763
+done:  False
+	time:	 19923
+	Average Score: -61.46
+starting predict: random-load-job-332-jbdvk
+starting predict: random-load-job-332-jbdvk
+starting predict: random-load-job-332-jbdvk
+************************** reward calculate **************************
+util score:  38.807793545618985
+diff node score:  0.0
+diff res score:  12.885901336660503
+overload punishment score:  53.01044595579053
+get free node point:  20.850957860627275
+***************************** reward end *****************************
+action:  k8s-master
+reward:  -122.68396672809948
+done:  False
+	time:	 19983
+	Average Score: -61.65
+starting predict: random-load-job-333-jpq6f
+************************** reward calculate **************************
+util score:  37.86905031214602
+diff node score:  0.0
+diff res score:  9.671677624874826
+overload punishment score:  59.406724481020674
+get free node point:  22.40912564732918
+***************************** reward end *****************************
+action:  k8s-master
+reward:  -138.81823793212627
+done:  False
+	time:	 20043
+	Average Score: -61.88
+starting predict: random-load-job-334-kw6lj
+************************** reward calculate **************************
+util score:  39.91611068038479
+diff node score:  0.0
+diff res score:  4.974344680100724
+overload punishment score:  107.2948805776783
+get free node point:  23.651344513199593
+***************************** reward end *****************************
+action:  k8s-master
+reward:  -275.117203476151
+done:  False
+	time:	 20103
+	Average Score: -62.52
+starting predict: random-load-job-335-mct7h
+starting predict: random-load-job-335-mct7h
+starting predict: random-load-job-335-mct7h
+************************** reward calculate **************************
+util score:  37.340455900261794
+diff node score:  0.0
+diff res score:  10.892279149083235
+overload punishment score:  139.1071410882014
+get free node point:  28.54597246084391
+***************************** reward end *****************************
+action:  k8s-master
+reward:  -376.60026028300365
+done:  False
+	time:	 20163
+	Average Score: -63.46
+starting predict: random-load-job-336-wbb8d
+************************** reward calculate **************************
+util score:  36.44757615602282
+diff node score:  0.0
+diff res score:  7.75672204260379
+overload punishment score:  137.27158268011522
+get free node point:  29.42729826747799
+***************************** reward end *****************************
+action:  k8s-master
+reward:  -368.4102447931876
+done:  False
+	time:	 20223
+	Average Score: -64.36
+starting predict: random-load-job-337-ncjbl
+************************** reward calculate **************************
+util score:  37.415878267755595
+diff node score:  0.0
+diff res score:  6.761446368357373
+overload punishment score:  126.02221257876806
+get free node point:  27.400912164383737
+***************************** reward end *****************************
+action:  k8s-master
+reward:  -333.7117497547141
+done:  False
+	time:	 20283
+	Average Score: -65.16
+starting predict: random-load-job-338-kkt7g
+starting predict: random-load-job-338-kkt7g
+************************** reward calculate **************************
+util score:  36.76874367663965
+diff node score:  0.0
+diff res score:  5.730128786225311
+overload punishment score:  128.3865237819085
+get free node point:  28.149495252843142
+***************************** reward end *****************************
+action:  k8s-master
+reward:  -340.0462088288895
+done:  False
+	time:	 20344
+	Average Score: -65.98
+starting predict: random-load-job-339-lk4zm
+starting predict: random-load-job-339-lk4zm
+************************** reward calculate **************************
+util score:  37.96820655732166
+diff node score:  0.0
+diff res score:  7.898585464329347
+overload punishment score:  0
+get free node point:  26.896384842098943
+***************************** reward end *****************************
+action:  k8s-node01
+reward:  43.517813514041784
+done:  False
+	time:	 20404
+	Average Score: -65.65
+starting predict: random-load-job-340-pxxkh
+starting predict: random-load-job-340-pxxkh
+action:  no-selected
+reward:  -100.0
+done:  False
+loss:  tensor(6.8347e+18, device='cuda:0', grad_fn=<MseLossBackward>)
+	time:	 20464
+	Average Score: -65.75
+starting predict: random-load-job-341-p5bp9
+************************** reward calculate **************************
+util score:  35.24001665822929
+diff node score:  0.0
+diff res score:  2.801565553716886
+overload punishment score:  86.73357155564793
+get free node point:  26.812958540417664
+***************************** reward end *****************************
+action:  k8s-master
+reward:  -214.35578429222255
+done:  False
+	time:	 20524
+	Average Score: -66.19
+starting predict: random-load-job-342-sjjnz
+************************** reward calculate **************************
+util score:  33.809735221632465
+diff node score:  0.0
+diff res score:  10.221547749717523
+overload punishment score:  44.989641864223444
+get free node point:  26.5000865546393
+***************************** reward end *****************************
+action:  k8s-master
+reward:  -98.13069484343573
+done:  False
+	time:	 20584
+	Average Score: -66.28
+starting predict: random-load-job-343-nj4sq
+************************** reward calculate **************************
+util score:  35.25677047878583
+diff node score:  0.0
+diff res score:  13.298805305586216
+overload punishment score:  59.203906186701055
+get free node point:  26.51145497280558
+***************************** reward end *****************************
+action:  k8s-master
+reward:  -142.39802590050073
+done:  False
+	time:	 20644
+	Average Score: -66.50
+starting predict: random-load-job-344-c5fmn
+************************** reward calculate **************************
+util score:  36.28552416076678
+diff node score:  0.0
+diff res score:  10.538927296010304
+overload punishment score:  108.024472331738
+get free node point:  26.518644521603203
+***************************** reward end *****************************
+action:  k8s-master
+reward:  -285.0674978696559
+done:  False
+	time:	 20704
+	Average Score: -67.14
+starting predict: random-load-job-345-5ncjr
+************************** reward calculate **************************
+util score:  39.208406959036886
+diff node score:  0.0
+diff res score:  11.153708197715694
+overload punishment score:  147.85856292004672
+get free node point:  26.505900932146535
+***************************** reward end *****************************
+action:  k8s-master
+reward:  -402.2680395327457
+done:  False
+	time:	 20764
+	Average Score: -68.11
+starting predict: random-load-job-346-j94nl
+starting predict: random-load-job-346-j94nl
+************************** reward calculate **************************
+util score:  38.5753537424794
+diff node score:  0.0
+diff res score:  6.336142851883295
+overload punishment score:  131.75422479593234
+get free node point:  26.507089996879298
+***************************** reward end *****************************
+action:  k8s-master
+reward:  -349.7699184987613
+done:  False
+	time:	 20824
+	Average Score: -68.93
+starting predict: random-load-job-347-j6pdk
+************************** reward calculate **************************
+util score:  39.04465812726729
+diff node score:  0.0
+diff res score:  12.696562036693471
+overload punishment score:  148.57045464208554
+get free node point:  26.53146307537186
+***************************** reward end *****************************
+action:  k8s-master
+reward:  -406.09753629799684
+done:  False
+	time:	 20884
+	Average Score: -69.90
+starting predict: random-load-job-348-mwflv
+************************** reward calculate **************************
+util score:  39.33880722305086
+diff node score:  0.0
+diff res score:  12.605329680920063
+overload punishment score:  172.32521951512098
+get free node point:  28.291344135805833
+***************************** reward end *****************************
+action:  k8s-master
+reward:  -476.09650893532915
+done:  False
+	time:	 20945
+	Average Score: -71.06
+starting predict: random-load-job-349-rwgwl
+starting predict: random-load-job-349-rwgwl
+************************** reward calculate **************************
+util score:  40.08136099609226
+diff node score:  0.0
+diff res score:  16.828436403704668
+overload punishment score:  156.97907825790531
+get free node point:  26.300041385437765
+***************************** reward end *****************************
+action:  k8s-master
+reward:  -434.53428948860943
+done:  False
+	time:	 21005
+	Average Score: -72.11
+starting predict: random-load-job-350-krwst
+starting predict: random-load-job-350-krwst
+************************** reward calculate **************************
+util score:  38.31917015647269
+diff node score:  0.0
+diff res score:  18.003279552229827
+overload punishment score:  130.48497572872554
+get free node point:  25.86619961234503
+***************************** reward end *****************************
+action:  k8s-master
+reward:  -358.2059367757613
+done:  False
+loss:  tensor(5.9794e+18, device='cuda:0', grad_fn=<MseLossBackward>)
+	time:	 21065
+	Average Score: -72.92
+starting predict: random-load-job-351-qjvph
+starting predict: random-load-job-351-qjvph
+************************** reward calculate **************************
+util score:  38.39913145839563
+diff node score:  0.0
+diff res score:  15.938567718567555
+overload punishment score:  128.54187551690944
+get free node point:  25.88132131401984
+***************************** reward end *****************************
+action:  k8s-master
+reward:  -350.22440215389037
+done:  False
+	time:	 21125
+	Average Score: -73.71
+starting predict: random-load-job-352-dhg8v
+************************** reward calculate **************************
+util score:  37.32933556002844
+diff node score:  0.0
+diff res score:  12.691537359977753
+overload punishment score:  126.27820141384838
+get free node point:  26.91500108896767
+***************************** reward end *****************************
+action:  k8s-master
+reward:  -340.73930549701066
+done:  False
+	time:	 21185
+	Average Score: -74.47
+starting predict: random-load-job-353-qpc5f
+starting predict: random-load-job-353-qpc5f
+************************** reward calculate **************************
+util score:  36.29004034593941
+diff node score:  0.0
+diff res score:  18.235714104626773
+overload punishment score:  71.55965781679149
+get free node point:  26.91561785167728
+***************************** reward end *****************************
+action:  k8s-master
+reward:  -183.1668382832232
+done:  False
+	time:	 21245
+	Average Score: -74.78
+starting predict: random-load-job-354-tbqsf
+starting predict: random-load-job-354-tbqsf
+************************** reward calculate **************************
+util score:  37.840046691703726
+diff node score:  0.0
+diff res score:  14.704519841764478
+overload punishment score:  139.52863048837165
+get free node point:  27.110967825922895
+***************************** reward end *****************************
+action:  k8s-master
+reward:  -381.89488070221427
+done:  False
+	time:	 21305
+	Average Score: -75.65
+starting predict: random-load-job-355-7bf9p
+starting predict: random-load-job-355-7bf9p
+************************** reward calculate **************************
+util score:  38.135042420201025
+diff node score:  0.0
+diff res score:  15.092468660031614
+overload punishment score:  141.25060429750494
+get free node point:  26.935213456392788
+***************************** reward end *****************************
+action:  k8s-master
+reward:  -387.24163240414896
+done:  False
+	time:	 21366
+	Average Score: -76.53
+starting predict: random-load-job-356-f264m
+starting predict: random-load-job-356-f264m
+************************** reward calculate **************************
+util score:  35.49494812565181
+diff node score:  0.0
+diff res score:  16.988788095259874
+overload punishment score:  64.66698520944227
+get free node point:  26.907661457949953
+***************************** reward end *****************************
+action:  k8s-master
+reward:  -162.04096486895995
+done:  False
+	time:	 21426
+	Average Score: -76.77
+starting predict: random-load-job-357-t6p4n
+************************** reward calculate **************************
+util score:  36.535663455146654
+diff node score:  0.0
+diff res score:  18.694974522973624
+overload punishment score:  73.9424643188893
+get free node point:  26.913727499682626
+***************************** reward end *****************************
+action:  k8s-master
+reward:  -190.52984027465354
+done:  False
+	time:	 21486
+	Average Score: -77.08
+starting predict: random-load-job-358-vdfxs
+starting predict: random-load-job-358-vdfxs
+************************** reward calculate **************************
+util score:  36.66511737716064
+diff node score:  0.0
+diff res score:  19.15978227897159
+overload punishment score:  75.7307354293717
+get free node point:  26.924870846443373
+***************************** reward end *****************************
+action:  k8s-master
+reward:  -196.2244357667044
+done:  False
+	time:	 21546
+	Average Score: -77.42
+starting predict: random-load-job-359-4mm45
+starting predict: random-load-job-359-4mm45
+************************** reward calculate **************************
+util score:  36.03942208285658
+diff node score:  0.0
+diff res score:  14.185607297239306
+overload punishment score:  111.42137003857091
+get free node point:  26.912530664451324
+***************************** reward end *****************************
+action:  k8s-master
+reward:  -298.95402999786984
+done:  False
+	time:	 21606
+	Average Score: -78.03
+starting predict: random-load-job-360-s7z8k
+starting predict: random-load-job-360-s7z8k
+starting predict: random-load-job-360-s7z8k
+************************** reward calculate **************************
+util score:  36.17953714499655
+diff node score:  0.0
+diff res score:  10.582948529748277
+overload punishment score:  136.9116669633324
+get free node point:  28.727693010854136
+***************************** reward end *****************************
+action:  k8s-master
+reward:  -370.77456576932184
+done:  False
+loss:  tensor(3.3088e+18, device='cuda:0', grad_fn=<MseLossBackward>)
+	time:	 21666
+	Average Score: -78.85
+starting predict: random-load-job-361-942ks
+starting predict: random-load-job-361-942ks
+************************** reward calculate **************************
+util score:  35.98953566164352
+diff node score:  0.0
+diff res score:  11.928734937625917
+overload punishment score:  146.25001576627707
+get free node point:  29.63457124989044
+***************************** reward end *****************************
+action:  k8s-master
+reward:  -399.87196094986837
+done:  False
+	time:	 21726
+	Average Score: -79.74
+starting predict: random-load-job-362-zcs4k
+************************** reward calculate **************************
+util score:  34.0148571679267
+diff node score:  0.0
+diff res score:  16.517978954758068
+overload punishment score:  132.9097242182334
+get free node point:  30.244146293662492
+***************************** reward end *****************************
+action:  k8s-master
+reward:  -366.1102212947003
+done:  False
+	time:	 21787
+	Average Score: -80.53
+starting predict: random-load-job-363-grt52
+starting predict: random-load-job-363-grt52
+************************** reward calculate **************************
+util score:  34.730499479171385
+diff node score:  0.0
+diff res score:  17.310487006337013
+overload punishment score:  144.80354403201827
+get free node point:  30.30109022641824
+***************************** reward end *****************************
+action:  k8s-master
+reward:  -401.8400745100113
+done:  False
+	time:	 21847
+	Average Score: -81.41
+starting predict: random-load-job-364-zjww5
+************************** reward calculate **************************
+util score:  31.993584450631733
+diff node score:  0.0
+diff res score:  12.991358420174093
+overload punishment score:  129.11681200003255
+get free node point:  32.08848263455289
+***************************** reward end *****************************
+action:  k8s-master
+reward:  -352.3039686523636
+done:  False
+	time:	 21907
+	Average Score: -82.16
+starting predict: random-load-job-365-bjtkg
+starting predict: random-load-job-365-bjtkg
+************************** reward calculate **************************
+util score:  27.09114347052538
+diff node score:  0.0
+diff res score:  17.599674820836455
+overload punishment score:  57.70211285670562
+get free node point:  32.07452565689662
+***************************** reward end *****************************
+action:  k8s-master
+reward:  -147.57760709197962
+done:  False
+	time:	 21967
+	Average Score: -82.34
+starting predict: random-load-job-366-msghb
+starting predict: random-load-job-366-msghb
+************************** reward calculate **************************
+util score:  29.051532162403273
+diff node score:  0.0
+diff res score:  16.56875641022143
+overload punishment score:  64.63233758493247
+get free node point:  32.081329862734236
+***************************** reward end *****************************
+action:  k8s-master
+reward:  -165.37357207124842
+done:  False
+	time:	 22027
+	Average Score: -82.56
+starting predict: random-load-job-367-6pl4b
+starting predict: random-load-job-367-6pl4b
+************************** reward calculate **************************
+util score:  30.893623232033608
+diff node score:  0.0
+diff res score:  17.393702910600428
+overload punishment score:  75.58180484240489
+get free node point:  32.08254563703484
+***************************** reward end *****************************
+action:  k8s-master
+reward:  -197.20422138726406
+done:  False
+	time:	 22087
+	Average Score: -82.88
+starting predict: random-load-job-368-4j5j4
+************************** reward calculate **************************
+util score:  29.98718925757754
+diff node score:  0.0
+diff res score:  14.8329724808056
+overload punishment score:  64.91743888824307
+get free node point:  32.0637527553958
+***************************** reward end *****************************
+action:  k8s-master
+reward:  -163.5662235102594
+done:  False
+	time:	 22147
+	Average Score: -83.09
+starting predict: random-load-job-369-r6llq
+************************** reward calculate **************************
+util score:  33.57621264482941
+diff node score:  0.0
+diff res score:  17.46565149801584
+overload punishment score:  75.7726903481841
+get free node point:  30.143298771688332
+***************************** reward end *****************************
+action:  k8s-master
+reward:  -196.13586051189458
+done:  False
+	time:	 22207
+	Average Score: -83.40
+starting predict: random-load-job-370-wts2m
+starting predict: random-load-job-370-wts2m
+************************** reward calculate **************************
+util score:  36.852578057250845
+diff node score:  0.0
+diff res score:  15.93884372352583
+overload punishment score:  125.0826159643762
+get free node point:  26.68650767549276
+***************************** reward end *****************************
+action:  k8s-master
+reward:  -340.9908597216572
+done:  False
+loss:  tensor(7.8596e+17, device='cuda:0', grad_fn=<MseLossBackward>)
+	time:	 22267
+	Average Score: -84.10
+starting predict: random-load-job-371-7cjt9
+************************** reward calculate **************************
+util score:  35.14937036997584
+diff node score:  0.0
+diff res score:  15.841847319362442
+overload punishment score:  126.3105449922836
+get free node point:  28.48730272025919
+***************************** reward end *****************************
+action:  k8s-master
+reward:  -345.3804605661078
+done:  False
+	time:	 22327
+	Average Score: -84.80
+starting predict: random-load-job-372-5gnjs
+************************** reward calculate **************************
+util score:  34.738828575795694
+diff node score:  0.0
+diff res score:  10.587725292923066
+overload punishment score:  110.31691834449984
+get free node point:  28.254208480099454
+***************************** reward end *****************************
+action:  k8s-master
+reward:  -292.67254751057715
+done:  False
+	time:	 22387
+	Average Score: -85.36
+starting predict: random-load-job-373-6t8w5
+action:  no-selected
+reward:  -100.0
+done:  False
+	time:	 22447
+	Average Score: -85.40
+starting predict: random-load-job-374-fv9jm
+************************** reward calculate **************************
+util score:  36.78847179422818
+diff node score:  0.0
+diff res score:  19.459011578186715
+overload punishment score:  74.53656785351687
+get free node point:  25.087588061278762
+***************************** reward end *****************************
+action:  k8s-master
+reward:  -193.73644931386974
+done:  False
+	time:	 22508
+	Average Score: -85.69
+starting predict: random-load-job-375-nn8j9
+************************** reward calculate **************************
+util score:  38.158871861749255
+diff node score:  0.0
+diff res score:  25.202411414731404
+overload punishment score:  0
+get free node point:  23.922299010915168
+***************************** reward end *****************************
+action:  k8s-node02
+reward:  24.917609952475434
+done:  False
+	time:	 22568
+	Average Score: -85.39
+starting predict: random-load-job-376-7qnts
+************************** reward calculate **************************
+util score:  35.31898642428485
+diff node score:  0.0
+diff res score:  22.33760662229027
+overload punishment score:  64.83456158147821
+get free node point:  24.083722237876817
+***************************** reward end *****************************
+action:  k8s-master
+reward:  -169.48044382350162
+done:  False
+	time:	 22628
+	Average Score: -85.62
+starting predict: random-load-job-377-p5kvf
+starting predict: random-load-job-377-p5kvf
+************************** reward calculate **************************
+util score:  38.114879782342996
+diff node score:  0.0
+diff res score:  24.605269081149498
+overload punishment score:  75.94145111281709
+get free node point:  23.197872563753304
+***************************** reward end *****************************
+action:  k8s-master
+reward:  -202.7158063553811
+done:  False
+	time:	 22688
+	Average Score: -85.93
+starting predict: random-load-job-378-kw6xv
+************************** reward calculate **************************
+util score:  39.84061983100849
+diff node score:  0.0
+diff res score:  24.05130063594368
+overload punishment score:  73.10962281032995
+get free node point:  21.18306138290461
+***************************** reward end *****************************
+action:  k8s-master
+reward:  -192.94801854447275
+done:  False
+	time:	 22748
+	Average Score: -86.21
+starting predict: random-load-job-379-m8mmc
+action:  no-selected
+reward:  -100.0
+done:  False
+	time:	 22808
+	Average Score: -86.25
+starting predict: random-load-job-380-wm8sp
+starting predict: random-load-job-380-wm8sp
+************************** reward calculate **************************
+util score:  40.10737091155362
+diff node score:  0.0
+diff res score:  20.55007848155285
+overload punishment score:  62.471881138800654
+get free node point:  19.919804345572004
+***************************** reward end *****************************
+action:  k8s-master
+reward:  -157.89844881361518
+done:  False
+loss:  tensor(7.2289e+16, device='cuda:0', grad_fn=<MseLossBackward>)
+	time:	 22868
+	Average Score: -86.44
+starting predict: random-load-job-381-rprzq
+starting predict: random-load-job-381-rprzq
+starting predict: random-load-job-381-rprzq
+************************** reward calculate **************************
+util score:  41.16197561240011
+diff node score:  0.0
+diff res score:  22.873859186578244
+overload punishment score:  74.53033915371854
+get free node point:  20.041226271867583
+***************************** reward end *****************************
+action:  k8s-master
+reward:  -195.28228789939996
+done:  False
+	time:	 22929
+	Average Score: -86.72
+starting predict: random-load-job-382-2l4zp
+************************** reward calculate **************************
+util score:  42.27057086997571
+diff node score:  0.0
+diff res score:  27.62757179178121
+overload punishment score:  0
+get free node point:  17.856404535645556
+***************************** reward end *****************************
+action:  k8s-node02
+reward:  23.571201346017276
+done:  False
+	time:	 22989
+	Average Score: -86.43
+starting predict: random-load-job-383-nlzmp
+************************** reward calculate **************************
+util score:  42.150566926812466
+diff node score:  0.0
+diff res score:  22.673785549477675
+overload punishment score:  0
+get free node point:  14.89704068620218
+***************************** reward end *****************************
+action:  k8s-node02
+reward:  26.925301720435883
+done:  False
+	time:	 23049
+	Average Score: -86.14
+starting predict: random-load-job-384-kftp8
+starting predict: random-load-job-384-kftp8
+starting predict: random-load-job-384-kftp8
+************************** reward calculate **************************
+util score:  46.17007889339644
+diff node score:  0.0
+diff res score:  27.932771538887277
+overload punishment score:  0
+get free node point:  12.411273076800034
+***************************** reward end *****************************
+action:  k8s-node02
+reward:  24.442943892909184
+done:  False
+	time:	 23109
+	Average Score: -85.85
+starting predict: random-load-job-385-kjv8d
+starting predict: random-load-job-385-kjv8d
+************************** reward calculate **************************
+util score:  47.5898421031031
+diff node score:  9.126513586677262
+diff res score:  30.807995627783924
+overload punishment score:  10.88423445534945
+get free node point:  12.181842680976155
+***************************** reward end *****************************
+action:  k8s-node02
+reward:  -18.906449136918358
+done:  False
+	time:	 23169
+	Average Score: -85.68
+starting predict: random-load-job-386-mw8dk
+starting predict: random-load-job-386-mw8dk
+************************** reward calculate **************************
+util score:  48.47824527477864
+diff node score:  2.7206336953904007
+diff res score:  36.803737685824245
+overload punishment score:  27.161522132539925
+get free node point:  12.256715119224793
+***************************** reward end *****************************
+action:  k8s-node02
+reward:  -66.40233494444338
+done:  False
+	time:	 23229
+	Average Score: -85.63
+starting predict: random-load-job-387-p7jjv
+************************** reward calculate **************************
+util score:  48.055771057213995
+diff node score:  2.229085395405381
+diff res score:  43.06662091950911
+overload punishment score:  39.930037676427474
+get free node point:  12.180720110813972
+***************************** reward end *****************************
+action:  k8s-node02
+reward:  -110.93968823157593
+done:  False
+	time:	 23289
+	Average Score: -85.69
+starting predict: random-load-job-388-skfmx
+************************** reward calculate **************************
+util score:  42.426023582111895
+diff node score:  0.0
+diff res score:  31.231108006341135
+overload punishment score:  32.976507680816326
+get free node point:  12.907055679073801
+***************************** reward end *****************************
+action:  k8s-node02
+reward:  -81.28107962714131
+done:  False
+	time:	 23349
+	Average Score: -85.68
+starting predict: random-load-job-389-klj52
+starting predict: random-load-job-389-klj52
+action:  no-selected
+reward:  -100.0
+done:  False
+	time:	 23409
+	Average Score: -85.72
+starting predict: random-load-job-390-gshwk
+************************** reward calculate **************************
+util score:  44.2591888260175
+diff node score:  0.0
+diff res score:  26.227428649536048
+overload punishment score:  60.4625032696771
+get free node point:  16.233144200487356
+***************************** reward end *****************************
+action:  k8s-node02
+reward:  -155.2391775323062
+done:  False
+loss:  tensor(5.2339e+17, device='cuda:0', grad_fn=<MseLossBackward>)
+	time:	 23469
+	Average Score: -85.89
+starting predict: random-load-job-391-dr4gp
+starting predict: random-load-job-391-dr4gp
+************************** reward calculate **************************
+util score:  45.025585824984404
+diff node score:  0.0
+diff res score:  27.039218484213364
+overload punishment score:  66.06648952959013
+get free node point:  16.23188878061421
+***************************** reward end *****************************
+action:  k8s-node02
+reward:  -172.09715685769226
+done:  False
+	time:	 23529
+	Average Score: -86.12
+starting predict: random-load-job-392-55w86
+starting predict: random-load-job-392-55w86
+************************** reward calculate **************************
+util score:  44.165800351996495
+diff node score:  0.0
+diff res score:  23.18261349779606
+overload punishment score:  71.02145314379446
+get free node point:  18.173045521575762
+***************************** reward end *****************************
+action:  k8s-node02
+reward:  -182.99464981639505
+done:  False
+	time:	 23590
+	Average Score: -86.36
+starting predict: random-load-job-393-nkrqp
+************************** reward calculate **************************
+util score:  42.17658882367805
+diff node score:  0.0
+diff res score:  24.114024714047414
+overload punishment score:  72.84890140483719
+get free node point:  20.21526953699464
+***************************** reward end *****************************
+action:  k8s-node02
+reward:  -190.37650533638362
+done:  False
+	time:	 23650
+	Average Score: -86.63
+starting predict: random-load-job-394-66hjl
+************************** reward calculate **************************
+util score:  41.70794560883241
+diff node score:  0.0
+diff res score:  19.239655954265004
+overload punishment score:  72.73448606795857
+get free node point:  21.65535065408181
+***************************** reward end *****************************
+action:  k8s-node02
+reward:  -184.9074932222674
+done:  False
+	time:	 23710
+	Average Score: -86.88
+starting predict: random-load-job-395-lbgfb
+************************** reward calculate **************************
+util score:  40.19395553006962
+diff node score:  0.0
+diff res score:  22.52866932582567
+overload punishment score:  74.09930440665926
+get free node point:  21.763375537998808
+***************************** reward end *****************************
+action:  k8s-node02
+reward:  -193.75093924673442
+done:  False
+	time:	 23770
+	Average Score: -87.15
+starting predict: random-load-job-396-trcdx
+************************** reward calculate **************************
+util score:  36.92484944164648
+diff node score:  0.0
+diff res score:  20.309679918786316
+overload punishment score:  72.84942881816427
+get free node point:  25.456932799534467
+***************************** reward end *****************************
+action:  k8s-node02
+reward:  -189.20465053186544
+done:  False
+	time:	 23830
+	Average Score: -87.40
+starting predict: random-load-job-397-8tg7b
+starting predict: random-load-job-397-8tg7b
+************************** reward calculate **************************
+util score:  36.436019481521875
+diff node score:  0.0
+diff res score:  19.739268639969183
+overload punishment score:  74.0011352537628
+get free node point:  26.83492868521168
+***************************** reward end *****************************
+action:  k8s-node02
+reward:  -191.88919057712985
+done:  False
+	time:	 23890
+	Average Score: -87.67
+starting predict: random-load-job-398-zfct5
+************************** reward calculate **************************
+util score:  33.57916431963302
+diff node score:  0.0
+diff res score:  17.969074324283582
+overload punishment score:  67.11964499178666
+get free node point:  28.038069513498556
+***************************** reward end *****************************
+action:  k8s-node02
+reward:  -171.72981022326124
+done:  False
+	time:	 23950
+	Average Score: -87.88
+starting predict: random-load-job-399-wblwd
+************************** reward calculate **************************
+util score:  33.432011492591336
+diff node score:  0.0
+diff res score:  21.20216542188268
+overload punishment score:  74.26732127230963
+get free node point:  28.105097999110853
+***************************** reward end *****************************
+action:  k8s-node02
+reward:  -196.51956874666482
+done:  False
+	time:	 24010
+	Average Score: -88.15
+starting predict: random-load-job-400-jtffd
+starting predict: random-load-job-400-jtffd
+************************** reward calculate **************************
+util score:  34.87649978249164
+diff node score:  0.0
+diff res score:  17.78525921851686
+overload punishment score:  72.99480882031311
+get free node point:  27.91414732868637
+***************************** reward end *****************************
+action:  k8s-node02
+reward:  -187.93611223262138
+done:  False
+loss:  tensor(1.9125e+18, device='cuda:0', grad_fn=<MseLossBackward>)
+	time:	 24070
+	Average Score: -88.40
+starting predict: random-load-job-401-g4qvk
+************************** reward calculate **************************
+util score:  32.38255932182833
+diff node score:  0.0
+diff res score:  20.22465448654563
+overload punishment score:  74.6446107215243
+get free node point:  29.68591477391125
+***************************** reward end *****************************
+action:  k8s-node02
+reward:  -196.93296994233458
+done:  False
+	time:	 24130
+	Average Score: -88.67
+starting predict: random-load-job-402-l6k7v
+************************** reward calculate **************************
+util score:  32.95694502091
+diff node score:  0.0
+diff res score:  19.453506966177816
+overload punishment score:  75.76829857049287
+get free node point:  29.719815350575498
+***************************** reward end *****************************
+action:  k8s-node02
+reward:  -198.94154998145868
+done:  False
+	time:	 24190
+	Average Score: -88.95
+starting predict: random-load-job-403-6f6dj
+************************** reward calculate **************************
+util score:  33.382092132400864
+diff node score:  0.0
+diff res score:  17.348358540732455
+overload punishment score:  74.24001136735285
+get free node point:  29.871873549745697
+***************************** reward end *****************************
+action:  k8s-node02
+reward:  -191.75036373551728
+done:  False
+	time:	 24250
+	Average Score: -89.20
+starting predict: random-load-job-404-fhnc7
+starting predict: random-load-job-404-fhnc7
+************************** reward calculate **************************
+util score:  33.63841725712455
+diff node score:  0.0
+diff res score:  17.483848871544897
+overload punishment score:  74.21368666727639
+get free node point:  29.71475822218082
+***************************** reward end *****************************
+action:  k8s-node02
+reward:  -191.6291125051591
+done:  False
+	time:	 24310
+	Average Score: -89.45
+starting predict: random-load-job-405-5xt47
+starting predict: random-load-job-405-5xt47
+************************** reward calculate **************************
+util score:  33.20124354910716
+diff node score:  0.0
+diff res score:  16.752099616334835
+overload punishment score:  141.03014647908014
+get free node point:  31.436412635397797
+***************************** reward end *****************************
+action:  k8s-node02
+reward:  -390.92308918676923
+done:  False
+	time:	 24370
+	Average Score: -90.20
+starting predict: random-load-job-406-hv5qn
+************************** reward calculate **************************
+util score:  31.053489316809337
+diff node score:  0.0
+diff res score:  14.527376722867816
+overload punishment score:  63.67499357426633
+get free node point:  31.415693902106444
+***************************** reward end *****************************
+action:  k8s-node02
+reward:  -158.79102117780425
+done:  False
+	time:	 24430
+	Average Score: -90.37
+starting predict: random-load-job-407-hfwfv
+action:  no-selected
+reward:  -100.0
+done:  False
+	time:	 24491
+	Average Score: -90.39
+starting predict: random-load-job-408-bcrmv
+starting predict: random-load-job-408-bcrmv
+************************** reward calculate **************************
+util score:  32.01046745131024
+diff node score:  0.0
+diff res score:  16.537078386659914
+overload punishment score:  73.14383571645122
+get free node point:  31.437746784697442
+***************************** reward end *****************************
+action:  k8s-node02
+reward:  -188.23924469235462
+done:  False
+	time:	 24551
+	Average Score: -90.63
+starting predict: random-load-job-409-rbgq2
+************************** reward calculate **************************
+util score:  32.138372937001954
+diff node score:  0.0
+diff res score:  17.361171001898928
+overload punishment score:  75.74104640001441
+get free node point:  31.324886375761128
+***************************** reward end *****************************
+action:  k8s-node02
+reward:  -196.78349407705966
+done:  False
+	time:	 24611
+	Average Score: -90.89
+starting predict: random-load-job-410-mqkhp
+Exception in thread Thread-159:
+Traceback (most recent call last):
+  File "/usr/lib64/python3.6/threading.py", line 916, in _bootstrap_inner
+    self.run()
+  File "/usr/lib64/python3.6/threading.py", line 864, in run
+    self._target(*self._args, **self._kwargs)
+  File "/root/hy/rl-server/rl/model_interface.py", line 96, in task
+    s.run()
+  File "/usr/lib64/python3.6/sched.py", line 154, in run
+    action(*argument, **kwargs)
+  File "/root/hy/rl-server/rl/model_interface.py", line 100, in env_trian
+    next_states, reward, done, _ = self.env.step(action)
+  File "/root/hy/rl-server/rl/schedule_env.py", line 126, in step
+    next_states = self.get_states()
+  File "/root/hy/rl-server/rl/schedule_env.py", line 186, in get_states
+    usage[node].get_cpu(),
+KeyError: 'k8s-node02'
+
+ERROR:grpc._server:Exception calling application: 'k8s-node02'
+Traceback (most recent call last):
+  File "/root/.virtualenvs/mokuberl/lib64/python3.6/site-packages/grpc/_server.py", line 435, in _call_behavior
+    response_or_iterator = behavior(argument, context)
+  File "/root/hy/rl-server/rl/model_interface.py", line 77, in Predict
+    states = self.env.get_states(pod_resource=pod_resource)
+  File "/root/hy/rl-server/rl/schedule_env.py", line 186, in get_states
+    usage[node].get_cpu(),
+KeyError: 'k8s-node02'

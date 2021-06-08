@@ -3,19 +3,19 @@ delayStart:
   - 0
   - 60
 runRange:
-  - 60
   - 120
+  - 1800
 cpuRange:
-  - 10
-  - 30
+  - 50
+  - 100
 ---
 mod: memory
 delayStart:
   - 0
   - 60
 runRange:
-  - 60
-  - 120
+  - 30
+  - 1800
 memRange:
-  - 400
-  - 600
+  - 2000
+  - 4000

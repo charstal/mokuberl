@@ -140,22 +140,22 @@ def memory_convert(src):
 
 if __name__ == "__main__":
     k8sclient = K8sClient()
-    # test_capacity = k8sclient.get_all_node_capacity()
-    # for key, value in test_capacity.items():
-    #     print(key, value)
-    # test_usage = k8sclient.get_all_node_usage()
-    # for key, value in test_usage.items():
-    #     print(key, value)
-    # print(k8sclient.get_node_percentage("minikube"))
+    test_capacity = k8sclient.get_all_node_capacity()
+    for key, value in test_capacity.items():
+        print(key, value)
+    test_usage = k8sclient.get_all_node_usage()
+    for key, value in test_usage.items():
+        print(key, value)
+    print(k8sclient.get_node_percentage("minikube"))
     all_nodes_p = k8sclient.get_all_node_percentage()
     for key, value in all_nodes_p.items():
         print(key)
         print(value)
     # print(k8sclient.get_pod("metrics-server-56c4f8c9d6-gxqgt", "kube-system"))
 
-    # all_nodes_p = k8sclient.get_all_node_predict_usage_by_addind_pod(
-    #     Resource(1000, 1000))
-    # for key, value in all_nodes_p.items():
-    #     print(key)
-    #     print(value)
-    # print(k8sclient.get_nodes())
+    all_nodes_p = k8sclient.get_all_node_predict_usage_by_addind_pod(
+        Resource(1000, 1000))
+    for key, value in all_nodes_p.items():
+        print(key)
+        print(value)
+    print(k8sclient.get_nodes())

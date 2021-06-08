@@ -149,7 +149,7 @@ class ScheduleEnv():
         else:
             node_list = self.get_alive_node()
             res = self.k8sclient.get_all_node_percentage()
-            reward = load_balanced_reward_calculate(node_list, res)
+            reward = load_balanced_reward_calculate(node_name, node_list, res)
 
         return next_states, reward, done, {}
 
