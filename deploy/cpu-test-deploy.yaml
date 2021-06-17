@@ -12,12 +12,12 @@ spec:
       labels:
         app: cpu-test
     spec:
-      schedulerName: RLScheduler
+      # schedulerName: RLScheduler
       containers:
-      - name: cpu-test
-        image: registry.cn-shanghai.aliyuncs.com/charstal/cpu-test
-        imagePullPolicy: IfNotPresent
-        resources:
-          limits:
-            cpu: 200m
-            memory: 30Mi
+        - name: cpu-test
+          image: registry.cn-shanghai.aliyuncs.com/charstal/cpu-test
+          imagePullPolicy: IfNotPresent
+          resources:
+            limits:
+              cpu: 200m
+              memory: 30Mi

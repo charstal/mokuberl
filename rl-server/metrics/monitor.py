@@ -15,11 +15,12 @@ TIMES_PER_SAVE = 20
 
 
 class Monitor:
-    def __init__(self):
+    def __init__(self, path=CLUSTER_RESOURCE_PATH):
         self.k8sclient = K8sClient()
         self.cnt = 0
         self.data = {}
         self.time = []
+        self.save_path = path
 
     def start(self):
         while True:
@@ -39,7 +40,7 @@ class Monitor:
         # print(self.cnt)
         if self.cnt % TIMES_PER_SAVE == 0:
             df = DataFrame(self.data, index=self.time)
-            df.to_csv(CLUSTER_RESOURCE_PATH)
+            df.to_csv(self.save_path)
 
 
 if __name__ == "__main__":
