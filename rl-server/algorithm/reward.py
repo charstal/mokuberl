@@ -21,10 +21,17 @@ def load_balanced_reward_calculate(seleted_node, node_list, resource_map):
         gamma * get_overload_punishment(seleted_node, resource_map) + \
         kappa * get_free_point(node_list, resource_map)
     print("***************************** reward end *****************************")
-    return score
+
+    return normallize(score)
 
 
+def normallize(score):
+    # MAX = 100 + MID_HIGH_LOADING_THRESHOLD # 150
+    # MIN = 100 - 100 -
+    return score / 100
 # 获得系统的平均利用率
+
+
 def get_util(node_list, resource_map):
     score = 0
     for node in node_list:
@@ -90,7 +97,6 @@ def get_overload_punishment(seleted_node, resource_map):
 # 给与低负载的node的空闲分，低负载越空分数越高，
 def get_free_point(node_list, resource_map):
     score = 0
-    ulist = []
     for node in node_list:
         s = 0
         for k in RESOURCE_CLASS:
@@ -98,7 +104,6 @@ def get_free_point(node_list, resource_map):
         s /= len(RESOURCE_CLASS)
         # 只限定低负载
         if s < MID_HIGH_LOADING_THRESHOLD:
-            ulist.append(s)
             score += MID_HIGH_LOADING_THRESHOLD - s
     if len(node_list) != 0:
         score /= len(node_list)
