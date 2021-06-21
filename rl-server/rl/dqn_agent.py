@@ -112,9 +112,19 @@ class Agent():
         Q_expected = self.qnetwork_local(states).gather(1, actions)
 
         # Compute loss
+        # print("Q_expeceted:", Q_expected)
+        # print("Q_targets:", Q_targets)
         loss = F.mse_loss(Q_expected, Q_targets)
 
+        print("---------------------------model start-----------------------------------")
         print("loss: ", loss)
+        print("local weight")
+        # for parameters in self.qnetwork_local.parameters():
+        #     print(parameters)
+        # print("target weight")
+        # for parameters in self.qnetwork_target.parameters():
+        #     print(parameters)
+        print("---------------------------model end-------------------------------------")
         # Minimize the loss
         self.optimizer.zero_grad()
         loss.backward()

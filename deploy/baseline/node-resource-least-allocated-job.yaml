@@ -5,7 +5,7 @@ metadata:
 spec:
   template:
     spec:
-      schedulerName: RLScheduler
+      schedulerName: node-resource-least-allocated
       containers:
         - name: random-load
           image: registry.cn-shanghai.aliyuncs.com/charstal/random_load

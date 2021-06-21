@@ -7,6 +7,7 @@ import time
 from collections import deque
 import numpy as np
 from threading import Thread
+from config import ModelConfig
 
 config.load_kube_config()
 
@@ -36,7 +37,7 @@ pod_list = []
 
 
 def log(cnt):
-    time.sleep(25)
+    time.sleep(ModelConfig.get_train_interval)
     pod_list.append(pod_name)
     node_name = event['object'].spec.node_name
     node_list = k8sClient.get_nodes()

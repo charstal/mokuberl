@@ -53,6 +53,12 @@ class ResourceAnalysis:
 
         return res_dict[index]
 
+    def get_cpu(self):
+        return self.cpu
+
+    def get_memory(self):
+        return self.memory
+
 
 if __name__ == "__main__":
     a = Resource(1000, 1000)

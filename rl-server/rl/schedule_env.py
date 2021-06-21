@@ -171,11 +171,12 @@ class ScheduleEnv():
 
     # flattern 之后 每一个node的资源信息和 待分配的pod的资源limit/request
     def get_state_size(self):
-        return len(RESOURCE_CLASS) * NODE_SIZE * 2 + len(RESOURCE_CLASS)
+        return len(RESOURCE_CLASS) * NODE_SIZE + len(RESOURCE_CLASS)
 
     def get_states(self, pod_resource=Resource(0, 0)):
-        usage = self.k8sclient.get_all_node_usage()
-        capacity = self.k8sclient.get_all_node_capacity()
+        # usage = self.k8sclient.get_all_node_usage()
+        capacity = list(self.k8sclient.get_all_node_capacity().values())[0]
+        usage_occupy = self.k8sclient.get_all_node_percentage()
         states = np.empty(shape=(0,))
 
         node_list = self.node_list
@@ -183,21 +184,23 @@ class ScheduleEnv():
         for node in node_list:
             # print(usage[node])
             st = np.array([
-                usage[node].get_cpu(),
-                usage[node].get_memory(),
-                capacity[node].get_cpu(),
-                capacity[node].get_memory(),
+                usage_occupy[node].get_cpu(),
+                usage_occupy[node].get_memory(),
             ])
             states = np.concatenate((states, st), axis=0)
 
+        # print(NODE_SIZE - len(node_list))
+
         for _ in range(NODE_SIZE - len(node_list)):
-            st = np.array([0, 0, 0, 0])
+            st = np.array([0, 0])
             states = np.concatenate((states, st), axis=0)
 
         states = np.concatenate((states, np.array([
-            pod_resource.get_cpu(),
-            pod_resource.get_memory(),
+            pod_resource.get_cpu() / capacity.get_cpu() / 1000 * 100,
+            pod_resource.get_memory() / capacity.get_memory() / 1000 * 100,
         ])), axis=0)
+
+        # print(states)
 
         return states
 
