@@ -12,10 +12,11 @@ class FlowController:
     def grant(self):
         now = datetime.datetime.now()
 
-        water = max(0, self.water - (now-self.last_time).seconds * self.rate)
+        self.water = max(
+            0, self.water - (now-self.last_time).seconds * self.rate)
 
         self.last_time = now
-        if ((water + 1) < self.capacity):
+        if ((self.water + 1) < self.capacity):
             self.water += 1
             return True
         else:
