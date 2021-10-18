@@ -1,12 +1,14 @@
-from kubernetes import client, config, watch
-from algorithm import load_balanced_reward_calculate, reward
-from metrics import Monitor
-import multiprocessing as mp
-from client import K8sClient
 import time
 from collections import deque
-import numpy as np
 from threading import Thread
+import multiprocessing as mp
+
+import numpy as np
+from kubernetes import client, config, watch
+
+from algorithm import load_balanced_reward_calculate, reward
+from metrics import Monitor
+from client import K8sClient
 from config import ModelConfig
 
 config.load_kube_config()
@@ -36,18 +38,22 @@ cnt = 0
 pod_list = []
 
 
-def log(cnt):
-    time.sleep(ModelConfig.get_train_interval)
-    pod_list.append(pod_name)
+def log(cnt, event):
+    time.sleep(ModelConfig.get_train_interval())
     node_name = event['object'].spec.node_name
     node_list = k8sClient.get_nodes()
     res_map = k8sClient.get_all_node_percentage()
     reward = load_balanced_reward_calculate(node_name, node_list, res_map)
+    print("action: ", node_name)
+    print("reward: ", reward)
 
     scores.append(reward)
     spend_time = int(time.time() - start_time)
     log_file.write(str(spend_time) + ",{},{:.2f}\n".format(cnt,
                                                            np.mean(scores)))
+    print("\ttime:\t", spend_time)
+    print('\tAverage Score: {:.2f}\n'.format(
+        np.mean(scores)), end="", flush=True)
     log_file.flush()
 
 
@@ -59,4 +65,5 @@ for event in w.stream(v1.list_namespaced_pod, ("default")):
           (event['type'], event['object'].kind, pod_name, event['object'].status.phase))
     if event['object'].status.phase == "Running" and not (pod_name in pod_list):
         cnt += 1
-        Thread(target=log, args=(cnt,)).start()
+        pod_list.append(pod_name)
+        Thread(target=log, args=(cnt, event)).start()

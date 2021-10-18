@@ -13,12 +13,13 @@ from utils import Cache
 from pbs import ModelPredictServicer, model_predict_pb2
 from client import Resource
 from metrics import Monitor
+from flow_control import FlowController
 
 cache = Cache()
 cache_lock = Lock()
 train_lock = Lock()
 s = sched.scheduler(time.time, time.sleep)
-
+flow_controller = FlowController(size=200, duration=1)
 
 EPS_START = ModelConfig.get_eps_start()
 EPS_END = ModelConfig.get_eps_end()
@@ -57,6 +58,9 @@ class ModelPredict(ModelPredictServicer):
     def Predict(self, request, context):
         pod_name = request.podName
 
+        if not flow_controller.grant():
+            return model_predict_pb2.Choice(nodeName="overrate")
+
         cache_lock.acquire()
         node_name = cache.get(pod_name)
         cache_lock.release()
@@ -83,6 +87,7 @@ class ModelPredict(ModelPredictServicer):
                 cache.set(pod_name, node_name, 60)
                 cache_lock.release()
 
+                # if action changed means that action from load packing
                 if action == transfer_action:
                     Thread(target=self.task, args=(action, states)).start()
                 else:

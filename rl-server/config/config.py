@@ -55,6 +55,8 @@ class ModelConfig:
         return int(config.get("MODEL", "TRAIN_INTERVAL"))
 
     def get_eps_start():
+        if os.path.exists(ModelConfig.get_model_path()):
+            return 0.5
         return float(config.get("MODEL", "EPS_START"))
 
     def get_eps_end():

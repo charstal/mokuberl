@@ -11,3 +11,8 @@
 *.csv
 
 *.txt
+
+
+**/baseline
+
+**/metrics
