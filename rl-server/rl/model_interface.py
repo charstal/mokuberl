@@ -19,7 +19,7 @@ cache = Cache()
 cache_lock = Lock()
 train_lock = Lock()
 s = sched.scheduler(time.time, time.sleep)
-flow_controller = FlowController(size=200, duration=1)
+flow_controller = FlowController(capacity=20, rate=3)
 
 EPS_START = ModelConfig.get_eps_start()
 EPS_END = ModelConfig.get_eps_end()

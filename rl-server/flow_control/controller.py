@@ -24,4 +24,4 @@ class FlowController:
 
 
 if __name__ == "__main__":
-    fc = FlowController(size=30)
+    fc = FlowController(capacity=20, rate=3)
