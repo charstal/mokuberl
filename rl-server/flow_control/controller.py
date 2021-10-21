@@ -6,7 +6,7 @@ class FlowController:
     def __init__(self, capacity=20, rate=3):
         self.capacity = capacity
         self.last_time = datetime.datetime.now()
-        self.water = 10
+        self.water = 0
         self.rate = rate
 
     def grant(self):
