@@ -13,10 +13,10 @@ spec:
           resources:
             requests:
               cpu: 400m
-              memory: 1000Mi
+              memory: 500Mi
             limits:
               cpu: 800m
-              memory: 1500Mi
+              memory: 750Mi
           volumeMounts:
             - name: config-volume
               mountPath: /etc/random-load
@@ -26,4 +26,4 @@ spec:
             name: random-load-config
       restartPolicy: Never
   completions: 1
-  # parallelism: 3
+  parallelism: 3

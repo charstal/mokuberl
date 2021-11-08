@@ -9,6 +9,7 @@ import multiprocessing as mp
 from .schedule_env import ScheduleEnv
 from .dqn_agent import Agent
 from config import ModelConfig
+from config import SysConfig
 from utils import Cache
 from pbs import ModelPredictServicer, model_predict_pb2
 from client import Resource
@@ -19,7 +20,8 @@ cache = Cache()
 cache_lock = Lock()
 train_lock = Lock()
 s = sched.scheduler(time.time, time.sleep)
-flow_controller = FlowController(capacity=20, rate=3)
+flow_controller = FlowController(
+    capacity=SysConfig.get_flow_capacity(), rate=SysConfig.get_flow_rate())
 
 EPS_START = ModelConfig.get_eps_start()
 EPS_END = ModelConfig.get_eps_end()

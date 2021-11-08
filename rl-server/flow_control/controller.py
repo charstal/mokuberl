@@ -2,7 +2,7 @@ import datetime
 
 
 class FlowController:
-    # lecky bucket
+    # leaky bucket
     def __init__(self, capacity=20, rate=3):
         self.capacity = capacity
         self.last_time = datetime.datetime.now()

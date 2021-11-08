@@ -46,6 +46,12 @@ class SysConfig:
     def get_mid_high_loading_threshold():
         return int(config.get(ENV, "MID_HIGH_LOADING_PERCENTAGE"))
 
+    def get_flow_capacity():
+        return int(config.get(ENV, "FLOW_CAPACITY"))
+
+    def get_flow_rate():
+        return int(config.get(ENV, "FLOW_RATE"))
+
 
 class ModelConfig:
     def get_model_path():

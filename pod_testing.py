@@ -74,7 +74,7 @@ def stress_load():
     time.sleep(10)
     cnt = 0
     while True:
-        dep = copy.deepcopy(yaml_list[1])
+        dep = copy.deepcopy(yaml_list[0])
         dep["metadata"]["name"] = dep["metadata"]["name"] + "-" + str(cnt)
         k8s_app_client.create_namespaced_job(
             body=dep, namespace="default")
