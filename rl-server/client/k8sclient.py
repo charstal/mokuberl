@@ -13,8 +13,6 @@ config.load_kube_config()
 
 METRICS_WINDOWS = SysConfig.get_metrics_window()
 
-print(METRICS_WINDOWS)
-
 
 class K8sClient:
     def __init__(self):
