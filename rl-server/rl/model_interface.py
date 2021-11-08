@@ -89,15 +89,17 @@ class ModelPredict(ModelPredictServicer):
                 cache.set(pod_name, node_name, 60)
                 cache_lock.release()
 
+                old_node_name = node_name
+                node_name = self.env.check_overload(node_name)
                 # if action changed means that action from load packing
-                if action == transfer_action:
-                    Thread(target=self.task, args=(action, states)).start()
-                else:
-                    Thread(target=self.train, args=(
-                        action, states, self.env.get_normal_negative_reward(), states, False)).start()
+                if old_node_name == node_name:
+                    if action == transfer_action:
+                        Thread(target=self.task, args=(action, states)).start()
+                    else:
+                        Thread(target=self.train, args=(
+                            action, states, self.env.get_normal_negative_reward(), states, False)).start()
 
-        node_name = self.env.check_overload(node_name)
-        print(node_name)
+        # print(node_name)
 
         return model_predict_pb2.Choice(nodeName=node_name)
 
