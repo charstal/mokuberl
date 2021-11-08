@@ -43,6 +43,12 @@ class SysConfig:
     def get_resource_threshold():
         return float(config.get(ENV, "RESOURCE_THRESHOLD"))
 
+    def get_load_variation_risk_balancing_ita():
+        return int(config.get(ENV, "ITA"))
+
+    def get_metrics_window():
+        return int(config.get(ENV, "METRICS_WINDOWS"))
+
     def get_mid_high_loading_threshold():
         return int(config.get(ENV, "MID_HIGH_LOADING_PERCENTAGE"))
 

@@ -1,4 +1,3 @@
-from typing import overload
 from client import K8sClient, EtcdClient, Resource
 import numpy as np
 from config import SysConfig, ModelConfig, TrimaranConfig
@@ -240,20 +239,30 @@ class ScheduleEnv():
     def get_normal_positive_reward(self):
         return self.normal_positive_reward
 
+    def check_overload(self, node_name):
+        avg_metrics = self.k8sclient.get_metrics_avg()[node_name]
+        var_metrics = self.k8sclient.get_metrics_variation()[node_name]
 
-# def list_product(*lists):
-#     result = [[]]
+        if not Trimaran.load_variation_risk_balancing(avg_metrics.get_cpu(), var_metrics.get_cpu()):
+            return "overload"
+        if not Trimaran.load_variation_risk_balancing(avg_metrics.get_memory(), var_metrics.get_memory()):
+            return "overload"
 
-#     for pool in lists:
-#         tmp = []
-#         for x in result:
-#             for y in pool:
-#                 tmp.append(x + [y])
-#         result = tmp
+        return node_name
 
-#     result_str = ["|".join(item) for item in result]
+        # def list_product(*lists):
+        #     result = [[]]
 
-#     return result_str
+        #     for pool in lists:
+        #         tmp = []
+        #         for x in result:
+        #             for y in pool:
+        #                 tmp.append(x + [y])
+        #         result = tmp
+
+        #     result_str = ["|".join(item) for item in result]
+
+        #     return result_str
 
 
 if __name__ == "__main__":

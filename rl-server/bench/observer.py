@@ -6,7 +6,7 @@ import multiprocessing as mp
 import numpy as np
 from kubernetes import client, config, watch
 
-from algorithm import load_balanced_reward_calculate, reward
+from algorithm import load_balanced_reward_calculate
 from metrics import Monitor
 from client import K8sClient
 from config import ModelConfig

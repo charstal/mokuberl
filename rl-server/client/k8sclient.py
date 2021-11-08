@@ -1,12 +1,17 @@
+from threading import Thread
 from kubernetes import client, config
 import math
 import warnings
+from collections import deque
+import time
 
 # from config import NODE_CLASS_CPU, NODE_CLASS_MEMORY
 from .type import Resource
-
+from config import SysConfig
 # config.load_incluster_config()
 config.load_kube_config()
+
+METRICS_WINDOWS = SysConfig.get_metrics_window()
 
 
 class K8sClient:
@@ -14,6 +19,48 @@ class K8sClient:
         # Configs can be set in Configuration class directly or using helper utility
         self._core_client = client.CoreV1Api()
         self._custom_api_client = client.CustomObjectsApi()
+        self.queue = deque(METRICS_WINDOWS)
+        Thread(target=self.get_metrics_per_minute).start()
+
+    def get_metrics_per_minute(self):
+        while True:
+            metrics = self.get_all_node_percentage()
+            self.queue.append(metrics)
+            time.sleep(60)
+
+    def get_metrics_avg(self):
+        avg_metrics = dict()
+        cnt = 0
+        for item in self.queue:
+            cnt += 1
+            for key in item.keys():
+                if avg_metrics.get(key) == None:
+                    avg_metrics[key] = item[key]
+                else:
+                    avg_metrics[key] += item[key]
+
+        for key in avg_metrics.keys():
+            avg_metrics[key] = avg_metrics[key] / cnt
+
+        return avg_metrics
+
+    def get_metrics_variation(self):
+        avg_metrics = self.get_metrics_avg()
+        cnt = 0
+        var_mertics = dict()
+
+        for item in self.queue:
+            cnt += 1
+            for key in item.keys():
+                score = pow(item[key] - avg_metrics[key], 2)
+                if var_mertics.get(key) == None:
+                    var_mertics[key] = score
+                else:
+                    var_mertics[key] += score
+
+        for key in var_mertics.keys():
+            var_mertics[key] = var_mertics[key] / cnt
+        return var_mertics
 
     def get_all_node_capacity(self):
         """get node capacity

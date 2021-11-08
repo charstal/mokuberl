@@ -96,6 +96,9 @@ class ModelPredict(ModelPredictServicer):
                     Thread(target=self.train, args=(
                         action, states, self.env.get_normal_negative_reward(), states, False)).start()
 
+        node_name = self.env.check_overload(node_name)
+        print(node_name)
+
         return model_predict_pb2.Choice(nodeName=node_name)
 
     def task(self, action, states):
