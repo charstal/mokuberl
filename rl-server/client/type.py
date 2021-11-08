@@ -53,6 +53,9 @@ class ResourceAnalysis:
 
         return res_dict[index]
 
+    def __add__(self, rhs):
+        return ResourceAnalysis(self.cpu + rhs.cpu, self.memory + rhs.memory)
+
     def get_cpu(self):
         return self.cpu
 
