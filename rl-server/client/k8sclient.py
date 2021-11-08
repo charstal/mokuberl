@@ -13,13 +13,15 @@ config.load_kube_config()
 
 METRICS_WINDOWS = SysConfig.get_metrics_window()
 
+print(METRICS_WINDOWS)
+
 
 class K8sClient:
     def __init__(self):
         # Configs can be set in Configuration class directly or using helper utility
         self._core_client = client.CoreV1Api()
         self._custom_api_client = client.CustomObjectsApi()
-        self.queue = deque(METRICS_WINDOWS)
+        self.queue = deque(maxlen=METRICS_WINDOWS)
         Thread(target=self.get_metrics_per_minute).start()
 
     def get_metrics_per_minute(self):
