@@ -6,7 +6,7 @@ from collections import deque
 import time
 
 # from config import NODE_CLASS_CPU, NODE_CLASS_MEMORY
-from .type import Resource
+from .type import Resource, ResourceAnalysis
 from config import SysConfig
 # config.load_incluster_config()
 config.load_kube_config()
@@ -53,7 +53,11 @@ class K8sClient:
         for item in self.queue:
             cnt += 1
             for key in item.keys():
-                score = pow(item[key] - avg_metrics[key], 2)
+                score = ResourceAnalysis(
+                    pow(item[key].cpu - avg_metrics[key].cpu, 2),
+                    pow(item[key].memory - avg_metrics[key].memory, 2),
+                )
+                # score = pow(item[key] - avg_metrics[key], 2)
                 if var_mertics.get(key) == None:
                     var_mertics[key] = score
                 else:
