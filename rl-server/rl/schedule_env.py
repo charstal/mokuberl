@@ -1,7 +1,8 @@
+from time import sleep
 from client import K8sClient, EtcdClient, Resource
 import numpy as np
 from config import SysConfig, ModelConfig, TrimaranConfig
-from threading import Timer
+from threading import Thread, Timer
 from algorithm import Trimaran, load_balanced_reward_calculate
 
 # TERMINATE_STATE = 0
@@ -52,9 +53,12 @@ class ScheduleEnv():
 
         # 应该不需要加锁
         # node_lock.acquire()
+        old_node_list = self.node_list
         self.node_list = node_list[:NODE_SIZE]
         self.node_states = node_states
 
+        if old_node_list != self.node_list:
+            self.nodes_changed = True
         # action = 56
         # 56 / node_size = node_ind
         # 56 % node_size = class index -> class
@@ -79,16 +83,23 @@ class ScheduleEnv():
                                      password=ETCD_PASSWORD)
 
         self.update_node_list()
+        self.nodes_changed = False
 
         # 暂时使用定时器，之后看需求可以改成 watch 模式
-        self.node_timer = Timer(NODE_UPDATE_INTERVAL, self.update_node_list)
-        self.node_timer.start()
+        # self.node_timer = Timer(NODE_UPDATE_INTERVAL, self.update_node_list)
+        # self.node_timer.start()
+        Thread(target=self.update_node_list_per_interval).start()
         # node_list = self.get_node_list()
         # self.node_list = node_list[:min(len(node_list), DEFAULT_NODE_SIZE)]
 
         self.normal_negative_reward = NEGATIVE_REWARD
         self.normal_positive_reward = POSITIVE_REWARD
         # self.terminate_states = TERMINATE_STATE
+
+    def update_node_list_per_interval(self):
+        while True:
+            self.update_node_list()
+            sleep(NODE_UPDATE_INTERVAL)
 
     def action2node(self, action_idx):
         node_name = self.actions[action_idx]

@@ -125,6 +125,10 @@ class ModelPredict(ModelPredictServicer):
         # print(next_states)
         # self.states = next_states
 
+        if self.env.nodes_changed:
+            self.env.nodes_changed = False
+            self.eps = EPS_START * 0.5
+
         score = reward
         self.scores.append(score)
         self.eps = max(EPS_END, EPS_DECAY*self.eps)  # decrease epsilon
