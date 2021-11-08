@@ -40,7 +40,8 @@ class K8sClient:
                     avg_metrics[key] += item[key]
 
         for key in avg_metrics.keys():
-            avg_metrics[key] = avg_metrics[key] / cnt
+            avg_metrics[key].cpu = avg_metrics[key].cpu / cnt
+            avg_metrics[key].memory = avg_metrics[key].memory / cnt
 
         return avg_metrics
 
@@ -59,7 +60,8 @@ class K8sClient:
                     var_mertics[key] += score
 
         for key in var_mertics.keys():
-            var_mertics[key] = var_mertics[key] / cnt
+            var_mertics[key].cpu = var_mertics[key].cpu / cnt
+            var_mertics[key].memory = var_mertics[key].memory / cnt
         return var_mertics
 
     def get_all_node_capacity(self):
