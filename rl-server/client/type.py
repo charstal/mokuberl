@@ -59,7 +59,7 @@ class ResourceAnalysis:
     def __add__(self, rhs):
         return ResourceAnalysis(self.cpu + rhs.cpu, self.memory + rhs.memory)
 
-    def __sub(self, rhs):
+    def __sub__(self, rhs):
         return ResourceAnalysis(self.cpu - rhs.cpu, self.memory - rhs.memory)
 
     def get_cpu(self):
