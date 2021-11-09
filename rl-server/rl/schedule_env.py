@@ -82,9 +82,9 @@ class ScheduleEnv():
                                      username=ETCD_USERNAME,
                                      password=ETCD_PASSWORD)
 
-        self.update_node_list()
         self.node_list = []
         self.nodes_changed = False
+        self.update_node_list()
 
         # 暂时使用定时器，之后看需求可以改成 watch 模式
         # self.node_timer = Timer(NODE_UPDATE_INTERVAL, self.update_node_list)
