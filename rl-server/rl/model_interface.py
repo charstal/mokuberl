@@ -89,10 +89,9 @@ class ModelPredict(ModelPredictServicer):
                 cache.set(pod_name, node_name, 60)
                 cache_lock.release()
 
-                old_node_name = node_name
-                node_name = self.env.check_overload(node_name)
+                changed, node_name = self.env.check_overload(node_name)
                 # if action changed means that action from load packing
-                if old_node_name == node_name:
+                if not changed:
                     if action == transfer_action:
                         Thread(target=self.task, args=(action, states)).start()
                     else:

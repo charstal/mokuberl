@@ -251,15 +251,16 @@ class ScheduleEnv():
         return self.normal_positive_reward
 
     def check_overload(self, node_name):
-        avg_metrics = self.k8sclient.get_metrics_avg()[node_name]
-        var_metrics = self.k8sclient.get_metrics_variation()[node_name]
+        if node_name != TERMINATE_ACTION:
+            avg_metrics = self.k8sclient.get_metrics_avg()[node_name]
+            var_metrics = self.k8sclient.get_metrics_variation()[node_name]
 
-        if not Trimaran.load_variation_risk_balancing(avg_metrics.get_cpu(), var_metrics.get_cpu()):
-            return "overload"
-        if not Trimaran.load_variation_risk_balancing(avg_metrics.get_memory(), var_metrics.get_memory()):
-            return "overload"
+            if not Trimaran.load_variation_risk_balancing(avg_metrics.get_cpu(), var_metrics.get_cpu()):
+                return True, TERMINATE_ACTION
+            if not Trimaran.load_variation_risk_balancing(avg_metrics.get_memory(), var_metrics.get_memory()):
+                return True, TERMINATE_ACTION
 
-        return node_name
+        return False, node_name
 
         # def list_product(*lists):
         #     result = [[]]
