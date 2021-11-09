@@ -83,6 +83,7 @@ class ScheduleEnv():
                                      password=ETCD_PASSWORD)
 
         self.update_node_list()
+        self.node_list = []
         self.nodes_changed = False
 
         # 暂时使用定时器，之后看需求可以改成 watch 模式
