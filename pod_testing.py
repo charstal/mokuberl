@@ -37,6 +37,8 @@ def stress_load():
 
     k8s_app_client.delete_collection_namespaced_job(
         namespace="default", propagation_policy='Background')
+    time.sleep(10)
+
 
     cnt = 0
     while True:
@@ -45,10 +47,10 @@ def stress_load():
         k8s_app_client.create_namespaced_job(
             body=dep, namespace="default")
 
-        s.enter(200, 1, delete_job, (dep))
+        s.enter(20, 1, delete_job, (dep))
         cnt += 1
         print("epoch:", cnt)
-        time.sleep(70)
+        time.sleep(20)
 
 
 def delete_job(dep):

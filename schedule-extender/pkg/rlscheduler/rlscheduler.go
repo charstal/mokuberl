@@ -10,12 +10,11 @@ import (
 	v1 "k8s.io/api/core/v1"
 	"k8s.io/apimachinery/pkg/runtime"
 	"k8s.io/klog/v2"
-	framework "k8s.io/kubernetes/pkg/scheduler/framework/v1alpha1"
+	framework "k8s.io/kubernetes/pkg/scheduler/framework"
 )
 
 const (
-	requestSecond = 20
-	Name          = "RLScheduler"
+	Name = "RLScheduler"
 )
 
 var (
@@ -26,14 +25,14 @@ var (
 )
 
 type RLScheduler struct {
-	handle framework.FrameworkHandle
+	handle framework.Handle
 }
 
 func (pl *RLScheduler) Name() string {
 	return Name
 }
 
-func New(obj runtime.Object, handle framework.FrameworkHandle) (framework.Plugin, error) {
+func New(obj runtime.Object, handle framework.Handle) (framework.Plugin, error) {
 	pl := &RLScheduler{
 		handle: handle,
 	}
@@ -46,6 +45,11 @@ func (pl *RLScheduler) ScoreExtensions() framework.ScoreExtensions {
 }
 
 func (pl *RLScheduler) NormalizeScore(context.Context, *framework.CycleState, *v1.Pod, framework.NodeScoreList) *framework.Status {
+	return nil
+}
+
+func (pl *RLScheduler) PreScore(ctx context.Context, state *framework.CycleState, pod *v1.Pod, nodes []*v1.Node) *framework.Status {
+	klog.V(6).Infof("%s PreScore", pod.Name)
 	return nil
 }
 

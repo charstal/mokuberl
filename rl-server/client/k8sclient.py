@@ -73,7 +73,8 @@ class K8sClient:
 
         nodes_occupy = dict()
         for k, v in capacity.items():
-            nodes_occupy[k] = usage[k] / v
+            if k in usage:
+                nodes_occupy[k] = usage[k] / v
             # {
 
             #     NODE_CLASS_CPU: usage[k].get_cpu() * 100 / v.get_cpu(),

@@ -5,18 +5,18 @@ metadata:
 spec:
   template:
     spec:
-      schedulerName: RLScheduler
+      # schedulerName: DemoScheduler
       containers:
         - name: random-load
           image: registry.cn-shanghai.aliyuncs.com/charstal/random_load
           imagePullPolicy: Always
           resources:
             requests:
-              cpu: 1000m
-              memory: 2000Mi
+              cpu: 200m
+              memory: 400Mi
             limits:
-              cpu: 2000m
-              memory: 4000Mi
+              cpu: 400m
+              memory: 800Mi
           volumeMounts:
             - name: config-volume
               mountPath: /etc/random-load
@@ -26,4 +26,4 @@ spec:
             name: random-load-config
       restartPolicy: Never
   completions: 3
-  parallelism: 3
+  parallelism: 1
