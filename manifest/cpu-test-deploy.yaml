@@ -1,0 +1,23 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: cpu-test-deploy
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: cpu-test
+  template:
+    metadata:
+      labels:
+        app: cpu-test
+    spec:
+      # schedulerName: RLScheduler
+      containers:
+        - name: cpu-test
+          image: registry.cn-shanghai.aliyuncs.com/charstal/cpu-test
+          imagePullPolicy: IfNotPresent
+          resources:
+            limits:
+              cpu: 200m
+              memory: 30Mi
