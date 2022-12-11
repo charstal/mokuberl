@@ -7,6 +7,7 @@ require (
 	github.com/stretchr/testify v1.8.1
 	k8s.io/api v0.22.3
 	k8s.io/apimachinery v0.22.3
+	k8s.io/client-go v0.22.3
 	k8s.io/component-base v0.21.6
 	k8s.io/klog/v2 v2.9.0
 	k8s.io/kubernetes v1.21.6
@@ -96,7 +97,6 @@ require (
 	gopkg.in/yaml.v2 v2.4.0 // indirect
 	gopkg.in/yaml.v3 v3.0.1 // indirect
 	k8s.io/apiserver v0.21.6 // indirect
-	k8s.io/client-go v0.22.3 // indirect
 	k8s.io/cloud-provider v0.21.6 // indirect
 	k8s.io/component-helpers v0.21.6 // indirect
 	k8s.io/csi-translation-lib v0.21.6 // indirect
