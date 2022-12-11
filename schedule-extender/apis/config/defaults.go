@@ -1,13 +1,10 @@
 package config
 
-import "flag"
+const (
+	DefaultLoadMonitorAddress = "http://10.214.241.226:32020"
 
-var (
-	LogPath *string = flag.String("log", "./run.log", "Use -log <log output path>")
+	DefaultSafeVarainceMargin      = 1.0
+	DefaultSafeVarianceSensitivity = 1.0
 
-	// Default 1 core CPU usage for containers without requests and limits i.e. Best Effort QoS.
-	DefaultRequestsMilliCores  int64 = 1000
-	DefaultRequestsMilliMemory int64 = 1000
-	// Default requests multiplier for containers without limits predicted as 1.5*requests i.e. Burstable QoS class
-	DefaultRequestsMultiplier = "1"
+	DefaultCourseLabel = "course_id"
 )
