@@ -32,14 +32,22 @@ var (
 		metricstype.Memory,
 	}
 
-	ResourceTypeList = []v1.ResourceName{v1.ResourceCPU, v1.ResourceMemory, v1.ResourceEphemeralStorage, v1.ResourceStorage}
+	ResourceTypeList = []v1.ResourceName{
+		v1.ResourceCPU,
+		v1.ResourceMemory,
+		v1.ResourceEphemeralStorage,
+		v1.ResourceStorage,
+	}
 
 	MetricType2ResourceTypeMap = map[string]v1.ResourceName{
 		metricstype.CPU:    v1.ResourceCPU,
 		metricstype.Memory: v1.ResourceMemory,
 	}
 
-	ResourceType2MetricTypeMap = map[v1.ResourceName]string{v1.ResourceCPU: metricstype.CPU, v1.ResourceMemory: metricstype.Memory}
+	ResourceType2MetricTypeMap = map[v1.ResourceName]string{
+		v1.ResourceCPU:    metricstype.CPU,
+		v1.ResourceMemory: metricstype.Memory,
+	}
 )
 
 type StatisticsResourceStats struct {
@@ -114,7 +122,8 @@ func CreateResourceStats(metrics []metricstype.Metric, node *v1.Node, podRequest
 	rs.UsedAvg = nodeUtil * rs.Capacity / 100
 	rs.UsedStdev = nodeStd * rs.Capacity / 100
 
-	klog.V(6).InfoS("Resource usage statistics for node", "node", klog.KObj(node), "capacity", rs.Capacity, "required", rs.Req, "usedAvg", rs.UsedAvg, "usedStdev", rs.UsedStdev)
+	klog.V(6).InfoS("Resource usage statistics for node", "node", klog.KObj(node), "capacity",
+		rs.Capacity, "required", rs.Req, "usedAvg", rs.UsedAvg, "usedStdev", rs.UsedStdev)
 	return rs, true
 }
 
@@ -150,7 +159,8 @@ func CreateResourceStatsFromStatistics(metrics []metricstype.Metric, node *v1.No
 	rs.UsedAvg = nodeUtil + rs.Req
 	rs.UsedStdev = math.Max(nodeStd, podStd)
 
-	klog.V(6).InfoS("Resource usage statistics for node", "node", klog.KObj(node), "capacity", rs.Capacity, "required", rs.Req, "usedAvg", rs.UsedAvg, "usedStdev", rs.UsedStdev)
+	klog.V(6).InfoS("Resource usage statistics for node", "node", klog.KObj(node), "capacity", rs.Capacity,
+		"required", rs.Req, "usedAvg", rs.UsedAvg, "usedStdev", rs.UsedStdev)
 	return rs, true
 }
 

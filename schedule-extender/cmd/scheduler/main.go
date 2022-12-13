@@ -5,7 +5,7 @@ import (
 	"os"
 	"time"
 
-	"github.com/charstal/schedule-extender/pkg/demoscheduler"
+	"github.com/charstal/schedule-extender/pkg/statisticsbasedloadvariationbalancing"
 	"k8s.io/component-base/logs"
 	"k8s.io/kubernetes/cmd/kube-scheduler/app"
 )
@@ -15,7 +15,7 @@ func main() {
 
 	command := app.NewSchedulerCommand(
 		// app.WithPlugin(rlscheduler.Name, rlscheduler.New),
-		app.WithPlugin(demoscheduler.Name, demoscheduler.New),
+		app.WithPlugin(statisticsbasedloadvariationbalancing.Name, statisticsbasedloadvariationbalancing.New),
 	)
 
 	logs.InitLogs()

@@ -135,6 +135,9 @@ func (c *Collector) Valid() bool {
 	if !c.heartbeatCheck() {
 		return false
 	}
+	if c.metrics.IsNil() || c.metrics.Data.IsNil() {
+		return false
+	}
 	if c.statistics.IsNil() || c.statistics.StatisticsMap.IsNil() {
 		return false
 	}

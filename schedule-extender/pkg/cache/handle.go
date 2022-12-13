@@ -6,7 +6,7 @@ import (
 	"sync"
 	"time"
 
-	"github.com/charstal/schedule-extender/apis/config"
+	"github.com/charstal/load-monitor/pkg/metricstype"
 	v1 "k8s.io/api/core/v1"
 	utilruntime "k8s.io/apimachinery/pkg/util/runtime"
 	clientcache "k8s.io/client-go/tools/cache"
@@ -15,10 +15,10 @@ import (
 )
 
 const (
-	// pod cache cleanuo interval minitues
-	cacheCleanupIntervalMinutes = 5
-	//
-	metricsAgentReportingIntervalSeconds = 60
+	// pod cache cleanup interval minitues
+	CacheCleanupIntervalMinutes = 5
+	// load monitor fetching intervarl
+	MetricsAgentReportingIntervalSeconds = 60
 )
 
 var _ clientcache.ResourceEventHandler = &PodAssignEventHandler{}
@@ -41,7 +41,7 @@ type podInfo struct {
 func New() *PodAssignEventHandler {
 	p := PodAssignEventHandler{ScheduledPodsCache: make(map[string][]podInfo)}
 	go func() {
-		cacheCleanerTicker := time.NewTicker(time.Minute * cacheCleanupIntervalMinutes)
+		cacheCleanerTicker := time.NewTicker(time.Minute * CacheCleanupIntervalMinutes)
 		for range cacheCleanerTicker.C {
 			p.cleanupCache()
 		}
@@ -131,7 +131,7 @@ func (p *PodAssignEventHandler) cleanupCache() {
 		curTime := time.Now()
 
 		idx := sort.Search(len(cache), func(i int) bool {
-			return cache[i].Timestamp.Add(metricsAgentReportingIntervalSeconds * time.Second).After(curTime)
+			return cache[i].Timestamp.Add(MetricsAgentReportingIntervalSeconds * time.Second).After(curTime)
 		})
 		if idx == len(cache) {
 			continue
@@ -152,7 +152,7 @@ func (p *PodAssignEventHandler) cleanupCache() {
 
 // Checks and returns true if the pod is assigned to a node
 func isAssignedAndHaveLabel(pod *v1.Pod) bool {
-	_, ok := pod.Labels[config.DefaultCourseLabel]
+	_, ok := pod.Labels[metricstype.DEFAULT_COURSE_LABEL]
 	klog.InfoS("pod add into cache", klog.KObj(pod))
 	return len(pod.Spec.NodeName) != 0 && ok
 }

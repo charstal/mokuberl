@@ -36,7 +36,11 @@ func DefaultMostLeastRequested(nodeInfo *framework.NodeInfo, pod *v1.Pod) (int64
 
 	score := framework.MaxNodeScore
 	for _, resource := range resourcestats.ResourceTypeList {
-		score = int64(math.Max(0, math.Min(float64(score), float64((1-requested[resource]*1.0/allocatable[resource]))*float64(framework.MaxNodeScore))))
+		score = int64(
+			math.Max(0,
+				math.Min(
+					float64(score),
+					float64((1-requested[resource]*1.0/allocatable[resource]))*float64(framework.MaxNodeScore))))
 	}
 
 	node := nodeInfo.Node()

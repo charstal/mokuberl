@@ -39,6 +39,7 @@ func ComputeScore(rs *resourcestats.ResourceStats, margin float64, sensitivity f
 
 	// evaluate overall risk factor
 	risk := (mu + sigma) / 2
-	klog.V(6).InfoS("Evaluating risk factor", "mu", mu, "sigma", sigma, "margin", margin, "sensitivity", sensitivity, "risk", risk)
+	klog.V(6).InfoS("Evaluating risk factor", "mu", mu, "sigma", sigma, "margin",
+		margin, "sensitivity", sensitivity, "risk", risk)
 	return (1. - risk) * float64(framework.MaxNodeScore)
 }

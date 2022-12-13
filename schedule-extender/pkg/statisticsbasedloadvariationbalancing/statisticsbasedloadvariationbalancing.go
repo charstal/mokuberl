@@ -6,6 +6,7 @@ import (
 	"math"
 	"os"
 	"strconv"
+	"time"
 
 	"github.com/charstal/load-monitor/pkg/metricstype"
 	"github.com/charstal/schedule-extender/apis/config"
@@ -88,6 +89,9 @@ func New(obj runtime.Object, handle framework.Handle) (framework.Plugin, error) 
 	return pl, nil
 }
 
+// if metrics is invalid, use DefaultMostLeastRequested algorithm
+// if statistic is invalid, use requestedBasedLoadVariation
+// other use statisticsbasedloadvariation
 func (pl *StatisticsBasedLoadVariationBalancing) Score(ctx context.Context, cycleState *framework.CycleState, pod *v1.Pod, nodeName string) (int64, *framework.Status) {
 	klog.V(6).InfoS("Calculating score", "pod", klog.KObj(pod), "nodeName", nodeName)
 	score := framework.MinNodeScore
@@ -97,16 +101,16 @@ func (pl *StatisticsBasedLoadVariationBalancing) Score(ctx context.Context, cycl
 		return score, framework.NewStatus(framework.Error, fmt.Sprintf("getting node %q from Snapshot: %v", nodeName, err))
 	}
 	// lack of label
-	_, ok := pod.Labels[config.DefaultCourseLabel]
+	_, ok := pod.Labels[metricstype.DEFAULT_COURSE_LABEL]
 	if !ok {
-		klog.InfoS("This pod has no label of", config.DefaultCourseLabel, ", please add label; using minimum score", "nodeName", nodeName)
+		klog.InfoS("This pod has no label of", metricstype.DEFAULT_COURSE_LABEL, ", please add label; using minimum score", "nodeName", nodeName)
 		return score, nil
 	}
 	// get node metrics
 	metrics, window := pl.collector.GetNodeMetrics(nodeName)
 	statistics, _ := pl.collector.GetAllStatistics()
 	// if have no metrics use capacity instead
-	if metrics == nil {
+	if metrics == nil || time.Now().Unix()-window.End > int64(cache.MetricsAgentReportingIntervalSeconds) {
 		klog.InfoS("Check network, Failed to get metrics for node; using DefaultMostLeastRequested", "nodeName", nodeName)
 		return algorithm.DefaultMostLeastRequested(nodeInfo, pod)
 	}
@@ -116,7 +120,7 @@ func (pl *StatisticsBasedLoadVariationBalancing) Score(ctx context.Context, cycl
 		return pl.requestedBasedLoadVariation(node, pod, metrics, window)
 	}
 
-	// Todo base statisticLoadVariation
+	// statistic based LoadVariation
 
 	return pl.statisticsbasedloadvariation(node, pod, metrics, statistics, window)
 }
@@ -144,25 +148,34 @@ func (pl *StatisticsBasedLoadVariationBalancing) requestedBasedLoadVariation(
 	podRequest := resourcestats.GetResourceRequested(pod)
 
 	scoreFunc := func(resourceType v1.ResourceName) (float64, bool) {
-		resourceStats, resourceOk := resourcestats.CreateResourceStats(*nodeMetrics, node, podRequest, v1.ResourceCPU, resourcestats.ResourceType2MetricTypeMap[resourceType])
+		resourceStats, resourceOk := resourcestats.CreateResourceStats(
+			*nodeMetrics, node, podRequest, resourceType,
+			resourcestats.ResourceType2MetricTypeMap[resourceType])
 		if !resourceOk {
 			return 0, false
 		}
 		resourceScore := algorithm.ComputeScore(resourceStats, safeVarianceMargin, safeVarianceSensitivity)
-		klog.V(6).InfoS("requestedBasedLoadVariation Calculating", "pod", klog.KObj(pod), "nodeName", nodeName, resourceType, "Score", resourceScore)
+		klog.V(6).InfoS("requestedBasedLoadVariation Calculating", "pod", klog.KObj(pod), "nodeName", nodeName,
+			resourceType, "Score", resourceScore)
 		return resourceScore, true
 	}
 	// calculate total score
 	totalScore := 100.0
-	for tt, _ := range resourcestats.ResourceType2MetricTypeMap {
+	hasScore := false
+	for tt := range resourcestats.ResourceType2MetricTypeMap {
 		s, v := scoreFunc(tt)
 		if v {
 			totalScore = math.Min(totalScore, s)
+			hasScore = true
 		}
 	}
-
 	score = int64(math.Round(totalScore))
-	klog.V(6).InfoS("requestedBasedLoadVariation Calculating totalScore", "pod", klog.KObj(pod), "nodeName", nodeName, "totalScore", score)
+	if !hasScore {
+		score = 0
+	}
+
+	klog.V(6).InfoS("requestedBasedLoadVariation Calculating totalScore", "pod", klog.KObj(pod), "nodeName",
+		nodeName, "totalScore", score)
 
 	return score, nil
 }
@@ -176,7 +189,7 @@ func (pl *StatisticsBasedLoadVariationBalancing) statisticsbasedloadvariation(
 ) (int64, *framework.Status) {
 
 	score := framework.MinNodeScore
-	podLabel := pod.Labels[config.DefaultCourseLabel]
+	podLabel := pod.Labels[metricstype.DEFAULT_COURSE_LABEL]
 	nodeName := node.Name
 
 	podRequest, valid := resourcestats.CreateStatisticsResource(statistic, podLabel)
@@ -194,7 +207,7 @@ func (pl *StatisticsBasedLoadVariationBalancing) statisticsbasedloadvariation(
 		// counting metrics twice in case actual t is less than metricsAgentReportingIntervalSeconds
 		if info.Timestamp.Unix() > metricWindow.End || info.Timestamp.Unix() <= metricWindow.End &&
 			(metricWindow.End-info.Timestamp.Unix()) < metricsAgentReportingIntervalSeconds {
-			re, valid := resourcestats.CreateStatisticsResource(statistic, info.Pod.Labels[config.DefaultCourseLabel])
+			re, valid := resourcestats.CreateStatisticsResource(statistic, info.Pod.Labels[metricstype.DEFAULT_COURSE_LABEL])
 			if valid {
 				requestList = append(requestList, *re)
 			}
@@ -203,7 +216,8 @@ func (pl *StatisticsBasedLoadVariationBalancing) statisticsbasedloadvariation(
 	}
 
 	scoreFunc := func(resourceType v1.ResourceName) (float64, bool) {
-		resourceStats, resourceOk := resourcestats.CreateResourceStatsFromStatistics(*nodeMetrics, node, requestList, v1.ResourceCPU, resourcestats.ResourceType2MetricTypeMap[resourceType])
+		resourceStats, resourceOk := resourcestats.CreateResourceStatsFromStatistics(
+			*nodeMetrics, node, requestList, resourceType, resourcestats.ResourceType2MetricTypeMap[resourceType])
 		if !resourceOk {
 			return 0, false
 		}
@@ -213,15 +227,73 @@ func (pl *StatisticsBasedLoadVariationBalancing) statisticsbasedloadvariation(
 	}
 	// calculate total score
 	totalScore := 100.0
+	hasScore := false
 	for tt := range resourcestats.ResourceType2MetricTypeMap {
 		s, v := scoreFunc(tt)
 		if v {
 			totalScore = math.Min(totalScore, s)
+			hasScore = true
 		}
 	}
 
+	// addtion score
+	additionScore, valid := pl.additionScore(nodeMetrics)
+	if valid {
+		totalScore = math.Min(additionScore, totalScore)
+		hasScore = true
+	}
+
+	if !hasScore {
+		totalScore = 0
+	}
 	score = int64(math.Round(totalScore))
+
 	klog.V(6).InfoS("requestedBasedLoadVariation Calculating totalScore", "pod", klog.KObj(pod), "nodeName", nodeName, "totalScore", score)
 
 	return score, nil
+}
+
+// cal addition score: disk saturation, and network bytes include in and out
+func (pl *StatisticsBasedLoadVariationBalancing) additionScore(nodeMetrics *[]metricstype.Metric) (float64, bool) {
+	score := framework.MaxNodeScore
+	hasScore := false
+	diskUtil := 0.0
+	networkInBytes := 0.0
+	networkOutBytes := 0.0
+	networkCapacity := 0.0
+
+	for _, metric := range *nodeMetrics {
+		if metric.Name == metricstype.NODE_DISK_SATURATION {
+			diskUtil = metric.Value
+			hasScore = true
+		} else if metric.Name == metricstype.KUBE_NODE_STATUS_CAPACITY && metric.Type == metricstype.Network {
+			if metric.Operator == metricstype.Capacity && metric.Unit == metricstype.Bytes {
+				networkCapacity = metric.Value
+				hasScore = true
+			}
+		} else if metric.Name == metricstype.NODE_NETWORK_RECEIVE_BYTES_EXCLUDING_LO {
+			networkInBytes = metric.Value
+		} else if metric.Name == metricstype.NODE_NETWORK_TRANSMIT_BYTES_EXCLUDING_LO {
+			networkOutBytes = metric.Value
+		}
+
+	}
+	totalScore := float64(framework.MaxNodeScore)
+	scoreDiskUtil := (1.0 - diskUtil) * float64(framework.MaxNodeScore)
+	scoreDiskUtil = math.Max(0, scoreDiskUtil)
+	scoreNetworkUtil := 0.0
+	if networkCapacity != 0 {
+		scoreNetworkUtil = (1.0 - (networkInBytes+networkOutBytes)/networkCapacity) * float64(framework.MaxNodeScore)
+		scoreNetworkUtil = math.Max(0, scoreNetworkUtil)
+	}
+	totalScore = math.Min(totalScore, scoreDiskUtil)
+	totalScore = math.Min(totalScore, scoreNetworkUtil)
+
+	if !hasScore {
+		score = framework.MinNodeScore
+	} else {
+		score = int64(totalScore)
+	}
+
+	return float64(score), true
 }

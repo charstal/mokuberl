@@ -1,0 +1,753 @@
+{
+    "timestamp": 1670731045,
+    "window": {
+        "duration": "5m",
+        "start": 1670730745,
+        "end": 1670731045
+    },
+    "source": "Prometheus",
+    "data": {
+        "NodeMetricsMap": {
+            "k8s-node02": {
+                "metrics": [
+                    {
+                        "name": "kube_node_status_capacity",
+                        "type": "cpu",
+                        "operator": "Capacity",
+                        "rollup": "Latest",
+                        "value": 8,
+                        "unit": "core"
+                    },
+                    {
+                        "name": "kube_node_status_capacity",
+                        "type": "ephemeral_storage",
+                        "operator": "Capacity",
+                        "rollup": "Latest",
+                        "value": 18238930944,
+                        "unit": "byte"
+                    },
+                    {
+                        "name": "kube_node_status_capacity",
+                        "type": "hugepages_2mi",
+                        "operator": "Capacity",
+                        "rollup": "Latest",
+                        "value": 0,
+                        "unit": "byte"
+                    },
+                    {
+                        "name": "kube_node_status_capacity",
+                        "type": "memory",
+                        "operator": "Capacity",
+                        "rollup": "Latest",
+                        "value": 21050421248,
+                        "unit": "byte"
+                    },
+                    {
+                        "name": "kube_node_status_capacity",
+                        "type": "pods",
+                        "operator": "Capacity",
+                        "rollup": "Latest",
+                        "value": 110,
+                        "unit": "integer"
+                    },
+                    {
+                        "name": "kube_node_status_capacity",
+                        "type": "network",
+                        "operator": "Capacity",
+                        "rollup": "Latest",
+                        "value": 10420224,
+                        "unit": "bytes"
+                    },
+                    {
+                        "name": "instance:node_cpu:ratio",
+                        "type": "cpu",
+                        "operator": "Avg",
+                        "rollup": "5m",
+                        "value": 3.2793375137609604,
+                        "unit": "ratio"
+                    },
+                    {
+                        "name": "instance:node_cpu:ratio",
+                        "type": "cpu",
+                        "operator": "Std",
+                        "rollup": "5m",
+                        "value": 0.010162440305570392,
+                        "unit": "ratio"
+                    },
+                    {
+                        "name": "instance:node_cpu:ratio",
+                        "type": "cpu",
+                        "operator": "Latest",
+                        "rollup": "5m",
+                        "value": 3.302631578947334,
+                        "unit": "ratio"
+                    },
+                    {
+                        "name": "instance:node_memory_utilisation:ratio",
+                        "type": "memory",
+                        "operator": "Avg",
+                        "rollup": "5m",
+                        "value": 12.428309273138968,
+                        "unit": "ratio"
+                    },
+                    {
+                        "name": "instance:node_memory_utilisation:ratio",
+                        "type": "memory",
+                        "operator": "Std",
+                        "rollup": "5m",
+                        "value": 0.022786714572756144,
+                        "unit": "ratio"
+                    },
+                    {
+                        "name": "instance:node_memory_utilisation:ratio",
+                        "type": "memory",
+                        "operator": "Latest",
+                        "rollup": "5m",
+                        "value": 12.40193389596913,
+                        "unit": "ratio"
+                    },
+                    {
+                        "name": "node_disk_total_util_rate",
+                        "type": "",
+                        "operator": "Unknown",
+                        "rollup": "",
+                        "value": 1.6771929824561405,
+                        "unit": ""
+                    },
+                    {
+                        "name": "node_disk_read_util_rate",
+                        "type": "",
+                        "operator": "Unknown",
+                        "rollup": "",
+                        "value": 0,
+                        "unit": ""
+                    },
+                    {
+                        "name": "node_disk_write_util_rate",
+                        "type": "",
+                        "operator": "Unknown",
+                        "rollup": "",
+                        "value": 1.6771929824561405,
+                        "unit": ""
+                    },
+                    {
+                        "name": "node_running_pod_count",
+                        "type": "",
+                        "operator": "Latest",
+                        "rollup": "",
+                        "value": 14,
+                        "unit": "integer"
+                    },
+                    {
+                        "name": "node_thread_count",
+                        "type": "",
+                        "operator": "Latest",
+                        "rollup": "",
+                        "value": 672,
+                        "unit": "integer"
+                    },
+                    {
+                        "name": "node_disk_saturation",
+                        "type": "",
+                        "operator": "Unknown",
+                        "rollup": "5m",
+                        "value": 0.0029879142300201084,
+                        "unit": ""
+                    },
+                    {
+                        "name": "node_disk_util_rate",
+                        "type": "",
+                        "operator": "Unknown",
+                        "rollup": "5m",
+                        "value": 0.0024736842105264594,
+                        "unit": ""
+                    },
+                    {
+                        "name": "node_cpu_util_rate",
+                        "type": "",
+                        "operator": "Unknown",
+                        "rollup": "5m",
+                        "value": 0.03771491228069779,
+                        "unit": ""
+                    },
+                    {
+                        "name": "node_network_receive_bytes_excluding_lo",
+                        "type": "",
+                        "operator": "Unknown",
+                        "rollup": "5m",
+                        "value": 27437.266666666663,
+                        "unit": "bytes"
+                    },
+                    {
+                        "name": "node_network_receive_drop_bytes_excluding_lo",
+                        "type": "",
+                        "operator": "Unknown",
+                        "rollup": "5m",
+                        "value": 0,
+                        "unit": "bytes"
+                    },
+                    {
+                        "name": "node_network_transmit_bytes_excluding_lo",
+                        "type": "",
+                        "operator": "Unknown",
+                        "rollup": "5m",
+                        "value": 34338.15438596491,
+                        "unit": "bytes"
+                    },
+                    {
+                        "name": "node_network_transmit_drop_bytes_excluding_lo",
+                        "type": "",
+                        "operator": "Unknown",
+                        "rollup": "5m",
+                        "value": 0,
+                        "unit": "bytes"
+                    }
+                ],
+                "tags": {},
+                "metadata": {
+                    "dataCenter": ""
+                }
+            },
+            "": {
+                "metrics": [
+                    {
+                        "name": "node_pod_count_of_label",
+                        "type": "",
+                        "operator": "Latest",
+                        "rollup": "",
+                        "value": 30,
+                        "unit": "integer"
+                    }
+                ],
+                "tags": {},
+                "metadata": {
+                    "dataCenter": ""
+                }
+            },
+            "k8s-master": {
+                "metrics": [
+                    {
+                        "name": "kube_node_status_capacity",
+                        "type": "cpu",
+                        "operator": "Capacity",
+                        "rollup": "Latest",
+                        "value": 8,
+                        "unit": "core"
+                    },
+                    {
+                        "name": "kube_node_status_capacity",
+                        "type": "ephemeral_storage",
+                        "operator": "Capacity",
+                        "rollup": "Latest",
+                        "value": 18238930944,
+                        "unit": "byte"
+                    },
+                    {
+                        "name": "kube_node_status_capacity",
+                        "type": "hugepages_2mi",
+                        "operator": "Capacity",
+                        "rollup": "Latest",
+                        "value": 0,
+                        "unit": "byte"
+                    },
+                    {
+                        "name": "kube_node_status_capacity",
+                        "type": "memory",
+                        "operator": "Capacity",
+                        "rollup": "Latest",
+                        "value": 21050421248,
+                        "unit": "byte"
+                    },
+                    {
+                        "name": "kube_node_status_capacity",
+                        "type": "pods",
+                        "operator": "Capacity",
+                        "rollup": "Latest",
+                        "value": 110,
+                        "unit": "integer"
+                    },
+                    {
+                        "name": "kube_node_status_capacity",
+                        "type": "network",
+                        "operator": "Capacity",
+                        "rollup": "Latest",
+                        "value": 10420224,
+                        "unit": "bytes"
+                    },
+                    {
+                        "name": "instance:node_cpu:ratio",
+                        "type": "cpu",
+                        "operator": "Avg",
+                        "rollup": "5m",
+                        "value": 2.190394736842098,
+                        "unit": "ratio"
+                    },
+                    {
+                        "name": "instance:node_cpu:ratio",
+                        "type": "cpu",
+                        "operator": "Std",
+                        "rollup": "5m",
+                        "value": 0.024343053561424913,
+                        "unit": "ratio"
+                    },
+                    {
+                        "name": "instance:node_cpu:ratio",
+                        "type": "cpu",
+                        "operator": "Latest",
+                        "rollup": "5m",
+                        "value": 2.2473684210525997,
+                        "unit": "ratio"
+                    },
+                    {
+                        "name": "instance:node_memory_utilisation:ratio",
+                        "type": "memory",
+                        "operator": "Avg",
+                        "rollup": "5m",
+                        "value": 10.274757294966221,
+                        "unit": "ratio"
+                    },
+                    {
+                        "name": "instance:node_memory_utilisation:ratio",
+                        "type": "memory",
+                        "operator": "Std",
+                        "rollup": "5m",
+                        "value": 0.1403709435142581,
+                        "unit": "ratio"
+                    },
+                    {
+                        "name": "instance:node_memory_utilisation:ratio",
+                        "type": "memory",
+                        "operator": "Latest",
+                        "rollup": "5m",
+                        "value": 10.537678262427896,
+                        "unit": "ratio"
+                    },
+                    {
+                        "name": "node_disk_total_util_rate",
+                        "type": "",
+                        "operator": "Unknown",
+                        "rollup": "",
+                        "value": 25.83157894736842,
+                        "unit": ""
+                    },
+                    {
+                        "name": "node_disk_read_util_rate",
+                        "type": "",
+                        "operator": "Unknown",
+                        "rollup": "",
+                        "value": 0,
+                        "unit": ""
+                    },
+                    {
+                        "name": "node_disk_write_util_rate",
+                        "type": "",
+                        "operator": "Unknown",
+                        "rollup": "",
+                        "value": 25.83157894736842,
+                        "unit": ""
+                    },
+                    {
+                        "name": "node_running_pod_count",
+                        "type": "",
+                        "operator": "Latest",
+                        "rollup": "",
+                        "value": 11,
+                        "unit": "integer"
+                    },
+                    {
+                        "name": "node_thread_count",
+                        "type": "",
+                        "operator": "Latest",
+                        "rollup": "",
+                        "value": 350,
+                        "unit": "integer"
+                    },
+                    {
+                        "name": "node_disk_saturation",
+                        "type": "",
+                        "operator": "Unknown",
+                        "rollup": "5m",
+                        "value": 0.003656140350877254,
+                        "unit": ""
+                    },
+                    {
+                        "name": "node_disk_util_rate",
+                        "type": "",
+                        "operator": "Unknown",
+                        "rollup": "5m",
+                        "value": 0.015936842105261268,
+                        "unit": ""
+                    },
+                    {
+                        "name": "node_cpu_util_rate",
+                        "type": "",
+                        "operator": "Unknown",
+                        "rollup": "5m",
+                        "value": 0.027671052631603077,
+                        "unit": ""
+                    },
+                    {
+                        "name": "node_network_receive_bytes_excluding_lo",
+                        "type": "",
+                        "operator": "Unknown",
+                        "rollup": "5m",
+                        "value": 6406.691228070175,
+                        "unit": "bytes"
+                    },
+                    {
+                        "name": "node_network_receive_drop_bytes_excluding_lo",
+                        "type": "",
+                        "operator": "Unknown",
+                        "rollup": "5m",
+                        "value": 0,
+                        "unit": "bytes"
+                    },
+                    {
+                        "name": "node_network_transmit_bytes_excluding_lo",
+                        "type": "",
+                        "operator": "Unknown",
+                        "rollup": "5m",
+                        "value": 22103.23859649123,
+                        "unit": "bytes"
+                    },
+                    {
+                        "name": "node_network_transmit_drop_bytes_excluding_lo",
+                        "type": "",
+                        "operator": "Unknown",
+                        "rollup": "5m",
+                        "value": 0,
+                        "unit": "bytes"
+                    }
+                ],
+                "tags": {},
+                "metadata": {
+                    "dataCenter": ""
+                }
+            },
+            "k8s-node01": {
+                "metrics": [
+                    {
+                        "name": "kube_node_status_capacity",
+                        "type": "cpu",
+                        "operator": "Capacity",
+                        "rollup": "Latest",
+                        "value": 8,
+                        "unit": "core"
+                    },
+                    {
+                        "name": "kube_node_status_capacity",
+                        "type": "ephemeral_storage",
+                        "operator": "Capacity",
+                        "rollup": "Latest",
+                        "value": 18238930944,
+                        "unit": "byte"
+                    },
+                    {
+                        "name": "kube_node_status_capacity",
+                        "type": "hugepages_2mi",
+                        "operator": "Capacity",
+                        "rollup": "Latest",
+                        "value": 0,
+                        "unit": "byte"
+                    },
+                    {
+                        "name": "kube_node_status_capacity",
+                        "type": "memory",
+                        "operator": "Capacity",
+                        "rollup": "Latest",
+                        "value": 21050421248,
+                        "unit": "byte"
+                    },
+                    {
+                        "name": "kube_node_status_capacity",
+                        "type": "pods",
+                        "operator": "Capacity",
+                        "rollup": "Latest",
+                        "value": 110,
+                        "unit": "integer"
+                    },
+                    {
+                        "name": "kube_node_status_capacity",
+                        "type": "network",
+                        "operator": "Capacity",
+                        "rollup": "Latest",
+                        "value": 10420224,
+                        "unit": "bytes"
+                    },
+                    {
+                        "name": "instance:node_cpu:ratio",
+                        "type": "cpu",
+                        "operator": "Avg",
+                        "rollup": "5m",
+                        "value": 0.9117690058479467,
+                        "unit": "ratio"
+                    },
+                    {
+                        "name": "instance:node_cpu:ratio",
+                        "type": "cpu",
+                        "operator": "Std",
+                        "rollup": "5m",
+                        "value": 0.004785527903590243,
+                        "unit": "ratio"
+                    },
+                    {
+                        "name": "instance:node_cpu:ratio",
+                        "type": "cpu",
+                        "operator": "Latest",
+                        "rollup": "5m",
+                        "value": 0.9188596491227959,
+                        "unit": "ratio"
+                    },
+                    {
+                        "name": "instance:node_memory_utilisation:ratio",
+                        "type": "memory",
+                        "operator": "Avg",
+                        "rollup": "5m",
+                        "value": 4.913881620769359,
+                        "unit": "ratio"
+                    },
+                    {
+                        "name": "instance:node_memory_utilisation:ratio",
+                        "type": "memory",
+                        "operator": "Std",
+                        "rollup": "5m",
+                        "value": 0.010429783447213724,
+                        "unit": "ratio"
+                    },
+                    {
+                        "name": "instance:node_memory_utilisation:ratio",
+                        "type": "memory",
+                        "operator": "Latest",
+                        "rollup": "5m",
+                        "value": 4.891576866177116,
+                        "unit": "ratio"
+                    },
+                    {
+                        "name": "node_disk_total_util_rate",
+                        "type": "",
+                        "operator": "Unknown",
+                        "rollup": "",
+                        "value": 0.2175438596491228,
+                        "unit": ""
+                    },
+                    {
+                        "name": "node_disk_read_util_rate",
+                        "type": "",
+                        "operator": "Unknown",
+                        "rollup": "",
+                        "value": 0,
+                        "unit": ""
+                    },
+                    {
+                        "name": "node_disk_write_util_rate",
+                        "type": "",
+                        "operator": "Unknown",
+                        "rollup": "",
+                        "value": 0.2175438596491228,
+                        "unit": ""
+                    },
+                    {
+                        "name": "node_running_pod_count",
+                        "type": "",
+                        "operator": "Latest",
+                        "rollup": "",
+                        "value": 4,
+                        "unit": "integer"
+                    },
+                    {
+                        "name": "node_thread_count",
+                        "type": "",
+                        "operator": "Latest",
+                        "rollup": "",
+                        "value": 152,
+                        "unit": "integer"
+                    },
+                    {
+                        "name": "node_disk_saturation",
+                        "type": "",
+                        "operator": "Unknown",
+                        "rollup": "5m",
+                        "value": 0.00003352826510721744,
+                        "unit": ""
+                    },
+                    {
+                        "name": "node_disk_util_rate",
+                        "type": "",
+                        "operator": "Unknown",
+                        "rollup": "5m",
+                        "value": 0.000350877192982486,
+                        "unit": ""
+                    },
+                    {
+                        "name": "node_cpu_util_rate",
+                        "type": "",
+                        "operator": "Unknown",
+                        "rollup": "5m",
+                        "value": 0.0109868421052709,
+                        "unit": ""
+                    },
+                    {
+                        "name": "node_network_receive_bytes_excluding_lo",
+                        "type": "",
+                        "operator": "Unknown",
+                        "rollup": "5m",
+                        "value": 3234.877192982456,
+                        "unit": "bytes"
+                    },
+                    {
+                        "name": "node_network_receive_drop_bytes_excluding_lo",
+                        "type": "",
+                        "operator": "Unknown",
+                        "rollup": "5m",
+                        "value": 0,
+                        "unit": "bytes"
+                    },
+                    {
+                        "name": "node_network_transmit_bytes_excluding_lo",
+                        "type": "",
+                        "operator": "Unknown",
+                        "rollup": "5m",
+                        "value": 5226.540350877192,
+                        "unit": "bytes"
+                    },
+                    {
+                        "name": "node_network_transmit_drop_bytes_excluding_lo",
+                        "type": "",
+                        "operator": "Unknown",
+                        "rollup": "5m",
+                        "value": 0,
+                        "unit": "bytes"
+                    }
+                ],
+                "tags": {},
+                "metadata": {
+                    "dataCenter": ""
+                }
+            }
+        }
+    },
+    "statistics": {
+        "StatisticsMap": {
+            "10.244.2.128:8443": {
+                "metrics": [
+                    {
+                        "name": "statistic",
+                        "type": "cpu",
+                        "operator": "Std",
+                        "rollup": "15d",
+                        "value": 0.4585529424024004,
+                        "unit": "m"
+                    },
+                    {
+                        "name": "statistic",
+                        "type": "cpu",
+                        "operator": "Avg",
+                        "rollup": "15d",
+                        "value": 0.8493474127702407,
+                        "unit": "m"
+                    },
+                    {
+                        "name": "statistic",
+                        "type": "memory",
+                        "operator": "Std",
+                        "rollup": "15d",
+                        "value": 0.7139051418418147,
+                        "unit": "MiB"
+                    },
+                    {
+                        "name": "statistic",
+                        "type": "memory",
+                        "operator": "Avg",
+                        "rollup": "15d",
+                        "value": 7.8976930140999295,
+                        "unit": "MiB"
+                    }
+                ],
+                "tags": {},
+                "metadata": {
+                    "dataCenter": ""
+                }
+            },
+            "10.244.2.97:8443": {
+                "metrics": [
+                    {
+                        "name": "statistic",
+                        "type": "cpu",
+                        "operator": "Std",
+                        "rollup": "15d",
+                        "value": 3.744814914076302,
+                        "unit": "m"
+                    },
+                    {
+                        "name": "statistic",
+                        "type": "cpu",
+                        "operator": "Avg",
+                        "rollup": "15d",
+                        "value": 9.82500296795084,
+                        "unit": "m"
+                    },
+                    {
+                        "name": "statistic",
+                        "type": "memory",
+                        "operator": "Std",
+                        "rollup": "15d",
+                        "value": 17.154581098797433,
+                        "unit": "MiB"
+                    },
+                    {
+                        "name": "statistic",
+                        "type": "memory",
+                        "operator": "Avg",
+                        "rollup": "15d",
+                        "value": 270.4259552018648,
+                        "unit": "MiB"
+                    }
+                ],
+                "tags": {},
+                "metadata": {
+                    "dataCenter": ""
+                }
+            },
+            "all": {
+                "metrics": [
+                    {
+                        "name": "statistic",
+                        "type": "cpu",
+                        "operator": "Std",
+                        "rollup": "15d",
+                        "value": 3.052970288460744,
+                        "unit": "m"
+                    },
+                    {
+                        "name": "statistic",
+                        "type": "cpu",
+                        "operator": "Avg",
+                        "rollup": "15d",
+                        "value": 7.935391272123347,
+                        "unit": "m"
+                    },
+                    {
+                        "name": "statistic",
+                        "type": "memory",
+                        "operator": "Std",
+                        "rollup": "15d",
+                        "value": 13.69338616049098,
+                        "unit": "MiB"
+                    },
+                    {
+                        "name": "statistic",
+                        "type": "memory",
+                        "operator": "Avg",
+                        "rollup": "15d",
+                        "value": 215.15684737286168,
+                        "unit": "MiB"
+                    }
+                ],
+                "tags": {},
+                "metadata": {
+                    "dataCenter": ""
+                }
+            }
+        }
+    }
+}
