@@ -25,16 +25,19 @@ $$score = maxScore * (1 - worstRisk)$$
 
 ## 工程实现逻辑
 
-metrics：node的实时数据指标
-statistics：label统计信息
-window：实时数据统计窗口时间
-r：资源
+- metrics：node的实时数据指标
+- statistics：label统计信息
+- window：实时数据统计窗口时间
+- r：资源
 
 1. 若无course label，直接拒绝调度
 2. 若 metrics 不存在或者window的end时间距离当前时间超过 MetricsAgentReportingIntervalSeconds 则使用DefaultMostLeastRequested 算法
+
 $$score = Min(1 - \frac{request_{r}}{alocatable_{r}}) * 100$$
+
 3. 若 statistics 不存在则使用 requestedBasedLoadVariation
   - 上文提到原公式过程
+
 $$
 risk =  \frac{(average_{node} + request_{pod} + margin * stDev_{node}^{\frac{1}{sensitivity}})}{2}
 $$
@@ -46,7 +49,7 @@ $$
 risk =  \frac{(average_{node} + average_{pod} + margin * Max(stDev_{node}, stDev_{pod})^{\frac{1}{sensitivity}})}{2}
 $$
 
-在某一时刻，调度器接受调度请求 $s$ 。调度器得到最新的metrics，记为$m_{t^{'}}$。
+在某一时刻，调度器接受调度请求 $s$ 。调度器得到最新的metrics，记为 $m_{t^{'}}$。
 
 
 ```
