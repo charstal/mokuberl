@@ -5,4 +5,6 @@ const (
 
 	DefaultSafeVarainceMargin      = 1.0
 	DefaultSafeVarianceSensitivity = 1.0
+
+	DefaultCourseLabel = "course_id"
 )

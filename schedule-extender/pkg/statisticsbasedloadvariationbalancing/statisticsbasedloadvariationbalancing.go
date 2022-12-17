@@ -101,21 +101,22 @@ func (pl *StatisticsBasedLoadVariationBalancing) Score(ctx context.Context, cycl
 		return score, framework.NewStatus(framework.Error, fmt.Sprintf("getting node %q from Snapshot: %v", nodeName, err))
 	}
 	// lack of label
-	_, ok := pod.Labels[metricstype.DEFAULT_COURSE_LABEL]
+	label, ok := pod.Labels[config.DefaultCourseLabel]
 	if !ok {
-		klog.InfoS("This pod has no label of", metricstype.DEFAULT_COURSE_LABEL, ", please add label; using minimum score", "nodeName", nodeName)
+		klog.ErrorS(nil, "This pod has no label of", config.DefaultCourseLabel, ", please add label; using minimum score", "nodeName", nodeName)
 		return score, nil
 	}
+	klog.InfoS("This pod ", pod.Name, "has label of", label)
 	// get node metrics
 	metrics, window := pl.collector.GetNodeMetrics(nodeName)
 	statistics, _ := pl.collector.GetAllStatistics()
 	// if have no metrics use capacity instead
 	if metrics == nil || time.Now().Unix()-window.End > int64(cache.MetricsAgentReportingIntervalSeconds) {
-		klog.InfoS("Check network, Failed to get metrics for node; using DefaultMostLeastRequested", "nodeName", nodeName)
+		klog.ErrorS(nil, "Check network, Failed to get metrics for node; using DefaultMostLeastRequested", "nodeName", nodeName)
 		return algorithm.DefaultMostLeastRequested(nodeInfo, pod)
 	}
 	// if have no statistics use request
-	if statistics.StatisticsMap.IsNil() {
+	if statistics == nil || statistics.StatisticsMap == nil || statistics.StatisticsMap.IsNil() || len(statistics.StatisticsMap) == 0 {
 		klog.InfoS("lack of statistics; using RequestedBasedLoadVariation instead", "nodeName", nodeName)
 		return pl.requestedBasedLoadVariation(node, pod, metrics, window)
 	}
@@ -189,7 +190,7 @@ func (pl *StatisticsBasedLoadVariationBalancing) statisticsbasedloadvariation(
 ) (int64, *framework.Status) {
 
 	score := framework.MinNodeScore
-	podLabel := pod.Labels[metricstype.DEFAULT_COURSE_LABEL]
+	podLabel := pod.Labels[config.DefaultCourseLabel]
 	nodeName := node.Name
 
 	podRequest, valid := resourcestats.CreateStatisticsResource(statistic, podLabel)
@@ -207,7 +208,7 @@ func (pl *StatisticsBasedLoadVariationBalancing) statisticsbasedloadvariation(
 		// counting metrics twice in case actual t is less than metricsAgentReportingIntervalSeconds
 		if info.Timestamp.Unix() > metricWindow.End || info.Timestamp.Unix() <= metricWindow.End &&
 			(metricWindow.End-info.Timestamp.Unix()) < metricsAgentReportingIntervalSeconds {
-			re, valid := resourcestats.CreateStatisticsResource(statistic, info.Pod.Labels[metricstype.DEFAULT_COURSE_LABEL])
+			re, valid := resourcestats.CreateStatisticsResource(statistic, info.Pod.Labels[config.DefaultCourseLabel])
 			if valid {
 				requestList = append(requestList, *re)
 			}
@@ -258,42 +259,32 @@ func (pl *StatisticsBasedLoadVariationBalancing) additionScore(nodeMetrics *[]me
 	score := framework.MaxNodeScore
 	hasScore := false
 	diskUtil := 0.0
-	networkInBytes := 0.0
-	networkOutBytes := 0.0
-	networkCapacity := 0.0
+	networkUtil := 0.0
 
 	for _, metric := range *nodeMetrics {
 		if metric.Name == metricstype.NODE_DISK_SATURATION {
-			diskUtil = metric.Value
+			diskUtil = metric.Value / 100
 			hasScore = true
-		} else if metric.Name == metricstype.KUBE_NODE_STATUS_CAPACITY && metric.Type == metricstype.Network {
-			if metric.Operator == metricstype.Capacity && metric.Unit == metricstype.Bytes {
-				networkCapacity = metric.Value
-				hasScore = true
-			}
-		} else if metric.Name == metricstype.NODE_NETWORK_RECEIVE_BYTES_EXCLUDING_LO {
-			networkInBytes = metric.Value
-		} else if metric.Name == metricstype.NODE_NETWORK_TRANSMIT_BYTES_EXCLUDING_LO {
-			networkOutBytes = metric.Value
+		} else if metric.Name == metricstype.NODE_NETWORK_TOTAL_BYTES_PERCENTAGE_EXCLUDING_LO {
+			networkUtil = metric.Value / 100
+			hasScore = true
 		}
 
 	}
 	totalScore := float64(framework.MaxNodeScore)
 	scoreDiskUtil := (1.0 - diskUtil) * float64(framework.MaxNodeScore)
 	scoreDiskUtil = math.Max(0, scoreDiskUtil)
-	scoreNetworkUtil := 0.0
-	if networkCapacity != 0 {
-		scoreNetworkUtil = (1.0 - (networkInBytes+networkOutBytes)/networkCapacity) * float64(framework.MaxNodeScore)
-		scoreNetworkUtil = math.Max(0, scoreNetworkUtil)
-	}
+	scoreNetworkUtil := (1.0 - networkUtil) * float64(framework.MaxNodeScore)
+	scoreNetworkUtil = math.Max(0, scoreNetworkUtil)
+
 	totalScore = math.Min(totalScore, scoreDiskUtil)
 	totalScore = math.Min(totalScore, scoreNetworkUtil)
 
 	if !hasScore {
 		score = framework.MinNodeScore
 	} else {
-		score = int64(totalScore)
+		score = int64(math.Round(totalScore))
 	}
 
-	return float64(score), true
+	return float64(score), hasScore
 }

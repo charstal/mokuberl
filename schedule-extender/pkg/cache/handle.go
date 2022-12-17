@@ -6,7 +6,7 @@ import (
 	"sync"
 	"time"
 
-	"github.com/charstal/load-monitor/pkg/metricstype"
+	"github.com/charstal/schedule-extender/apis/config"
 	v1 "k8s.io/api/core/v1"
 	utilruntime "k8s.io/apimachinery/pkg/util/runtime"
 	clientcache "k8s.io/client-go/tools/cache"
@@ -152,7 +152,7 @@ func (p *PodAssignEventHandler) cleanupCache() {
 
 // Checks and returns true if the pod is assigned to a node
 func isAssignedAndHaveLabel(pod *v1.Pod) bool {
-	_, ok := pod.Labels[metricstype.DEFAULT_COURSE_LABEL]
+	_, ok := pod.Labels[config.DefaultCourseLabel]
 	klog.InfoS("pod add into cache", klog.KObj(pod))
 	return len(pod.Spec.NodeName) != 0 && ok
 }

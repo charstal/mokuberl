@@ -40,6 +40,7 @@ func NewCollector() (*Collector, error) {
 	if !ok {
 		loadMonitorAddress = config.DefaultLoadMonitorAddress
 	}
+	klog.InfoS("load monitor address", loadMonitorAddress)
 	client, err := loadmonitorapi.NewServiceClient(loadMonitorAddress)
 	if err != nil {
 		return nil, err

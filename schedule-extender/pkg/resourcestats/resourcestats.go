@@ -84,12 +84,13 @@ func CreateStatisticsResource(statistics *metricstype.StatisticsData, podLabel s
 	resourceList := make(StatisticsResourceStatsMap, 0)
 
 	for _, t := range MetricTypeList {
-		podUtil, podStd, metricFound := GetResourceData(metrics, t)
+		podAvg, podStd, metricFound := GetResourceData(metrics, t)
 		if !metricFound {
-			klog.V(6).InfoS("Resource usage statistics for label : no valid data")
-			return nil, false
+			klog.Warning("Resource usage statistics for label ", podLabel, " resource type ", t)
+			// return nil, false
+			continue
 		}
-		resourceList[t] = StatisticsResourceStats{Avg: podUtil, Stdev: podStd}
+		resourceList[t] = StatisticsResourceStats{Avg: podAvg, Stdev: podStd}
 	}
 
 	return &resourceList, true
@@ -156,8 +157,9 @@ func CreateResourceStatsFromStatistics(metrics []metricstype.Metric, node *v1.No
 	}
 
 	// calculate absolute usage statistics
-	rs.UsedAvg = nodeUtil + rs.Req
-	rs.UsedStdev = math.Max(nodeStd, podStd)
+	rs.UsedAvg = nodeUtil * rs.Capacity / 100
+	// because node std is percentange podStd is real used
+	rs.UsedStdev = math.Max(nodeStd, podStd/rs.Capacity*100) * rs.Capacity / 100
 
 	klog.V(6).InfoS("Resource usage statistics for node", "node", klog.KObj(node), "capacity", rs.Capacity,
 		"required", rs.Req, "usedAvg", rs.UsedAvg, "usedStdev", rs.UsedStdev)
@@ -176,6 +178,24 @@ func GetMuSigma(rs *ResourceStats) (float64, float64) {
 	sigma = math.Max(math.Min(sigma, 1), 0)
 	return mu, sigma
 }
+
+// func GetStatisticsData(metrics []metricstype.Metric, resourceType string) (avg float64, stDev float64, isValid bool) {
+// 	avgFound := false
+// 	for _, metric := range metrics {
+// 		if metric.Type == resourceType {
+// 			if metric.Operator == metricstype.Average {
+// 				avg = metric.Value
+// 				avgFound = true
+// 			} else if metric.Operator == metricstype.Std {
+// 				stDev = metric.Value
+// 			} else if (metric.Operator == "" || metric.Operator == metricstype.Latest) && !avgFound {
+// 				avg = metric.Value
+// 			}
+// 			isValid = true
+// 		}
+// 	}
+// 	return avg, stDev, isValid
+// }
 
 // GetResourceData : get data from measurements for a given resource type
 func GetResourceData(metrics []metricstype.Metric, resourceType string) (avg float64, stDev float64, isValid bool) {
@@ -203,7 +223,9 @@ func GetStatisticsResourceData(metrics []StatisticsResourceStatsMap, resourceTyp
 	for _, metric := range metrics {
 		avg = avg + metric[resourceType].Avg
 		stDev = math.Max(stDev, metric[resourceType].Stdev)
+		isValid = true
 	}
+
 	return avg, stDev, isValid
 }
 

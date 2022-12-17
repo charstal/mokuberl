@@ -5,17 +5,21 @@ go 1.16
 require (
 	github.com/charstal/load-monitor v0.0.0-20221207151253-c44c5c6e4ff0
 	github.com/stretchr/testify v1.8.1
-	go.uber.org/zap v1.13.0 // indirect
 	k8s.io/api v0.21.6
 	k8s.io/apimachinery v0.21.6
 	k8s.io/client-go v0.21.6
 	k8s.io/component-base v0.21.6
 	k8s.io/klog/v2 v2.9.0
-	k8s.io/kube-scheduler v0.21.6 // indirect
 	k8s.io/kubernetes v1.21.6
+	sigs.k8s.io/scheduler-plugins v0.21.6
+
 )
 
-replace github.com/charstal/load-monitor => /home/charstal/workplace/project/graduation-project/load-monitor
+replace (
+	github.com/charstal/load-monitor => /home/charstal/workplace/project/graduation-project/load-monitor
+	k8s.io/kubernetes => /home/charstal/workplace/project/kubernetes
+	sigs.k8s.io/scheduler-plugins => /home/charstal/workplace/project/scheduler-plugins
+)
 
 replace (
 	k8s.io/api => k8s.io/api v0.21.6
@@ -38,7 +42,7 @@ replace (
 	k8s.io/kube-scheduler => k8s.io/kube-scheduler v0.21.6
 	k8s.io/kubectl => k8s.io/kubectl v0.21.6
 	k8s.io/kubelet => k8s.io/kubelet v0.21.6
-	k8s.io/kubernetes => k8s.io/kubernetes v1.21.6
+	// k8s.io/kubernetes => k8s.io/kubernetes v1.21.6
 	k8s.io/legacy-cloud-providers => k8s.io/legacy-cloud-providers v0.21.6
 	k8s.io/metrics => k8s.io/metrics v0.21.6
 	k8s.io/mount-utils => k8s.io/mount-utils v0.21.6

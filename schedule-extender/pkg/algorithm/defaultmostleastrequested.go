@@ -36,14 +36,25 @@ func DefaultMostLeastRequested(nodeInfo *framework.NodeInfo, pod *v1.Pod) (int64
 
 	score := framework.MaxNodeScore
 	for _, resource := range resourcestats.ResourceTypeList {
+		req := requested[resource]
+		cap, ok := allocatable[resource]
+		if !ok || cap == 0 {
+			continue
+		}
+		partScore := (1 - float64(req)*1.0/float64(cap)) * float64(framework.MaxNodeScore)
+		// fmt.Println(partScore)
 		score = int64(
 			math.Max(0,
 				math.Min(
 					float64(score),
-					float64((1-requested[resource]*1.0/allocatable[resource]))*float64(framework.MaxNodeScore))))
+					float64(partScore),
+				)))
 	}
 
 	node := nodeInfo.Node()
+	if score == 100 {
+		klog.Warningf("Please add request to the pod %v, allocatableResource %v, requestedResource %v", pod.Name, allocatable, requested)
+	}
 	klog.V(10).InfoS("Listing internal info for allocatable resources, requested resources and score", "pod",
 		klog.KObj(pod), "node", klog.KObj(node), "allocatableResource",
 		allocatable, "requestedResource", requested, "resourceScore", score,
@@ -88,13 +99,13 @@ func calculatePodResourceRequest(pod *v1.Pod, resource v1.ResourceName) int64 {
 	var podRequest int64
 	for i := range pod.Spec.Containers {
 		container := &pod.Spec.Containers[i]
-		value := GetRequestForResource(resource, &container.Resources.Requests, false)
+		value := GetRequestForResource(resource, &container.Resources.Requests, true)
 		podRequest += value
 	}
 
 	for i := range pod.Spec.InitContainers {
 		initContainer := &pod.Spec.InitContainers[i]
-		value := GetRequestForResource(resource, &initContainer.Resources.Requests, false)
+		value := GetRequestForResource(resource, &initContainer.Resources.Requests, true)
 		if podRequest < value {
 			podRequest = value
 		}
