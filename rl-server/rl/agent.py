@@ -8,7 +8,7 @@ import torch
 import torch.nn.functional as F
 import torch.optim as optim
 
-from .model import QNetWork
+from model import QNetWork
 
 
 # BUFFER_SIZE = int(1e5)  # replay buffer size
@@ -35,7 +35,7 @@ class Agent():
         state_size,
         action_size,
         learning_rate=2.5e-4,
-        tau=0.5,
+        tau=3e-1,
         gamma=0.99,
         start_e=1,
         end_e=0.05,

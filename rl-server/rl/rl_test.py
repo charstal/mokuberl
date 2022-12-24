@@ -3,10 +3,8 @@ import time
 import gym
 from gym import Env
 import numpy as np
-import random
 
-from env import Maze
-from rl import Agent
+from agent import Agent
 
 from torch.utils.tensorboard import SummaryWriter
 
