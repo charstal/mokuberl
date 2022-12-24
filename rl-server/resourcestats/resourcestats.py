@@ -1,5 +1,7 @@
 import pandas as pd
-
+import logging
+import numpy as np
+import time
 # {
 #   'timestamp': 1671782840,
 #   'window': {
@@ -82,6 +84,9 @@ class StatisticsStats():
     def get(self):
         return self.statistics_map
 
+    def __getitem__(self, key):
+        return self.statistics_map[key]
+
 
 class LabelStatisticsMap():
     def __init__(self, raw_data):
@@ -109,6 +114,12 @@ class LabelStatisticsMap():
 
     def get(self):
         return self.label_map
+
+    def __getitem__(self, key):
+        if key not in self.label_map:
+            logging.warn("label", key, "not exists using all instead")
+            return self.label_map["all"]
+        return self.label_map[key]
 
 
 class CapacityStats():
@@ -148,6 +159,9 @@ class CapacityStats():
 
     def __getitem__(self, key):
         return self.capacity_map[key]
+
+    def get(self):
+        return self.capacity_map
 
 
 class InstanceStats():
@@ -222,9 +236,81 @@ class ResourceStats():
         self.instance = InstanceStats(
             raw_data["data"]["NodeMetricsMap"], self.capactiy)
 
-    def numpy(self):
+    # def numpy(self):
+    #     instance_map = self.instance.get_map()
+    #     data = pd.DataFrame(instance_map)
+    #     print(data)
+
+    def add_pod_numpy1(self, pod_label: str):
+        '''
+        [2.16675439e-02 1.84927802e-02 1.31486762e-01 1.75052702e-03
+        4.07563353e-03 4.85356876e-03 1.96026316e-02 1.89666464e-02
+        8.53688260e-02 1.53273646e-03 9.62962963e-05 9.67085854e-03
+        2.69114035e-02 1.89544219e-02 1.08460036e-01 1.69216746e-03
+        1.38050682e-03 9.58257610e-03]
+        (1 * 18)
+        '''
+
+        if len(pod_label) == 0:
+            logging.error("please add pod numpy")
+            return
+
         instance_map = self.instance.get_map()
-        data = pd.DataFrame(instance_map)
-        print(data)
+        node_list = instance_map.keys()
+        data = pd.DataFrame(instance_map).T
+        pod_statistics = self.statistics[pod_label]
+
+        data["instance:node_cpu:ratio:Avg"] = np.where(
+            pod_statistics["cpu"]["Avg"] > data["instance:node_cpu:ratio:Avg"], pod_statistics["cpu"]["Avg"], data["instance:node_cpu:ratio:Avg"])
+        data["instance:node_cpu:ratio:Std"] += pod_statistics["cpu"]["Std"]
+        data["instance:node_memory_utilisation:ratio:Avg"] += pod_statistics["memory"]["Avg"]
+        data["instance:node_memory_utilisation:ratio:Std"] += np.where(
+            pod_statistics["memory"]["Std"] > data["instance:node_memory_utilisation:ratio:Std"], pod_statistics["memory"]["Std"], data["instance:node_memory_utilisation:ratio:Std"])
+
+        for node in node_list:
+            node_capacity = self.capactiy[node]
+            data.loc[node, "instance:node_cpu:ratio:Avg"] /= node_capacity["cpu"]
+            data.loc[node, "instance:node_cpu:ratio:Std"] /= node_capacity["cpu"]
+            data.loc[node, "instance:node_memory_utilisation:ratio:Avg"] /= node_capacity["memory"]
+            data.loc[node, "instance:node_memory_utilisation:ratio:Std"] /= node_capacity["memory"]
+
+        # print(data)
+        return data.to_numpy().flatten()
 
     # def
+    def add_pod_numpy2(self, pod_label: str):
+        '''
+        (18,)
+        (18,)
+        (4,)
+        [8.00000000e+03 1.73940000e+04 0.00000000e+00 2.00752461e+04
+        1.10000000e+02 9.93750000e+00 8.00000000e+03 1.73940000e+04
+        0.00000000e+00 2.00752461e+04 1.10000000e+02 9.93750000e+00
+        8.00000000e+03 1.73940000e+04 0.00000000e+00 2.00752461e+04
+        1.10000000e+02 9.93750000e+00 2.15603509e+02 4.51332421e+00
+        1.98595391e+03 8.29521225e+00 1.31695906e-03 9.48405884e-03
+        1.72887719e+02 6.18589625e-01 2.45281445e+03 5.83113854e+00
+        3.73255361e-03 4.89303587e-03 1.58940351e+02 5.09508964e+00
+        1.51925547e+03 6.98916009e+00 2.01559454e-04 9.70319613e-03
+        1.46910066e+02 1.18892150e+02 2.82426387e+01 1.89836910e+02
+        3.80613983e+01]
+        (1 * 41)
+        '''
+        capacity_map = self.capactiy.get()
+        capacity_array = pd.DataFrame(capacity_map).T.to_numpy().flatten()
+
+        # print(capacity_array.shape)
+
+        instance_map = self.instance.get_map()
+        instance_array = pd.DataFrame(instance_map).T.to_numpy().flatten()
+
+        # print(instance_array.shape)
+
+        pod_statistics = self.statistics[pod_label].get()
+        statistics_array = pd.DataFrame(pod_statistics).T.to_numpy().flatten()
+
+        # print(statistics_array.shape)
+
+        diff_time = time.time() - self.time
+
+        return np.concatenate((capacity_array, instance_array, statistics_array, diff_time), axis=None)

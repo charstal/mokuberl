@@ -10,4 +10,4 @@ if __name__ == "__main__":
     # print(d)
     r = ResourceStats(d)
     # print(json.dumps(r.instance.instance_map))
-    r.numpy()
+    print(r.add_pod_numpy1("a"))
