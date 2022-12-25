@@ -10,3 +10,6 @@
 
 *.csv
 .VSCodeCounter
+
+log.txt
+run
