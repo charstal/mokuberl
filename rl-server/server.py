@@ -39,6 +39,7 @@ def run():
         result = dict()
         msg = ""
         result["node"] = nodes[0]
+        result["pod"] = pod_name
 
         # print(nodes)
         # print(label)
@@ -67,8 +68,8 @@ def run():
             else:
                 self.send_response(500)
 
-            # self.send_header("Content-Type", "text/html; charset=utf-8")
-            # self.end_headers()
+            self.send_header("Content-Type", "application/json; charset=utf-8")
+            self.end_headers()
 
             if result != None:
                 self.wfile.write(result.encode("utf-8"))

@@ -7,4 +7,6 @@ const (
 	DefaultSafeVarianceSensitivity = 1.0
 
 	DefaultCourseLabel = "course_id"
+
+	DefaultRLServerAddress = "http://localhost:8000"
 )
