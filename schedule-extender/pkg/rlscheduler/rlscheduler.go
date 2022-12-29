@@ -80,7 +80,6 @@ func (pl *RLScheduler) Score(ctx context.Context, cycleState *framework.CycleSta
 		klog.V(6).Info("rl server is invalid use DefaultMostLeastRequested instead of")
 		return algorithm.DefaultMostLeastRequested(nodeInfo, pod)
 	}
-
 	if selectedNodeName == nodeName {
 		return framework.MaxNodeScore, nil
 	} else {

@@ -63,6 +63,7 @@ func TestNew(t *testing.T) {
 		assert.Nil(t, err)
 		resp.Write(bytes)
 	}))
+	os.Setenv("LOAD_MONITOR_ADDRESS", server.URL)
 	defer server.Close()
 
 	registeredPlugins := []st.RegisterPluginFunc{
@@ -78,7 +79,7 @@ func TestNew(t *testing.T) {
 		"default-scheduler", runtime.WithClientSet(cs),
 		runtime.WithInformerFactory(informerFactory), runtime.WithSnapshotSharedLister(snapshot))
 	assert.Nil(t, err)
-	os.Setenv("LOAD_MONITOR_ADDRESS", server.URL)
+
 	p, err := New(nil, fh)
 	assert.NotNil(t, p)
 	assert.Nil(t, err)

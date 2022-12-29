@@ -84,7 +84,7 @@ func (c *RLClient) heartbeatCheck() bool {
 func (c *RLClient) heartbeat() error {
 	err := c.client.Healthy()
 	if err != nil {
-		klog.Error(err, "fail: cannot get hearbeat load monitor")
+		klog.Error(err, "fail: cannot get hearbeat rl server")
 		return err
 	}
 
@@ -112,6 +112,7 @@ func (c *RLClient) Predict(podName, podLabel string, nodes []string) error {
 					Valid:           false,
 				}
 				c.cache.Set(podName, cacheEntry, cacheExpiredIntercalSeconds*time.Second)
+				klog.Info("rl request for pod ", podName)
 				// allow repeat 3 times
 				for i := 0; i < 3; i++ {
 					resp, err := c.client.Predict(request)
@@ -134,15 +135,20 @@ func (c *RLClient) Predict(podName, podLabel string, nodes []string) error {
 }
 
 func (c *RLClient) updateCache(podName, nodeName string) {
-	klog.InfoS("for pod", podName, "the rl schduler result is node", nodeName)
+	klog.Info("for pod ", podName, "the rl schduler result is node", nodeName)
 	now := time.Now().Unix()
 	value, ok := c.cache.GetValue(podName).(CacheEntry)
 	if !ok {
-		panic("cannot find" + podName)
+		// panic("cannot find" + podName)
+		klog.Error("cannot find" + podName)
+		return
+
 	}
-	value.Node = nodeName
-	value.Valid = true
-	value.ReceivedResponseTime = now
+	if len(nodeName) != 0 {
+		value.Node = nodeName
+		value.Valid = true
+		value.ReceivedResponseTime = now
+	}
 
 	c.cache.Set(podName, value, cacheExpiredIntercalSeconds*time.Second)
 }
@@ -150,5 +156,5 @@ func (c *RLClient) updateCache(podName, nodeName string) {
 func (c *RLClient) Get(podName string) (string, bool) {
 	value, ok := c.cache.GetValue(podName).(CacheEntry)
 
-	return value.Node, ok || value.Valid
+	return value.Node, ok && value.Valid
 }
