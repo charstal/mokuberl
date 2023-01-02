@@ -19,8 +19,6 @@ const (
 	cacheCleanupIntervalSeconds = 5 * 60 // 300s
 	cacheExpiredIntercalSeconds = 60
 	repeatRequestTimeoutSeconds = 10
-
-	RLServerAddressKey = "RL_SERVER_ADDRESS"
 )
 
 type CacheEntry struct {
@@ -43,7 +41,7 @@ var (
 
 func NewRLClient() (*RLClient, error) {
 	var ok bool
-	rlServerAddress, ok = os.LookupEnv(RLServerAddressKey)
+	rlServerAddress, ok = os.LookupEnv(rlclientapi.RLServerAddressKey)
 	if !ok {
 		rlServerAddress = config.DefaultRLServerAddress
 	}
