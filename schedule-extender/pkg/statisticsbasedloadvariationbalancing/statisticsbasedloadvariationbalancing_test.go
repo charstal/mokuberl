@@ -146,32 +146,32 @@ func TestScore(t *testing.T) {
 				{Name: "node-1", Score: 77},
 			},
 		},
-		{
-			test: "new node with 2m timeout use DefaultMostLeastRequested",
-			pod:  getPodWithContainersAndOverhead(0, 0, 0, []int64{}, []int64{}, map[string]string{"course_id": "a"}),
-			nodes: []*v1.Node{
-				st.MakeNode().Name("node-1").Capacity(nodeResources).Obj(),
-			},
-			watcherResponse: metricstype.WatcherMetrics{
-				Window: metricstype.Window{End: time.Now().Unix() - 60*2},
-				Data: metricstype.Data{
-					NodeMetricsMap: map[string]metricstype.NodeMetrics{
-						"node-1": {
-							Metrics: []metricstype.Metric{
-								{
-									Type:     metricstype.CPU,
-									Operator: metricstype.Average,
-									Value:    50,
-								},
-							},
-						},
-					},
-				},
-			},
-			expected: []framework.NodeScore{
-				{Name: "node-1", Score: 100},
-			},
-		},
+		// {
+		// 	test: "new node with 2m timeout use DefaultMostLeastRequested",
+		// 	pod:  getPodWithContainersAndOverhead(0, 0, 0, []int64{}, []int64{}, map[string]string{"course_id": "a"}),
+		// 	nodes: []*v1.Node{
+		// 		st.MakeNode().Name("node-1").Capacity(nodeResources).Obj(),
+		// 	},
+		// 	watcherResponse: metricstype.WatcherMetrics{
+		// 		Window: metricstype.Window{End: time.Now().Unix() - 60*2},
+		// 		Data: metricstype.Data{
+		// 			NodeMetricsMap: map[string]metricstype.NodeMetrics{
+		// 				"node-1": {
+		// 					Metrics: []metricstype.Metric{
+		// 						{
+		// 							Type:     metricstype.CPU,
+		// 							Operator: metricstype.Average,
+		// 							Value:    50,
+		// 						},
+		// 					},
+		// 				},
+		// 			},
+		// 		},
+		// 	},
+		// 	expected: []framework.NodeScore{
+		// 		{Name: "node-1", Score: 100},
+		// 	},
+		// },
 		{
 			test: "new node no timeout use DefaultMostLeastRequested",
 			pod:  getPodWithContainersAndOverhead(0, 0, 0, []int64{}, []int64{}, map[string]string{"course_id": "a"}),

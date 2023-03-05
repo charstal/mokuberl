@@ -72,9 +72,9 @@ func CreateStatisticsResource(statistics *metricstype.StatisticsData, podLabel s
 	if !ok {
 		podStatics, ok = statistics.StatisticsMap[metricstype.ALL_COURSE_LABEL]
 		if ok {
-			klog.InfoS("Unable to find metrics for label", "label name", podLabel, "So instead of all method")
+			klog.InfoS("Unable to find metrics for label", "label name", podLabel, "So instead of all method", podStatics)
 		} else {
-			klog.InfoS("Unable to find metrics for label", "label name", podLabel, "and cannot find metrics of all")
+			klog.InfoS("Unable to find metrics for label", "label name", podLabel, "and cannot find metrics of all", podStatics)
 			return nil, false
 		}
 

@@ -27,6 +27,7 @@ type Collector struct {
 	metrics           metricstype.WatcherMetrics
 	statistics        metricstype.StatisticsData
 	lastHeartBeatTime int64
+	receiveTime       int64
 	mu                sync.RWMutex
 }
 
@@ -76,21 +77,22 @@ func NewCollector() (*Collector, error) {
 	return collector, nil
 }
 
-func (c *Collector) GetNodeMetrics(nodeName string) (*[]metricstype.Metric, *metricstype.Window) {
+func (c *Collector) GetNodeMetrics(nodeName string) (*[]metricstype.Metric, *metricstype.Window, int64) {
 	allMetrics, time := c.GetNodeAllMetrics()
+	receiveTime := c.receiveTime
 	// This happens if metrics were never populated since scheduler started
 	if allMetrics.NodeMetricsMap == nil {
 		klog.ErrorS(nil, "Metrics not available from load monitor")
-		return nil, time
+		return nil, time, receiveTime
 	}
 	// Check if node is new (no metrics yet) or metrics are unavailable due to 404 or 500
 	if _, ok := allMetrics.NodeMetricsMap[nodeName]; !ok {
 		klog.ErrorS(nil, "Unable to find metrics for node", "nodeName", nodeName)
-		return nil, time
+		return nil, time, receiveTime
 	}
 
 	met := allMetrics.NodeMetricsMap[nodeName].Metrics
-	return &met, time
+	return &met, time, receiveTime
 }
 
 func (c *Collector) GetStatisticsOfLabel(label string) ([]metricstype.Metric, *metricstype.Window) {
@@ -166,6 +168,7 @@ func (c *Collector) update() error {
 	if metrics != nil {
 		c.metrics = *metrics
 	}
+	c.receiveTime = time.Now().Unix()
 	c.updateStatistics(&metrics.Statistics)
 	c.mu.Unlock()
 	return nil

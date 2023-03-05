@@ -22,5 +22,10 @@ gen:
 	bash ./shell/code_gen.sh
 
 .PHONY: image
-image:
-	docker build -t mokuberl:schedule-extender-$(VERSION) .
+image: build
+	docker build -t scheduler-plugin-agent:$(VERSION) .
+
+.PHONY: remote
+remote: image
+	docker tag scheduler-plugin-agent:$(VERSION) registry.cn-hangzhou.aliyuncs.com/charstal/scheduler-plugin-agent:$(VERSION)
+	docker push registry.cn-hangzhou.aliyuncs.com/charstal/scheduler-plugin-agent:$(VERSION)

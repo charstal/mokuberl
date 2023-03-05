@@ -1,0 +1,28 @@
+apiVersion: apps/v1
+kind: ReplicaSet
+metadata:
+  name: busybox-replicas
+  labels:
+    app: busybox
+    tier: test-replicas
+spec:
+  replicas: 50
+  selector:
+    matchLabels:
+      tier: test-replicas
+  template:
+    metadata:
+      labels:
+        app: busybox
+        tier: test-replicas
+    spec:
+        schedulerName: SchedulerPluginAgent
+        containers:
+        - name: busybox
+          image: busybox:1.34
+          command:
+          - "/bin/sh"
+          - "-c"
+          - "sleep 3600"
+          imagePullPolicy: IfNotPresent
+

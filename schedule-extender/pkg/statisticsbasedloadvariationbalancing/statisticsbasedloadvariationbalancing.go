@@ -106,12 +106,15 @@ func (pl *StatisticsBasedLoadVariationBalancing) Score(ctx context.Context, cycl
 		klog.ErrorS(nil, "This pod has no label of", config.DefaultCourseLabel, ", please add label; using minimum score", "nodeName", nodeName)
 		return score, nil
 	}
-	klog.InfoS("This pod ", pod.Name, "has label of", label)
+	klog.InfoS("Getting Pod Label", "pod", pod.Name, "has label of", label)
 	// get node metrics
-	metrics, window := pl.collector.GetNodeMetrics(nodeName)
+	metrics, window, receiveTime := pl.collector.GetNodeMetrics(nodeName)
 	statistics, _ := pl.collector.GetAllStatistics()
 	// if have no metrics use capacity instead
-	if metrics == nil || time.Now().Unix()-window.End > int64(cache.MetricsAgentReportingIntervalSeconds) {
+	// timeout
+	if metrics == nil || time.Now().Unix()-receiveTime > 2*int64(cache.MetricsAgentReportingIntervalSeconds) {
+		// klog.InfoS("Merics", "get", metrics)
+		// klog.InfoS("Time", "here", time.Now().Unix(), "load monitor", window.End)
 		klog.ErrorS(nil, "Check network, Failed to get metrics for node; using DefaultMostLeastRequested", "nodeName", nodeName)
 		return algorithm.DefaultMostLeastRequested(nodeInfo, pod)
 	}

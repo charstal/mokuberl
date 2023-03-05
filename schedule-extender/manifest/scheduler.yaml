@@ -10,7 +10,7 @@ data:
     leaderElection:
       leaderElect: false
     profiles:
-    - schedulerName: Demoscheduler
+    - schedulerName: SchedulerPluginAgent
       plugins:
         score:
           disabled:
@@ -19,7 +19,10 @@ data:
           - name: PodTopologySpread
           - name: SelectorSpread
           enabled:
-          - name: Demoscheduler
+          - name: StatisticsBasedLoadVariationBalancing
+            weight: 1
+          - name: RLScheduler
+            weight: 1
 ---
 apiVersion: apps/v1
 kind: Deployment
@@ -44,11 +47,11 @@ spec:
             name: mokuberl-schedule-extender-config
       containers:
         - name: mokuberl-schedule-extender-ctrl
-          image: registry.cn-hangzhou.aliyuncs.com/charstal/mokuberl:scheduler-v0.0.3
+          image: registry.cn-hangzhou.aliyuncs.com/charstal/scheduler-plugin-agent:v0.0.1
           imagePullPolicy: Always
-          # env:
-          #   - name: SERVER_ADDRESS
-          #     value: dns:///mokuberl-rl-server.kube-system.svc.cluster.local:5051
+          env:
+            - name: LOAD_MONITOR_ADDRESS
+              value: http://load-monitor-svc.default.svc.cluster.local:2020
           args:
             - schedule-extender
             - --config=/scheduler/mokuberl-schedule-extender-config.yaml

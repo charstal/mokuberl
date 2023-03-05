@@ -3,6 +3,7 @@ import re
 import logging
 import time
 import json
+import numpy as np
 
 from torch.utils.tensorboard import SummaryWriter
 
@@ -38,12 +39,11 @@ def run():
         nodes = raw_data["nodes"]
         result = dict()
         msg = ""
-        result["node"] = nodes[0]
-        result["pod"] = pod_name
 
-        # print(nodes)
-        # print(label)
-        # print(pod_name)
+        arr = [1, 2, 3]
+        result_node = rl_agent.act(arr)
+        result["node"] = nodes[result_node]
+        result["pod"] = pod_name
         return result, True, msg
 
     def update(raw_data):
