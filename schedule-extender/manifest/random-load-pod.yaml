@@ -1,0 +1,26 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: random-load-pod
+  labels:
+    course_id: a
+spec:
+  containers:
+    - name: random-load
+      image: registry.cn-shanghai.aliyuncs.com/charstal/random_load
+      imagePullPolicy: Always
+      resources:
+        requests:
+          cpu: 20m
+          memory: 20Mi
+        limits:
+          cpu: 4
+          memory: 4000Mi
+      volumeMounts:
+        - name: config-volume
+          mountPath: /etc/random-load
+  volumes:
+    - name: config-volume
+      configMap:
+        name: random-load-config
+  restartPolicy: Never

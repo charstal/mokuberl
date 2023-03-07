@@ -1,0 +1,21 @@
+mod: cpu
+delayStart:
+  - 0
+  - 1
+runRange:
+  - 119
+  - 120
+cpuRange:
+  - 10
+  - 11
+---
+mod: memory
+delayStart:
+  - 0
+  - 1
+runRange:
+  - 119
+  - 120
+memRange:
+  - 2047
+  - 2048
