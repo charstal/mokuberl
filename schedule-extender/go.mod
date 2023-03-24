@@ -5,7 +5,7 @@ go 1.16
 require (
 	github.com/charstal/load-monitor v0.0.0-20221207151253-c44c5c6e4ff0
 	github.com/stretchr/testify v1.8.1
-	github.com/zekroTJA/timedmap v1.4.0 // indirect
+	github.com/zekroTJA/timedmap v1.4.0
 	k8s.io/api v0.21.6
 	k8s.io/apimachinery v0.21.6
 	k8s.io/client-go v0.21.6
