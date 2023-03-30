@@ -20,7 +20,7 @@ spec:
           memory: 20Mi
         limits:
           cpu: 4
-          memory: 4000Mi
+          memory: 4096Mi
       volumeMounts:
         - name: config-volume
           mountPath: /etc/random-load
